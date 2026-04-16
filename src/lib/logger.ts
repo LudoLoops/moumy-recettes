@@ -97,7 +97,7 @@ export function logRequest(event: RequestEvent, duration: number): void {
 			url: request.url,
 			userAgent: request.headers.get('user-agent'),
 			duration,
-			status: event.locals.responseStatus || 'unknown'
+			status: (event as any).locals?.responseStatus || 'unknown'
 		},
 		'Request completed'
 	);

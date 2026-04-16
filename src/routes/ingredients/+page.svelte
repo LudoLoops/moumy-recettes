@@ -36,88 +36,30 @@
 
 <div class="pattern-overlay"></div>
 
-<!-- Hero -->
-<header class="bg-surface-100-900 relative overflow-hidden">
-	<div class="inset-0 pointer-events-none absolute opacity-10">
-		<div
-			class="top-10 left-10 w-32 h-32 blur-3xl absolute rounded-full"
-			style="background: var(--color-gold)"
-		></div>
-		<div
-			class="bottom-10 right-10 w-48 h-48 blur-3xl absolute rounded-full"
-			style="background: var(--color-warm-brown)"
-		></div>
-	</div>
+<main
+	class="max-w-6xl px-6 pt-8 relative z-10 mx-auto"
+	style="padding-bottom: var(--space-section-lg)"
+>
+	<h1 class="text-3xl md:text-4xl mb-8 text-primary-700-300 text-center">Index des ingrédients</h1>
 
-	<div class="max-w-6xl px-6 pt-24 pb-20 relative z-10 mx-auto text-center">
-		<!-- Back link -->
-		<a href="/" class="back-link fade-in gap-2 mb-8 text-primary-600-400 inline-flex items-center">
-			<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-			</svg>
-			Retour aux recettes
-		</a>
+	<!-- Letter Jump Nav -->
+	<nav class="letter-nav max-w-6xl px-6 py-6 mx-auto" aria-label="Navigation alphabétique">
+		<ul class="gap-2 flex flex-wrap justify-center">
+			{#each letters as letter}
+				<li>
+					<a
+						href="#lettre-{letter}"
+						class="letter-link bg-surface-50-950 text-primary-600-400 border-surface-200-800 border"
+						aria-label="Aller à la lettre {letter}"
+					>
+						{letter}
+					</a>
+				</li>
+			{/each}
+		</ul>
+	</nav>
 
-		<p
-			class="fade-in text-2xl md:text-3xl mb-4"
-			style="font-family: var(--font-handwriting); color: var(--color-gold)"
-		>
-			parcourir par
-		</p>
-		<h1
-			class="hero-title fade-in text-5xl md:text-7xl mb-6 text-primary-700-300"
-			style="animation-delay: 0.1s"
-		>
-			Index des ingrédients
-		</h1>
-		<p
-			class="fade-in text-xl md:text-2xl max-w-2xl leading-relaxed text-primary-600-400 mx-auto"
-			style="animation-delay: 0.2s"
-		>
-			Trouvez la recette parfaite en parcourant les ingrédients que Moumy aimait utiliser
-		</p>
-		<div class="mt-6 fade-in" style="animation-delay: 0.3s">
-			<span class="gap-2 text-lg text-primary-400-600 inline-flex items-center">
-				<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-					/>
-				</svg>
-				{data.ingredients.length} ingrédients — {data.ingredients.reduce(
-					(sum, i) => sum + i.recipes.length,
-					0
-				)} recettes
-			</span>
-		</div>
-	</div>
-
-	<div
-		class="bottom-0 left-0 right-0 h-16 absolute bg-gradient-to-t from-[var(--body-background-color)] to-transparent"
-	></div>
-</header>
-
-<!-- Letter Jump Nav -->
-<nav class="letter-nav max-w-6xl px-6 py-6 mx-auto" aria-label="Navigation alphabétique">
-	<ul class="gap-2 flex flex-wrap justify-center">
-		{#each letters as letter}
-			<li>
-				<a
-					href="#lettre-{letter}"
-					class="letter-link bg-surface-50-950 text-primary-600-400 border-surface-200-800 border"
-					aria-label="Aller à la lettre {letter}"
-				>
-					{letter}
-				</a>
-			</li>
-		{/each}
-	</ul>
-</nav>
-
-<!-- Ingredient Groups -->
-<main class="max-w-6xl px-6 relative z-10 mx-auto" style="padding-bottom: var(--space-section-lg)">
+	<!-- Ingredient Groups -->
 	{#each letters as letter, groupIndex}
 		{@const ingredientsForLetter = grouped.get(letter)!}
 		<section
@@ -199,22 +141,6 @@
 		z-index: 0;
 	}
 
-	/* Hero gradient */
-	/* Back link */
-	.back-link {
-		font-family: var(--font-body);
-		font-size: 1rem;
-		text-decoration: none;
-		transition: all 0.3s ease;
-		border-bottom: 1px solid transparent;
-		padding-bottom: 2px;
-	}
-
-	.back-link:hover {
-		color: var(--color-secondary-700);
-		border-bottom-color: var(--color-gold);
-	}
-
 	/* Letter navigation */
 	.letter-nav {
 		position: relative;
@@ -238,7 +164,7 @@
 
 	.letter-link:hover {
 		background: var(--color-gold);
-		color: oklch(24% 0.035 52deg);
+		color: var(--color-surface-950);
 		border-color: var(--color-gold);
 		transform: translateY(-2px);
 		box-shadow: var(--shadow-card);
@@ -266,7 +192,7 @@
 		width: 48px;
 		height: 48px;
 		background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-light) 100%);
-		color: oklch(24% 0.035 52deg);
+		color: var(--color-surface-950);
 		border-radius: 12px;
 		font-family: var(--font-title);
 		font-weight: 700;
@@ -416,10 +342,6 @@
 
 	/* Mobile */
 	@media (max-width: 768px) {
-		.hero-title {
-			font-size: 2.25rem !important;
-		}
-
 		.letter-header {
 			gap: 0.75rem;
 		}

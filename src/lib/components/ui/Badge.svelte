@@ -1,7 +1,14 @@
 <script lang="ts">
 	import { cn } from './utils/cn';
 
-	type BadgeVariant = 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'surface' | 'gold';
+	type BadgeVariant =
+		| 'primary'
+		| 'secondary'
+		| 'success'
+		| 'warning'
+		| 'error'
+		| 'surface'
+		| 'gold';
 
 	interface Props {
 		variant?: BadgeVariant;
@@ -29,7 +36,7 @@
 <style>
 	.gold-badge {
 		background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-light) 100%);
-		color: oklch(24% 0.035 52deg);
+		color: var(--color-surface-950);
 		font-size: 0.75rem;
 		font-weight: 500;
 		letter-spacing: 0.5px;
