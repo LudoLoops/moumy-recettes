@@ -11,7 +11,7 @@
 	});
 
 	let isHomepage = $derived($page.url.pathname === '/');
-	let isRecipeDetailPage = $derived(/^\/recette\/[^/]+$/.test($page.url.pathname));
+	let isRecipeDetailPage = $derived(/^\/recettes\/[^/]+$/.test($page.url.pathname));
 </script>
 
 <div class="flex min-h-screen flex-col">

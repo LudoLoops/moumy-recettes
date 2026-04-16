@@ -47,7 +47,7 @@
 	function randomRecipe() {
 		if (recipes.length === 0) return;
 		const random = recipes[Math.floor(Math.random() * recipes.length)];
-		goto('/recette/' + random.slug);
+		goto('/recettes/' + random.slug);
 	}
 </script>
 
@@ -121,7 +121,7 @@
 		<div class="md:grid-cols-2 lg:grid-cols-3 gap-6 grid grid-cols-1">
 			{#each filteredRecipes as recipe, i}
 				<article class="recipe-card fade-in" style="animation-delay: {i * 0.05}s">
-					<a href="/recette/{recipe.slug}" class="block no-underline">
+					<a href="/recettes/{recipe.slug}" class="block no-underline">
 						<Card variant="elevated" noPadding>
 							<div class="p-6">
 								<Badge variant="gold" class="mb-3">{recipe.categoryLabel}</Badge>

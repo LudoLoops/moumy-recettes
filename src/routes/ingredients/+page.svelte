@@ -28,59 +28,86 @@
 
 <svelte:head>
 	<title>Index des ingrédients — Les recettes de Moumy</title>
-	<meta name="description" content="Parcourez toutes les recettes de Moumy par ingrédient. Retrouvez vos plats préférés grâce à notre index culinaire." />
+	<meta
+		name="description"
+		content="Parcourez toutes les recettes de Moumy par ingrédient. Retrouvez vos plats préférés grâce à notre index culinaire."
+	/>
 </svelte:head>
 
 <div class="pattern-overlay"></div>
 
 <!-- Hero -->
 <header class="hero-gradient relative overflow-hidden">
-	<div class="absolute inset-0 opacity-10 pointer-events-none">
-		<div class="absolute top-10 left-10 w-32 h-32 rounded-full blur-3xl" style="background: var(--color-gold)"></div>
-		<div class="absolute bottom-10 right-10 w-48 h-48 rounded-full blur-3xl" style="background: var(--color-warm-brown)"></div>
+	<div class="inset-0 pointer-events-none absolute opacity-10">
+		<div
+			class="top-10 left-10 w-32 h-32 blur-3xl absolute rounded-full"
+			style="background: var(--color-gold)"
+		></div>
+		<div
+			class="bottom-10 right-10 w-48 h-48 blur-3xl absolute rounded-full"
+			style="background: var(--color-warm-brown)"
+		></div>
 	</div>
 
-	<div class="max-w-6xl mx-auto px-6 pt-24 pb-20 relative z-10 text-center">
+	<div class="max-w-6xl px-6 pt-24 pb-20 relative z-10 mx-auto text-center">
 		<!-- Back link -->
-		<a href="/" class="back-link fade-in inline-flex items-center gap-2 mb-8">
+		<a href="/" class="back-link fade-in gap-2 mb-8 inline-flex items-center">
 			<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
 			</svg>
 			Retour aux recettes
 		</a>
 
-		<p class="fade-in text-2xl md:text-3xl mb-4" style="font-family: var(--font-handwriting); color: var(--color-gold)">
+		<p
+			class="fade-in text-2xl md:text-3xl mb-4"
+			style="font-family: var(--font-handwriting); color: var(--color-gold)"
+		>
 			parcourir par
 		</p>
-		<h1 class="hero-title fade-in text-5xl md:text-7xl mb-6" style="font-family: var(--font-title); color: oklch(43% 0.055 52deg); animation-delay: 0.1s">
+		<h1
+			class="hero-title fade-in text-5xl md:text-7xl mb-6"
+			style="font-family: var(--font-title); color: oklch(43% 0.055 52deg); animation-delay: 0.1s"
+		>
 			Index des ingrédients
 		</h1>
-		<p class="fade-in text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed" style="font-family: var(--font-body); color: oklch(47% 0.04 56deg); animation-delay: 0.2s">
+		<p
+			class="fade-in text-xl md:text-2xl max-w-2xl leading-relaxed mx-auto"
+			style="font-family: var(--font-body); color: oklch(47% 0.04 56deg); animation-delay: 0.2s"
+		>
 			Trouvez la recette parfaite en parcourant les ingrédients que Moumy aimait utiliser
 		</p>
 		<div class="mt-6 fade-in" style="animation-delay: 0.3s">
-			<span class="inline-flex items-center gap-2 text-lg" style="font-family: var(--font-body); color: var(--color-warm-brown)">
+			<span
+				class="gap-2 text-lg inline-flex items-center"
+				style="font-family: var(--font-body); color: var(--color-warm-brown)"
+			>
 				<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+					/>
 				</svg>
-				{data.ingredients.length} ingrédients — {data.ingredients.reduce((sum, i) => sum + i.recipes.length, 0)} recettes
+				{data.ingredients.length} ingrédients — {data.ingredients.reduce(
+					(sum, i) => sum + i.recipes.length,
+					0
+				)} recettes
 			</span>
 		</div>
 	</div>
 
-	<div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[var(--color-cream)] to-transparent"></div>
+	<div
+		class="bottom-0 left-0 right-0 h-16 absolute bg-gradient-to-t from-[var(--color-cream)] to-transparent"
+	></div>
 </header>
 
 <!-- Letter Jump Nav -->
-<nav class="letter-nav max-w-6xl mx-auto px-6 py-6" aria-label="Navigation alphabétique">
-	<ul class="flex flex-wrap justify-center gap-2">
+<nav class="letter-nav max-w-6xl px-6 py-6 mx-auto" aria-label="Navigation alphabétique">
+	<ul class="gap-2 flex flex-wrap justify-center">
 		{#each letters as letter}
 			<li>
-				<a
-					href="#lettre-{letter}"
-					class="letter-link"
-					aria-label="Aller à la lettre {letter}"
-				>
+				<a href="#lettre-{letter}" class="letter-link" aria-label="Aller à la lettre {letter}">
 					{letter}
 				</a>
 			</li>
@@ -89,7 +116,7 @@
 </nav>
 
 <!-- Ingredient Groups -->
-<main class="max-w-6xl mx-auto px-6 relative z-10" style="padding-bottom: var(--space-section-lg)">
+<main class="max-w-6xl px-6 relative z-10 mx-auto" style="padding-bottom: var(--space-section-lg)">
 	{#each letters as letter, groupIndex}
 		{@const ingredientsForLetter = grouped.get(letter)!}
 		<section
@@ -99,8 +126,11 @@
 		>
 			<div class="letter-header">
 				<span class="letter-badge">{letter}</span>
-				<h2 class="letter-title">{letter}</h2>
-				<span class="letter-count">{ingredientsForLetter.length} ingrédient{ingredientsForLetter.length > 1 ? 's' : ''}</span>
+				<span class="letter-count"
+					>{ingredientsForLetter.length} ingrédient{ingredientsForLetter.length > 1
+						? 's'
+						: ''}</span
+				>
 			</div>
 
 			<div class="ingredient-grid">
@@ -114,8 +144,19 @@
 							<span class="ingredient-name">{ingredient.name}</span>
 							<span class="ingredient-count">
 								{ingredient.recipes.length} recette{ingredient.recipes.length > 1 ? 's' : ''}
-								<svg class="chevron" class:rotated={expandedIngredient === ingredient.name} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+								<svg
+									class="chevron"
+									class:rotated={expandedIngredient === ingredient.name}
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M19 9l-7 7-7-7"
+									/>
 								</svg>
 							</span>
 						</button>
@@ -123,7 +164,7 @@
 						{#if expandedIngredient === ingredient.name}
 							<div class="ingredient-recipes">
 								{#each ingredient.recipes as recipe}
-									<a href="/recette/{recipe.slug}" class="recipe-link">
+									<a href="/recettes/{recipe.slug}" class="recipe-link">
 										<span class="recipe-link-title">{recipe.title}</span>
 										<Badge variant="gold">{recipe.categoryLabel}</Badge>
 									</a>
@@ -137,9 +178,13 @@
 	{/each}
 
 	{#if data.ingredients.length === 0}
-		<div class="text-center py-16">
-			<p class="text-2xl" style="font-family: var(--font-title); color: oklch(47% 0.04 56deg)">Aucun ingrédient trouvé</p>
-			<p class="mt-2" style="color: oklch(47% 0.04 56deg)">Les recettes n'ont pas encore été ajoutées</p>
+		<div class="py-16 text-center">
+			<p class="text-2xl" style="font-family: var(--font-title); color: oklch(47% 0.04 56deg)">
+				Aucun ingrédient trouvé
+			</p>
+			<p class="mt-2" style="color: oklch(47% 0.04 56deg)">
+				Les recettes n'ont pas encore été ajoutées
+			</p>
 		</div>
 	{/if}
 </main>
@@ -156,7 +201,12 @@
 
 	/* Hero gradient */
 	.hero-gradient {
-		background: linear-gradient(135deg, var(--color-cream) 0%, var(--color-cream-dark) 50%, oklch(88% 0.03 68deg) 100%);
+		background: linear-gradient(
+			135deg,
+			var(--color-cream) 0%,
+			var(--color-cream-dark) 50%,
+			oklch(88% 0.03 68deg) 100%
+		);
 		position: relative;
 	}
 
@@ -236,14 +286,6 @@
 		font-weight: 700;
 		font-size: 1.5rem;
 		flex-shrink: 0;
-	}
-
-	.letter-title {
-		font-family: var(--font-title);
-		font-size: 1.75rem;
-		font-weight: 600;
-		color: oklch(43% 0.055 52deg);
-		margin: 0;
 	}
 
 	.letter-count {

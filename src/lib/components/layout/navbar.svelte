@@ -26,7 +26,7 @@
 		<AppBar.Lead>
 			<a
 				href="/"
-				class="text-white hover:text-primary-200-800 transition-colors"
+				class="text-surface-50-900 hover:text-primary-300-700 transition-colors"
 				style="font-size: var(--text-logo); font-weight: var(--weight-title); font-family: var(--font-handwriting)"
 			>
 				Les recettes de Moumy
@@ -36,15 +36,15 @@
 		<AppBar.Headline>
 			<nav class="md:flex gap-6 hidden items-center">
 				<a
-					href="/recette"
-					class="text-white hover:text-primary-200-800 text-sm transition-colors"
+					href="/recettes"
+					class="text-surface-50-900 hover:text-primary-300-700 text-sm transition-colors"
 					style="font-family: var(--font-body)"
 				>
 					Recettes
 				</a>
 				<a
 					href="/ingredients"
-					class="text-white hover:text-primary-200-800 text-sm transition-colors"
+					class="text-surface-50-900 hover:text-primary-300-700 text-sm transition-colors"
 					style="font-family: var(--font-body)"
 				>
 					Ingrédients
@@ -57,7 +57,7 @@
 
 			<button
 				onclick={() => (mobileMenuOpen = !mobileMenuOpen)}
-				class="md:hidden btn-icon text-white"
+				class="md:hidden btn-icon text-surface-50-900"
 				aria-label="Menu"
 			>
 				{#if mobileMenuOpen}
