@@ -9,12 +9,7 @@
 		content: Snippet;
 	}
 
-	let {
-		side = 'bottom',
-		class: className = '',
-		children,
-		content
-	}: Props = $props();
+	let { side = 'bottom', class: className = '', children, content }: Props = $props();
 </script>
 
 <Popover positioning={{ placement: side }}>
@@ -24,7 +19,9 @@
 
 	<Portal>
 		<Popover.Positioner>
-			<Popover.Content class="popover-content card shadow-lg border border-surface-300-700 {className}">
+			<Popover.Content
+				class="popover-content card shadow-lg border-surface-300-700 border {className}"
+			>
 				{@render content()}
 			</Popover.Content>
 		</Popover.Positioner>
@@ -32,7 +29,7 @@
 </Popover>
 
 <style>
-	.popover-content {
+	:global(.popover-content) {
 		padding: var(--card-p);
 		border-radius: var(--radius-card);
 		z-index: 50;

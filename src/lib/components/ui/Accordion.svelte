@@ -39,19 +39,19 @@
 {/if}
 
 <style>
-	.sf-accordion {
+	:global(.sf-accordion) {
 		display: flex;
 		flex-direction: column;
 		gap: var(--gap-xs);
 	}
 
-	.sf-accordion-item {
+	:global(.sf-accordion-item) {
 		border: 1px solid var(--color-surface-200-800);
 		border-radius: var(--radius-card);
 		overflow: hidden;
 	}
 
-	.sf-accordion-trigger {
+	:global(.sf-accordion-trigger) {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -64,23 +64,25 @@
 		background: transparent;
 		border: none;
 		text-align: left;
-		transition: background-color 0.15s ease, color 0.15s ease;
+		transition:
+			background-color 0.15s ease,
+			color 0.15s ease;
 	}
 
-	.sf-accordion-trigger:hover {
+	:global(.sf-accordion-trigger:hover) {
 		background-color: var(--color-surface-100-900);
 		color: var(--color-surface-900-100);
 	}
 
-	.sf-accordion-title {
+	:global(.sf-accordion-title) {
 		flex: 1;
 	}
 
-	.sf-accordion-indicator {
+	:global(.sf-accordion-indicator) {
 		transition: transform 0.2s ease;
 	}
 
-	.sf-accordion-content {
+	:global(.sf-accordion-content) {
 		padding: 0 var(--accordion-content-px) var(--accordion-content-py);
 		font-size: var(--text-body);
 		color: var(--color-surface-600-400);

@@ -58,22 +58,22 @@
 		white-space: nowrap;
 	}
 
-	.sf-progress-track {
+	:global(.sf-progress-track) {
 		flex: 1;
 		border-radius: 9999px;
 		overflow: hidden;
 		background-color: var(--color-surface-200-800);
 	}
 
-	.sf-progress-sm .sf-progress-track {
+	:global(.sf-progress-sm .sf-progress-track) {
 		height: var(--progress-sm);
 	}
 
-	.sf-progress-md .sf-progress-track {
+	:global(.sf-progress-md .sf-progress-track) {
 		height: var(--progress-md);
 	}
 
-	.sf-progress-lg .sf-progress-track {
+	:global(.sf-progress-lg .sf-progress-track) {
 		height: var(--progress-lg);
 	}
 

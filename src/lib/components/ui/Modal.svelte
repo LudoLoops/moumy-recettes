@@ -22,13 +22,18 @@
 	};
 </script>
 
-<Dialog open={open} onOpenChange={(e) => { if (!e.open) onClose(); }}>
+<Dialog
+	{open}
+	onOpenChange={(e) => {
+		if (!e.open) onClose();
+	}}
+>
 	<Portal>
 		<Dialog.Backdrop class="bg-black/50" />
 		<Dialog.Positioner>
 			<Dialog.Content class="card shadow-xl overflow-hidden" style={sizeStyles[size]}>
-			<div class="modal-header border-b border-surface-300-700 flex items-center justify-between">
-				<Dialog.Title class="modal-title">{title}</Dialog.Title>
+				<div class="modal-header border-surface-300-700 flex items-center justify-between border-b">
+					<Dialog.Title class="modal-title">{title}</Dialog.Title>
 					<Dialog.CloseTrigger class="btn-icon hover:bg-surface-200-700" aria-label="Close">
 						✕
 					</Dialog.CloseTrigger>
@@ -39,7 +44,7 @@
 				</div>
 
 				{#if footer}
-					<div class="modal-header border-t border-surface-300-700">
+					<div class="modal-header border-surface-300-700 border-t">
 						{@render footer()}
 					</div>
 				{/if}
@@ -53,7 +58,7 @@
 		padding: var(--modal-header-py) var(--modal-header-px);
 	}
 
-	.modal-title {
+	:global(.modal-title) {
 		font-size: var(--text-modal-title);
 		font-weight: var(--weight-title);
 	}

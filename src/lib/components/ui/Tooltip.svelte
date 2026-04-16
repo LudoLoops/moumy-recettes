@@ -20,11 +20,11 @@
 
 	let { content, side = 'top', delay = 200, class: className = '', children }: Props = $props();
 
-	const api = useTooltip({
+	const api = useTooltip(() => ({
 		id: `sf-tooltip-${Math.random().toString(36).slice(2, 9)}`,
 		positioning: { placement: side },
 		openDelay: delay
-	});
+	}));
 
 	const contentClass = $derived(cn('sf-tooltip', className));
 </script>
