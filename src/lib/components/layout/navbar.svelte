@@ -33,7 +33,24 @@
 			</a>
 		</AppBar.Lead>
 
-		<AppBar.Headline></AppBar.Headline>
+		<AppBar.Headline>
+			<nav class="md:flex gap-6 hidden items-center">
+				<a
+					href="/recette"
+					class="text-white hover:text-primary-200-800 text-sm transition-colors"
+					style="font-family: var(--font-body)"
+				>
+					Recettes
+				</a>
+				<a
+					href="/ingredients"
+					class="text-white hover:text-primary-200-800 text-sm transition-colors"
+					style="font-family: var(--font-body)"
+				>
+					Ingrédients
+				</a>
+			</nav>
+		</AppBar.Headline>
 
 		<AppBar.Trail>
 			<ThemeToggle />

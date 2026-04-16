@@ -54,12 +54,14 @@
 
 <div class="recipe-page max-w-6xl px-4 md:px-6 relative z-10 mx-auto">
 	<!-- Back link -->
-	<a href="/" class="back-link no-print fade-in">
-		<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-			<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-		</svg>
-		Retour aux recettes
-	</a>
+	<Button variant="ghost" size="sm" onclick={() => history.back()} class="no-print">
+		<span class="gap-1 flex items-center">
+			<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+			</svg>
+			Retour
+		</span>
+	</Button>
 
 	<!-- Two-column grid -->
 	<div class="recipe-grid mt-6 md:mt-8">
@@ -268,22 +270,6 @@
 	.recipe-page {
 		padding-top: var(--space-section);
 		padding-bottom: var(--space-section-lg);
-	}
-
-	/* ─── Back link ─── */
-	.back-link {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.375rem;
-		font-family: var(--font-body);
-		font-size: 0.875rem;
-		color: oklch(47% 0.04 56deg);
-		text-decoration: none;
-		transition: color 0.3s ease;
-	}
-
-	.back-link:hover {
-		color: var(--color-warm-brown);
 	}
 
 	/* ─── Two-column grid ─── */

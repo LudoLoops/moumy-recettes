@@ -40,6 +40,13 @@
 				Accueil
 			</a>
 			<a
+				href="/recette"
+				onclick={onClose}
+				class="px-4 py-3 rounded-xl hover:bg-surface-200-800 text-sm block"
+			>
+				Recettes
+			</a>
+			<a
 				href="/ingredients"
 				onclick={onClose}
 				class="px-4 py-3 rounded-xl hover:bg-surface-200-800 text-sm block"

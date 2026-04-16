@@ -10,21 +10,20 @@
 		themeStore.init();
 	});
 
-	let isAdminPage = $derived($page.url.pathname.startsWith('/admin'));
 	let isHomepage = $derived($page.url.pathname === '/');
-	let isRecipePage = $derived($page.url.pathname.startsWith('/recette'));
+	let isRecipeDetailPage = $derived(/^\/recette\/[^/]+$/.test($page.url.pathname));
 </script>
 
-<div class="flex flex-col min-h-screen">
-	{#if !isAdminPage && !isHomepage && !isRecipePage}
+<div class="flex min-h-screen flex-col">
+	{#if !isHomepage}
 		<Navbar />
 	{/if}
 
-	<main class="flex-1 {!isAdminPage && !isHomepage && !isRecipePage ? 'pt-16' : ''}">
+	<main class="flex-1 {!isHomepage ? 'pt-16' : ''}">
 		{@render children()}
 	</main>
 
-	{#if !isAdminPage && !isRecipePage}
+	{#if !isRecipeDetailPage}
 		<Footer />
 	{/if}
 </div>

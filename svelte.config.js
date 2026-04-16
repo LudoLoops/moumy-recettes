@@ -14,7 +14,12 @@ const config = {
 		}
 	},
 	preprocess: [mdsvex({ extensions: ['.svx', '.md'] })],
-	extensions: ['.svelte', '.svx', '.md']
+	extensions: ['.svelte', '.svx', '.md'],
+	onwarn(warning, handler) {
+		// mdsvex generates `context="module"` which is deprecated in Svelte 5 — cosmetic only
+		if (warning.code === 'script_context_deprecated') return;
+		handler(warning);
+	}
 };
 
 export default config;
