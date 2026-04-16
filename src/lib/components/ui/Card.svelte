@@ -31,26 +31,21 @@
 	}: Props = $props();
 
 	const variants: Record<CardVariant, string> = {
-		flat: 'bg-white',
-		elevated:
-			'bg-white',
+		flat: 'bg-surface-50-950',
+		elevated: 'bg-surface-50-950',
 		outlined: 'bg-transparent border border-surface-200-700',
 		none: ''
 	};
 
-	let shadowStyle = $derived(
-		variant === 'elevated' ? 'box-shadow: var(--shadow-card);' : ''
-	);
+	let shadowStyle = $derived(variant === 'elevated' ? 'box-shadow: var(--shadow-card);' : '');
 
 	const cardClass = $derived(cn('card overflow-hidden', variants[variant], className));
 </script>
 
 <div class={cardClass} style="border-radius: var(--radius-card); {shadowStyle}">
 	{#if header || title}
-		<div
-			class="card-header border-b border-surface-200-700 flex items-center justify-between"
-		>
-			<div class="flex items-center gap-2">
+		<div class="card-header border-surface-200-700 flex items-center justify-between border-b">
+			<div class="gap-2 flex items-center">
 				{#if header}
 					{@render header()}
 				{:else if title}
@@ -76,9 +71,7 @@
 	</div>
 
 	{#if footer}
-		<div
-			class="card-footer border-t border-surface-300-700 preset-tonal-surface-500"
-		>
+		<div class="card-footer border-surface-300-700 preset-tonal-surface-500 border-t">
 			{@render footer()}
 		</div>
 	{/if}
