@@ -47,7 +47,7 @@
 							? 'opacity-50 cursor-not-allowed'
 							: item.danger
 								? 'text-error-500 hover:bg-error-500/10'
-								: 'hover:bg-surface-200-700'
+								: 'hover:bg-surface-200-800'
 						}"
 						style="gap: var(--gap-sm); padding: var(--menu-item-py) var(--menu-item-px); font-size: var(--text-body); border-radius: var(--radius-menu-item)"
 						disabled={item.disabled}

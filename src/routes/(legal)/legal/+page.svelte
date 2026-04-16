@@ -94,7 +94,7 @@
 			</section>
 		</div>
 
-		<div class="mt-12 pt-8 border-t border-surface-200-700">
+		<div class="mt-12 pt-8 border-t border-surface-200-800">
 			<p class="text-xs text-muted-foreground uppercase font-bold tracking-widest">
 				Last updated: {currentYear}
 			</p>

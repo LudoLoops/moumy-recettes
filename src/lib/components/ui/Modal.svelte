@@ -34,7 +34,7 @@
 			<Dialog.Content class="card shadow-xl overflow-hidden" style={sizeStyles[size]}>
 				<div class="modal-header border-surface-300-700 flex items-center justify-between border-b">
 					<Dialog.Title class="modal-title">{title}</Dialog.Title>
-					<Dialog.CloseTrigger class="btn-icon hover:bg-surface-200-700" aria-label="Close">
+					<Dialog.CloseTrigger class="btn-icon hover:bg-surface-200-800" aria-label="Close">
 						✕
 					</Dialog.CloseTrigger>
 				</div>

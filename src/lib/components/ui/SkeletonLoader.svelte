@@ -33,19 +33,19 @@
 	<div class={cn('flex flex-col', className)} style="gap: var(--gap-sm)">
 		{#each Array(lines) as _, i}
 			<div
-				class="animate-pulse bg-surface-200-700 rounded"
+				class="animate-pulse bg-surface-200-800 rounded"
 				style="width: {i === lines - 1 ? '75%' : resolvedWidth}; height: var(--text-body)"
 			></div>
 		{/each}
 	</div>
 {:else if variant === 'circular'}
 	<div
-		class={cn('animate-pulse bg-surface-200-700 rounded-full shrink-0', className)}
+		class={cn('animate-pulse bg-surface-200-800 rounded-full shrink-0', className)}
 		style="width: {resolvedWidth}; height: {resolvedHeight}"
 	></div>
 {:else}
 	<div
-		class={cn('animate-pulse bg-surface-200-700', className)}
+		class={cn('animate-pulse bg-surface-200-800', className)}
 		style="width: {resolvedWidth}; height: {resolvedHeight}; border-radius: var(--radius-card)"
 	></div>
 {/if}

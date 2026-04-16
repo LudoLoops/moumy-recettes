@@ -33,7 +33,7 @@
 	const variants: Record<CardVariant, string> = {
 		flat: 'bg-surface-50-950',
 		elevated: 'bg-surface-50-950',
-		outlined: 'bg-transparent border border-surface-200-700',
+		outlined: 'bg-transparent border border-surface-200-800',
 		none: ''
 	};
 
@@ -44,7 +44,7 @@
 
 <div class={cardClass} style="border-radius: var(--radius-card); {shadowStyle}">
 	{#if header || title}
-		<div class="card-header border-surface-200-700 flex items-center justify-between border-b">
+		<div class="card-header border-surface-200-800 flex items-center justify-between border-b">
 			<div class="gap-2 flex items-center">
 				{#if header}
 					{@render header()}

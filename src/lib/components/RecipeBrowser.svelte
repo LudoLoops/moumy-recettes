@@ -132,7 +132,7 @@
 								<p class="text-sm leading-relaxed mb-3 text-primary-600-400">
 									{recipe.excerpt}
 								</p>
-								<div class="gap-4 text-xs text-primary-400-500 flex items-center">
+								<div class="gap-4 text-xs text-primary-400-600 flex items-center">
 									<span class="gap-1 flex items-center">
 										<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
 											><path

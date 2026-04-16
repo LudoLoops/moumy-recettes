@@ -27,7 +27,7 @@
 	)}
 	style="gap: var(--gap-lg); padding: var(--gap-xl)"
 >
-	<Icon name={icon} size={48} class="text-surface-400-500" />
+	<Icon name={icon} size={48} class="text-surface-400-600" />
 
 	<h3
 		class="text-surface-700-300"

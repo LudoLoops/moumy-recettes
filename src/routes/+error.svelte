@@ -41,7 +41,7 @@
 			<p class="text-surface-600-400 text-base">{errorConfig.description}</p>
 
 			{#if status !== 404 && message}
-				<div class="mt-6 p-4 bg-surface-50-900/50 border border-surface-300-700 rounded-xl text-left">
+				<div class="mt-6 p-4 bg-surface-50-950/50 border border-surface-300-700 rounded-xl text-left">
 					<p class="text-[10px] uppercase font-bold text-muted-foreground mb-1 tracking-wider">Error Details</p>
 					<p class="text-xs font-mono text-error-500 break-all leading-relaxed">{message}</p>
 				</div>

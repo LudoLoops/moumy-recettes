@@ -35,7 +35,7 @@
 		cn(
 			'relative flex items-center',
 			'border border-surface-300-700',
-			'bg-surface-50-800',
+			'bg-surface-50-950',
 			'transition-all duration-200',
 			'focus-within:ring-2 focus-within:ring-primary-500/50 focus-within:border-primary-500',
 			className
@@ -46,14 +46,14 @@
 		cn(
 			'w-full bg-transparent border-0 focus:outline-none',
 			'text-surface-900-100',
-			'placeholder:text-surface-400-500',
+			'placeholder:text-surface-400-600',
 			'disabled:opacity-50 disabled:cursor-not-allowed'
 		)
 	);
 </script>
 
 <div class={wrapperClass} style="border-radius: var(--radius-input-custom)">
-	<span class="absolute left-0 flex items-center justify-center pointer-events-none text-surface-400-500" style="padding-left: var(--input-custom-px)">
+	<span class="absolute left-0 flex items-center justify-center pointer-events-none text-surface-400-600" style="padding-left: var(--input-custom-px)">
 		<Icon name="search" size={16} />
 	</span>
 
@@ -67,7 +67,7 @@
 	/>
 
 	{#if loading}
-		<span class="absolute right-0 flex items-center justify-center text-surface-400-500" style="padding-right: var(--input-custom-px)">
+		<span class="absolute right-0 flex items-center justify-center text-surface-400-600" style="padding-right: var(--input-custom-px)">
 			<Icon name="loader2" size={16} class="animate-spin" />
 		</span>
 	{/if}

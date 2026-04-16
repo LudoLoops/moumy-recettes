@@ -107,10 +107,10 @@
 		<Dialog.Positioner class="fixed inset-0 z-50 {sideConfig.positioner}">
 			<Dialog.Content class={panelClass}>
 				{#if title}
-					<div class="sheet-header border-b border-surface-200-700 flex items-center justify-between">
+					<div class="sheet-header border-b border-surface-200-800 flex items-center justify-between">
 						<Dialog.Title class="sheet-title">{title}</Dialog.Title>
 						<Dialog.CloseTrigger
-							class="btn-icon hover:bg-surface-200-700"
+							class="btn-icon hover:bg-surface-200-800"
 							aria-label="Close panel"
 						>
 							&#x2715;
@@ -119,7 +119,7 @@
 				{:else}
 					<div class="sheet-header-no-title flex justify-end">
 						<Dialog.CloseTrigger
-							class="btn-icon hover:bg-surface-200-700"
+							class="btn-icon hover:bg-surface-200-800"
 							aria-label="Close panel"
 						>
 							&#x2715;
@@ -132,7 +132,7 @@
 				</div>
 
 				{#if footer}
-					<div class="sheet-footer border-t border-surface-200-700">
+					<div class="sheet-footer border-t border-surface-200-800">
 						{@render footer()}
 					</div>
 				{/if}

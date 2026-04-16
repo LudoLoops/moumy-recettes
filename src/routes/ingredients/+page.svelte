@@ -77,7 +77,7 @@
 			Trouvez la recette parfaite en parcourant les ingrédients que Moumy aimait utiliser
 		</p>
 		<div class="mt-6 fade-in" style="animation-delay: 0.3s">
-			<span class="gap-2 text-lg text-primary-500-400 inline-flex items-center">
+			<span class="gap-2 text-lg text-primary-400-600 inline-flex items-center">
 				<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 					<path
 						stroke-linecap="round"
@@ -127,7 +127,7 @@
 		>
 			<div class="letter-header">
 				<span class="letter-badge">{letter}</span>
-				<span class="letter-count text-primary-400-500"
+				<span class="letter-count text-primary-400-600"
 					>{ingredientsForLetter.length} ingrédient{ingredientsForLetter.length > 1
 						? 's'
 						: ''}</span
@@ -146,7 +146,7 @@
 							aria-expanded={expandedIngredient === ingredient.name}
 						>
 							<span class="ingredient-name text-primary-900-100">{ingredient.name}</span>
-							<span class="ingredient-count text-primary-400-500">
+							<span class="ingredient-count text-primary-400-600">
 								{ingredient.recipes.length} recette{ingredient.recipes.length > 1 ? 's' : ''}
 								<svg
 									class="chevron"

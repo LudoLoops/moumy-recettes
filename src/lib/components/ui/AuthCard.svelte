@@ -15,7 +15,7 @@
 	class="min-h-screen flex items-center justify-center bg-surface-100-900 p-4 animate-in fade-in duration-500"
 >
 	<div
-		class="card w-full authcard bg-surface-50-800 border border-surface-200-700 shadow-xl"
+		class="card w-full authcard bg-surface-50-950 border border-surface-200-800 shadow-xl"
 	>
 		<div class="text-center auth-title-section">
 			<h1

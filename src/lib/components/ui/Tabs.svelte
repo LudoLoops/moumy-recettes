@@ -28,7 +28,7 @@
 
 	const variantClasses: Record<string, string> = {
 		underline: '',
-		pills: 'bg-surface-100-800'
+		pills: 'bg-surface-100-900'
 	};
 
 	const variantStyles: Record<string, string> = {

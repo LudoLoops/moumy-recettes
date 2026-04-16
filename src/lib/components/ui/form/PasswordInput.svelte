@@ -48,7 +48,7 @@
 		color: string;
 		label: string;
 	} {
-		if (!password) return { strength: 0, color: 'bg-surface-300-600', label: '' };
+		if (!password) return { strength: 0, color: 'bg-surface-300-700', label: '' };
 
 		let score = 0;
 		if (password.length >= minLength) score++;
@@ -92,7 +92,7 @@
 			'w-full pr-10',
 			'bg-transparent border-0 focus:outline-none',
 			'text-surface-900-100',
-			'placeholder:text-surface-400-500',
+			'placeholder:text-surface-400-600',
 			'disabled:opacity-50 disabled:cursor-not-allowed'
 		)
 	);
@@ -101,7 +101,7 @@
 		cn(
 			'absolute right-2 p-1.5',
 			'text-surface-400-600 hover:text-surface-600-400',
-			'hover:bg-surface-100-700',
+			'hover:bg-surface-100-900',
 			'transition-all duration-200',
 			'focus:outline-none focus:ring-2 focus:ring-primary-500/50',
 			'disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent'

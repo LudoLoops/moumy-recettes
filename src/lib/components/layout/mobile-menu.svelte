@@ -24,7 +24,7 @@
 
 {#if open}
 	<div
-		class="md:hidden inset-0 top-16 bg-surface-50-900 fixed z-40"
+		class="md:hidden inset-0 top-16 bg-surface-50-950 fixed z-40"
 		onclick={handleBackdropClick}
 		onkeydown={handleKeydown}
 		role="dialog"

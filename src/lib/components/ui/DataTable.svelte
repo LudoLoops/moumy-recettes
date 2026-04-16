@@ -102,7 +102,7 @@
 				{#each columns as _}
 					<tr class="border-b border-surface-200-800">
 						<td style="padding: var(--table-cell-py) var(--table-cell-px)">
-							<div class="h-4 bg-surface-200-700 rounded animate-pulse"></div>
+							<div class="h-4 bg-surface-200-800 rounded animate-pulse"></div>
 						</td>
 					</tr>
 				{/each}
@@ -116,7 +116,7 @@
 				{#each sortedData() as row (String(row[rowKey] ?? ''))}
 					<tr
 						class="border-b border-surface-200-800
-							{onRowClick ? 'hover:bg-surface-100-800 cursor-pointer' : ''}"
+							{onRowClick ? 'hover:bg-surface-100-900 cursor-pointer' : ''}"
 						onclick={() => onRowClick?.(row)}
 						onkeydown={(e) => { if (e.key === 'Enter') onRowClick?.(row); }}
 						role={onRowClick ? 'button' : undefined}
