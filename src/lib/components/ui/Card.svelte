@@ -31,8 +31,8 @@
 	}: Props = $props();
 
 	const variants: Record<CardVariant, string> = {
-		flat: 'bg-surface-50-950',
-		elevated: 'bg-surface-50-950',
+		flat: 'bg-surface-100-900',
+		elevated: 'bg-surface-100-900',
 		outlined: 'bg-transparent border border-surface-200-800',
 		none: ''
 	};
