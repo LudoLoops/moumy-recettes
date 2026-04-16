@@ -18,7 +18,7 @@
 <div class="pattern-overlay"></div>
 
 <!-- Hero -->
-<header class="hero-gradient relative overflow-hidden">
+<header class="bg-surface-100-900 relative overflow-hidden">
 	<div class="inset-0 pointer-events-none absolute opacity-10">
 		<div
 			class="top-10 left-10 w-32 h-32 blur-3xl absolute rounded-full"
@@ -149,12 +149,6 @@
 		inset: 0;
 		pointer-events: none;
 		z-index: 0;
-	}
-
-	/* Hero gradient */
-	.hero-gradient {
-		background: var(--body-background-color);
-		position: relative;
 	}
 
 	/* Quote section */
