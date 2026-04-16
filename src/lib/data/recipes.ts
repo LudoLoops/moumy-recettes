@@ -54,6 +54,8 @@ export function getRecipeBySlug(slug: string): Recipe | undefined {
 
 /**
  * Get all unique ingredients across all recipes, with the recipes that use each.
+ * Groups by first word (singular), handles compounds like "pomme de terre".
+ * Splits comma-separated and "et"-separated ingredient strings.
  * Sorted alphabetically (French locale).
  */
 export function getAllIngredients(): Map<string, Recipe[]> {
@@ -61,29 +63,149 @@ export function getAllIngredients(): Map<string, Recipe[]> {
 
 	for (const recipe of getAllRecipes()) {
 		for (const ing of recipe.ingredients) {
-			// Normalize: lowercase, trim
-			const key = normalizeIngredient(ing);
-			if (!map.has(key)) {
-				map.set(key, []);
+			const cleaned = ing.replace(/\s*\([^)]*\)/g, '');
+			const parts = cleaned.split(INGREDIENT_SEPARATORS);
+			for (const part of parts) {
+				const key = getIngredientKey(part.trim());
+				if (!key) continue;
+				if (!map.has(key)) map.set(key, []);
+				if (!map.get(key)!.includes(recipe)) map.get(key)!.push(recipe);
 			}
-			map.get(key)!.push(recipe);
 		}
 	}
 
-	// Sort by ingredient name (French alphabetical)
 	return new Map([...map.entries()].sort((a, b) => a[0].localeCompare(b[0], 'fr')));
 }
 
-/**
- * Normalize an ingredient string for search/comparison.
- * Removes quantities (e.g. "250g de farine" → "farine") for grouping,
- * but keeps the original for display.
- */
+// ---------------------------------------------------------------------------
+// Ingredient normalization — configurable lists
+// ---------------------------------------------------------------------------
+
+/** Articles to strip from the beginning */
+const ARTICLES = ['une', 'un'];
+
+/** Size adjectives to strip from the beginning (e.g. "gros oignons" → "oignons") */
+const SIZE_ADJECTIVES = [
+	'petit',
+	'petite',
+	'petits',
+	'petites',
+	'gros',
+	'grosse',
+	'grands',
+	'grand',
+	'grandes',
+	'gros',
+	'grosse'
+];
+
+/** Abbreviated units that appear right after a number (no space needed) */
+const ABBREV_UNITS = ['kg', 'ml', 'cl', 'g', 'l'];
+
+/** Word units that can appear after a number */
+const WORD_UNITS = [
+	'litre',
+	'litres',
+	'cuillère',
+	'cuillères',
+	'cuillère à soupe',
+	'cuillères à soupe',
+	'cuillère à café',
+	'cuillères à café',
+	'poignée',
+	'poignées',
+	'pincée',
+	'pincées',
+	'bouquet garni',
+	'bouquets garnis',
+	'tranche',
+	'tranches',
+	'pièce',
+	'pièces',
+	'morceau',
+	'morceaux',
+	'gousse',
+	'gousses'
+];
+
+/** Connectors that follow a unit (e.g. "de farine", "d'ail") */
+const CONNECTORS = ['de', "d'"];
+
+/** Separators that split compound ingredient lines into individual items */
+const INGREDIENT_SEPARATORS = /,|\s+et\s+/i;
+
+// Build regexes once from the lists
+const abbrevUnitsRe = new RegExp(
+	`^(?:(?:${ARTICLES.join('|')})\\s+)?(\\d+[\\d\\s,.]*)\\s*(?:${ABBREV_UNITS.map((u) => (u.length === 1 ? u + '\\b' : u)).join('|')})?\\s*(?:${CONNECTORS.map((c) => c.replace("'", "\\'")).join('|')})?\\s*`,
+	'i'
+);
+
+const wordUnitsAlt = WORD_UNITS.map((u) => u.replace(/\s+/g, '\\s+')).join('|');
+const wordUnitsWithNumRe = new RegExp(
+	`^\\d+\\s*(?:${wordUnitsAlt})\\s*(?:${CONNECTORS.map((c) => c.replace("'", "\\'")).join('|')})?\\s*`,
+	'i'
+);
+
+const wordUnitsBareRe = new RegExp(
+	`^(?:${wordUnitsAlt})\\s*(?:${CONNECTORS.map((c) => c.replace("'", "\\'")).join('|')})\\s*`,
+	'i'
+);
+
+const articlesRe = new RegExp(`^(${ARTICLES.join('|')})\\s+`, 'i');
+const sizeAdjRe = new RegExp(`^(${SIZE_ADJECTIVES.join('|')})\\s+`, 'i');
+const rangeRe = /^\d+\s*[-–]\s*\d+\s*/;
+const bareNumRe = /^\d+\s+/;
+const parensRe = /\s*\([^)]*\)/g;
+const leadingDashRe = /^[-–—]\s*/;
+
 function normalizeIngredient(ing: string): string {
-	return ing
-		.toLowerCase()
-		.replace(/^\d+[\d\s,.]*\s*(g|kg|ml|cl|l|cuillères?\s+(à\s+soupe|à\s+café)|poignée|pincée|bouquet|tranche|pièce|morceau)?\s*(d[e']?)?\s*/i, '')
-		.trim();
+	let s = ing.trim().toLowerCase();
+
+	s = s.replace(parensRe, '');
+	s = s.replace(leadingDashRe, '');
+	s = s.replace(articlesRe, '');
+	s = s.replace(sizeAdjRe, '');
+	s = s.replace(rangeRe, '');
+	s = s.replace(abbrevUnitsRe, '');
+	s = s.replace(wordUnitsWithNumRe, '');
+	s = s.replace(bareNumRe, '');
+	s = s.replace(wordUnitsBareRe, '');
+
+	return s.trim();
+}
+
+/** Plural endings → singular rules (ordered by specificity) */
+const SINGULAR_RULES: [RegExp, string][] = [
+	[/eaux$/, 'eau'],
+	[/aux$/, 'al'],
+	[/ss$/, '$&'],
+	[/s$/, ''],
+	[/(?:[^i])x$/, '']
+];
+
+function singularize(word: string): string {
+	if (word.length < 2) return word;
+	for (const [re, replacement] of SINGULAR_RULES) {
+		if (re.test(word)) return word.replace(re, replacement);
+	}
+	return word;
+}
+
+/** Compound patterns where first word alone is NOT the ingredient */
+const COMPOUND_PREFIXES = ['de'];
+
+function getIngredientKey(ing: string): string {
+	const normalized = normalizeIngredient(ing);
+	const words = normalized.split(/\s+/);
+	if (words.length === 0 || !words[0]) return '';
+
+	const first = singularize(words[0]);
+
+	if (words.length >= 3 && COMPOUND_PREFIXES.includes(words[1])) {
+		return `${first} ${words[1]} ${words[2]}`;
+	}
+
+	return first;
 }
 
 /**
