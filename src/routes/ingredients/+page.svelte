@@ -51,7 +51,7 @@
 
 	<div class="max-w-6xl px-6 pt-24 pb-20 relative z-10 mx-auto text-center">
 		<!-- Back link -->
-		<a href="/" class="back-link fade-in gap-2 mb-8 inline-flex items-center">
+		<a href="/" class="back-link fade-in gap-2 mb-8 text-primary-600-400 inline-flex items-center">
 			<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
 			</svg>
@@ -65,22 +65,19 @@
 			parcourir par
 		</p>
 		<h1
-			class="hero-title fade-in text-5xl md:text-7xl mb-6"
-			style="font-family: var(--font-title); color: oklch(43% 0.055 52deg); animation-delay: 0.1s"
+			class="hero-title fade-in text-5xl md:text-7xl mb-6 text-primary-700-300"
+			style="animation-delay: 0.1s"
 		>
 			Index des ingrédients
 		</h1>
 		<p
-			class="fade-in text-xl md:text-2xl max-w-2xl leading-relaxed mx-auto"
-			style="font-family: var(--font-body); color: oklch(47% 0.04 56deg); animation-delay: 0.2s"
+			class="fade-in text-xl md:text-2xl max-w-2xl leading-relaxed text-primary-600-400 mx-auto"
+			style="animation-delay: 0.2s"
 		>
 			Trouvez la recette parfaite en parcourant les ingrédients que Moumy aimait utiliser
 		</p>
 		<div class="mt-6 fade-in" style="animation-delay: 0.3s">
-			<span
-				class="gap-2 text-lg inline-flex items-center"
-				style="font-family: var(--font-body); color: var(--color-warm-brown)"
-			>
+			<span class="gap-2 text-lg text-primary-500-400 inline-flex items-center">
 				<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 					<path
 						stroke-linecap="round"
@@ -98,7 +95,7 @@
 	</div>
 
 	<div
-		class="bottom-0 left-0 right-0 h-16 absolute bg-gradient-to-t from-[var(--color-cream)] to-transparent"
+		class="bottom-0 left-0 right-0 h-16 absolute bg-gradient-to-t from-[var(--body-background-color)] to-transparent"
 	></div>
 </header>
 
@@ -107,7 +104,11 @@
 	<ul class="gap-2 flex flex-wrap justify-center">
 		{#each letters as letter}
 			<li>
-				<a href="#lettre-{letter}" class="letter-link" aria-label="Aller à la lettre {letter}">
+				<a
+					href="#lettre-{letter}"
+					class="letter-link bg-surface-50-950 text-primary-600-400 border-surface-200-800 border"
+					aria-label="Aller à la lettre {letter}"
+				>
 					{letter}
 				</a>
 			</li>
@@ -126,7 +127,7 @@
 		>
 			<div class="letter-header">
 				<span class="letter-badge">{letter}</span>
-				<span class="letter-count"
+				<span class="letter-count text-primary-400-500"
 					>{ingredientsForLetter.length} ingrédient{ingredientsForLetter.length > 1
 						? 's'
 						: ''}</span
@@ -135,14 +136,17 @@
 
 			<div class="ingredient-grid">
 				{#each ingredientsForLetter as ingredient}
-					<div class="ingredient-card" class:expanded={expandedIngredient === ingredient.name}>
+					<div
+						class="ingredient-card bg-surface-50-950 border-surface-200-800 border"
+						class:expanded={expandedIngredient === ingredient.name}
+					>
 						<button
 							class="ingredient-trigger"
 							onclick={() => toggleIngredient(ingredient.name)}
 							aria-expanded={expandedIngredient === ingredient.name}
 						>
-							<span class="ingredient-name">{ingredient.name}</span>
-							<span class="ingredient-count">
+							<span class="ingredient-name text-primary-900-100">{ingredient.name}</span>
+							<span class="ingredient-count text-primary-400-500">
 								{ingredient.recipes.length} recette{ingredient.recipes.length > 1 ? 's' : ''}
 								<svg
 									class="chevron"
@@ -165,7 +169,7 @@
 							<div class="ingredient-recipes">
 								{#each ingredient.recipes as recipe}
 									<a href="/recettes/{recipe.slug}" class="recipe-link">
-										<span class="recipe-link-title">{recipe.title}</span>
+										<span class="recipe-link-title text-primary-900-100">{recipe.title}</span>
 										<Badge variant="gold">{recipe.categoryLabel}</Badge>
 									</a>
 								{/each}
@@ -179,12 +183,8 @@
 
 	{#if data.ingredients.length === 0}
 		<div class="py-16 text-center">
-			<p class="text-2xl" style="font-family: var(--font-title); color: oklch(47% 0.04 56deg)">
-				Aucun ingrédient trouvé
-			</p>
-			<p class="mt-2" style="color: oklch(47% 0.04 56deg)">
-				Les recettes n'ont pas encore été ajoutées
-			</p>
+			<p class="text-2xl text-primary-600-400">Aucun ingrédient trouvé</p>
+			<p class="mt-2 text-primary-600-400">Les recettes n'ont pas encore été ajoutées</p>
 		</div>
 	{/if}
 </main>
@@ -201,12 +201,7 @@
 
 	/* Hero gradient */
 	.hero-gradient {
-		background: linear-gradient(
-			135deg,
-			var(--color-cream) 0%,
-			var(--color-cream-dark) 50%,
-			oklch(88% 0.03 68deg) 100%
-		);
+		background: var(--body-background-color);
 		position: relative;
 	}
 
@@ -214,7 +209,6 @@
 	.back-link {
 		font-family: var(--font-body);
 		font-size: 1rem;
-		color: var(--color-warm-brown);
 		text-decoration: none;
 		transition: all 0.3s ease;
 		border-bottom: 1px solid transparent;
@@ -222,7 +216,7 @@
 	}
 
 	.back-link:hover {
-		color: var(--color-gold-dark);
+		color: var(--color-secondary-700);
 		border-bottom-color: var(--color-gold);
 	}
 
@@ -243,11 +237,8 @@
 		font-family: var(--font-title);
 		font-weight: 600;
 		font-size: 0.875rem;
-		color: var(--color-warm-brown);
 		text-decoration: none;
 		transition: all 0.3s ease;
-		background: white;
-		border: 1px solid rgba(139, 111, 92, 0.12);
 	}
 
 	.letter-link:hover {
@@ -304,21 +295,19 @@
 
 	/* Ingredient card */
 	.ingredient-card {
-		background: white;
 		border-radius: 0.75rem;
-		border: 1px solid rgba(139, 111, 92, 0.1);
 		box-shadow: var(--shadow-card);
 		overflow: hidden;
 		transition: all 0.3s ease;
 	}
 
 	.ingredient-card:hover {
-		border-color: rgba(201, 169, 98, 0.3);
+		border-color: var(--color-secondary-300);
 		box-shadow: var(--shadow-hover);
 	}
 
 	.ingredient-card.expanded {
-		border-color: var(--color-gold);
+		border-color: var(--color-secondary-300);
 		box-shadow: var(--shadow-hover);
 	}
 
@@ -339,13 +328,11 @@
 	}
 
 	.ingredient-trigger:hover {
-		background: var(--color-cream);
+		background: var(--color-surface-100);
 	}
 
 	.ingredient-name {
-		font-family: var(--font-body);
 		font-size: 1.0625rem;
-		color: oklch(24% 0.035 52deg);
 		font-weight: 500;
 		text-transform: capitalize;
 	}
@@ -355,7 +342,6 @@
 		align-items: center;
 		gap: 0.375rem;
 		font-size: 0.8125rem;
-		color: var(--color-warm-brown-light);
 		white-space: nowrap;
 		flex-shrink: 0;
 	}
@@ -402,21 +388,19 @@
 	}
 
 	.recipe-link:hover {
-		background: var(--color-cream);
+		background: var(--color-surface-100);
 		border-left-color: var(--color-gold);
 		padding-left: 1.5rem;
 	}
 
 	.recipe-link-title {
-		font-family: var(--font-body);
 		font-size: 0.9375rem;
-		color: oklch(24% 0.035 52deg);
 		font-weight: 500;
 		line-height: 1.4;
 	}
 
 	.recipe-link:hover .recipe-link-title {
-		color: var(--color-warm-brown);
+		color: var(--color-primary-600);
 	}
 
 	/* Animations */
@@ -450,10 +434,6 @@
 			height: 40px;
 			font-size: 1.25rem;
 			border-radius: 8px;
-		}
-
-		.letter-title {
-			font-size: 1.375rem;
 		}
 
 		.ingredient-grid {

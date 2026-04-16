@@ -38,26 +38,26 @@
 			avec amour et souvenirs
 		</p>
 		<h1
-			class="hero-title fade-in text-5xl md:text-7xl mb-6"
-			style="font-family: var(--font-handwriting); color: oklch(43% 0.055 52deg); animation-delay: 0.1s"
+			class="hero-title fade-in text-5xl md:text-7xl mb-6 text-primary-700-300"
+			style="font-family: var(--font-handwriting); animation-delay: 0.1s"
 		>
 			Les recettes de Moumy
 		</h1>
 		<p
-			class="fade-in text-xl md:text-2xl max-w-2xl leading-relaxed mx-auto"
-			style="font-family: var(--font-title); color: oklch(47% 0.04 56deg); animation-delay: 0.2s"
+			class="fade-in text-xl md:text-2xl max-w-2xl leading-relaxed text-primary-600-400 mx-auto"
+			style="font-family: var(--font-title); animation-delay: 0.2s"
 		>
 			En mémoire de Moumy, qui nous a transmis l'amour de la cuisine et ses secrets de famille
 			précieux
 		</p>
 		<div class="mt-8 fade-in" style="animation-delay: 0.3s">
-			<div class="gap-3 inline-flex items-center" style="color: var(--color-warm-brown)">
+			<div class="gap-3 text-primary-500-400 inline-flex items-center">
 				<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"
 					><path
 						d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
 					/></svg
 				>
-				<span style="font-family: var(--font-title); font-size: 1.125rem"
+				<span class="text-lg" style="font-family: var(--font-title)"
 					>Un héritage culinaire qui traverse les générations</span
 				>
 			</div>
@@ -65,7 +65,7 @@
 	</div>
 
 	<div
-		class="bottom-0 left-0 right-0 h-16 absolute bg-gradient-to-t from-[var(--color-cream)] to-transparent"
+		class="bottom-0 left-0 right-0 h-16 absolute bg-gradient-to-t from-[var(--body-background-color)] to-transparent"
 	></div>
 </header>
 
@@ -74,15 +74,15 @@
 	class="max-w-4xl px-6 relative z-10 mx-auto"
 	style="padding-top: var(--space-section); padding-bottom: var(--space-section)"
 >
-	<div class="quote-section slide-in">
+	<div class="quote-section slide-in bg-surface-100-900">
 		<p
-			class="text-3xl md:text-4xl leading-relaxed mb-4"
-			style="font-family: var(--font-handwriting); color: oklch(43% 0.055 52deg)"
+			class="text-3xl md:text-4xl leading-relaxed mb-4 text-primary-700-300"
+			style="font-family: var(--font-handwriting)"
 		>
 			"La cuisine, c'est de l'amour qui se partage. Chaque plat raconte une histoire, chaque recette
 			porte en elle des souvenirs précieux."
 		</p>
-		<p class="text-lg italic" style="font-family: var(--font-title); color: oklch(47% 0.04 56deg)">
+		<p class="text-lg text-primary-600-400 italic" style="font-family: var(--font-title)">
 			— Moumy
 		</p>
 	</div>
@@ -98,17 +98,17 @@
 
 <!-- Family Memories -->
 <section
-	class="relative z-10 bg-gradient-to-br from-[var(--color-cream-dark)] to-[oklch(88%_0.03_68deg)]"
+	class="bg-surface-100-900 relative z-10"
 	style="padding-top: var(--space-section-lg); padding-bottom: var(--space-section-lg)"
 >
 	<div class="max-w-4xl px-6 mx-auto text-center">
 		<h2
-			class="text-3xl md:text-4xl mb-8"
-			style="font-family: var(--font-title); color: oklch(43% 0.055 52deg)"
+			class="text-3xl md:text-4xl mb-8 text-primary-700-300"
+			style="font-family: var(--font-title)"
 		>
 			Souvenirs de famille
 		</h2>
-		<p class="leading-relaxed mb-8" style="color: oklch(47% 0.04 56deg)">
+		<p class="leading-relaxed mb-8 text-primary-600-400">
 			Chaque dimanche, Moumy préparait son célèbre poulet rôti. L'odeur remplissait la maison,
 			attirant petits et grands vers la cuisine. Ces recettes ne sont pas seulement des
 			instructions, ce sont des morceaux de notre histoire familiale, transmises avec amour de
@@ -119,7 +119,7 @@
 				<p class="text-5xl" style="font-family: var(--font-handwriting); color: var(--color-gold)">
 					{allRecipes.length}
 				</p>
-				<p style="font-family: var(--font-title); color: oklch(47% 0.04 56deg)">
+				<p class="text-primary-600-400" style="font-family: var(--font-title)">
 					Recettes préservées
 				</p>
 			</div>
@@ -127,13 +127,13 @@
 				<p class="text-5xl" style="font-family: var(--font-handwriting); color: var(--color-gold)">
 					&infin;
 				</p>
-				<p style="font-family: var(--font-title); color: oklch(47% 0.04 56deg)">Souvenirs chéris</p>
+				<p class="text-primary-600-400" style="font-family: var(--font-title)">Souvenirs chéris</p>
 			</div>
 			<div class="text-center">
 				<p class="text-5xl" style="font-family: var(--font-handwriting); color: var(--color-gold)">
 					&hearts;
 				</p>
-				<p style="font-family: var(--font-title); color: oklch(47% 0.04 56deg)">
+				<p class="text-primary-600-400" style="font-family: var(--font-title)">
 					Toujours dans nos cœurs
 				</p>
 			</div>
@@ -153,18 +153,12 @@
 
 	/* Hero gradient */
 	.hero-gradient {
-		background: linear-gradient(
-			135deg,
-			var(--color-cream) 0%,
-			var(--color-cream-dark) 50%,
-			oklch(88% 0.03 68deg) 100%
-		);
+		background: var(--body-background-color);
 		position: relative;
 	}
 
 	/* Quote section */
 	.quote-section {
-		background: linear-gradient(135deg, var(--color-cream-dark) 0%, oklch(88% 0.03 68deg) 100%);
 		border-left: 4px solid var(--color-gold);
 		padding: 32px;
 		border-radius: 0 16px 16px 0;

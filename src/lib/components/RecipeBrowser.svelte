@@ -126,16 +126,13 @@
 							<div class="p-6">
 								<Badge variant="gold" class="mb-3">{recipe.categoryLabel}</Badge>
 
-								<h2
-									class="text-xl font-semibold leading-tight mb-2"
-									style="font-family: var(--font-title); color: oklch(24% 0.035 52deg)"
-								>
+								<h2 class="text-xl font-semibold leading-tight mb-2 text-primary-900-100">
 									{recipe.title}
 								</h2>
-								<p class="text-sm leading-relaxed mb-3" style="color: oklch(47% 0.04 56deg)">
+								<p class="text-sm leading-relaxed mb-3 text-primary-600-400">
 									{recipe.excerpt}
 								</p>
-								<div class="gap-4 text-xs flex items-center" style="color: oklch(65% 0.06 54deg)">
+								<div class="gap-4 text-xs text-primary-400-500 flex items-center">
 									<span class="gap-1 flex items-center">
 										<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
 											><path

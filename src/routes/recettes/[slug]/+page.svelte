@@ -71,7 +71,7 @@
 		<!-- Left: Manuscript image (sticky on desktop) -->
 		<div class="fade-in">
 			<div class="md:sticky md:top-8">
-				<div class="recipe-image-frame">
+				<div class="recipe-image-frame bg-surface-50-950">
 					{#if recipe.manuscript}
 						<img
 							src={recipe.manuscript}
@@ -98,15 +98,12 @@
 								/>
 							</svg>
 							<p
-								class="text-xl leading-normal m-0 text-surface-950"
+								class="text-xl leading-normal m-0 text-surface-950-50"
 								style="font-family: var(--font-handwriting)"
 							>
 								Le manuscrit<br />de Moumy
 							</p>
-							<p
-								class="text-xs tracking-wide mt-2 text-surface-500 uppercase"
-								style="font-family: var(--font-body)"
-							>
+							<p class="text-xs tracking-wide mt-2 text-surface-500 uppercase">
 								{recipe.categoryLabel}
 							</p>
 						</div>
@@ -119,23 +116,17 @@
 		<div class="fade-in" style="animation-delay: 0.1s;">
 			<Badge variant="gold">{recipe.categoryLabel}</Badge>
 
-			<h1
-				class="text-4xl md:text-[2.75rem] font-bold leading-tight mt-4 mb-2 text-surface-950"
-				style="font-family: var(--font-title)"
-			>
+			<h1 class="text-4xl md:text-[2.75rem] leading-tight mt-4 mb-2">
 				{recipe.title}
 			</h1>
 
-			<p
-				class="text-lg leading-relaxed mb-6 text-surface-700 italic"
-				style="font-family: var(--font-body)"
-			>
+			<p class="text-lg leading-relaxed mb-6 text-surface-700-300 italic">
 				{recipe.excerpt}
 			</p>
 
 			<!-- Meta info grid -->
 			<div class="sm:grid-cols-4 gap-4 mb-8 grid grid-cols-2">
-				<div class="meta-item">
+				<div class="meta-item bg-surface-100-900 border-surface-200-800 border">
 					<svg
 						class="w-5 h-5 mt-0.5 shrink-0"
 						fill="none"
@@ -151,18 +142,14 @@
 						/>
 					</svg>
 					<div>
-						<span
-							class="tracking-wide mb-0.5 text-surface-500 block text-[0.7rem] uppercase"
-							style="font-family: var(--font-body)">Préparation</span
+						<span class="tracking-wide mb-0.5 text-surface-500 block text-[0.7rem] uppercase"
+							>Préparation</span
 						>
-						<span
-							class="text-sm font-semibold text-surface-950 block"
-							style="font-family: var(--font-title)">{recipe.prepTime}</span
-						>
+						<span class="text-sm font-semibold block">{recipe.prepTime}</span>
 					</div>
 				</div>
 
-				<div class="meta-item">
+				<div class="meta-item bg-surface-100-900 border-surface-200-800 border">
 					<svg
 						class="w-5 h-5 mt-0.5 shrink-0"
 						fill="none"
@@ -184,18 +171,14 @@
 						/>
 					</svg>
 					<div>
-						<span
-							class="tracking-wide mb-0.5 text-surface-500 block text-[0.7rem] uppercase"
-							style="font-family: var(--font-body)">Cuisson</span
+						<span class="tracking-wide mb-0.5 text-surface-500 block text-[0.7rem] uppercase"
+							>Cuisson</span
 						>
-						<span
-							class="text-sm font-semibold text-surface-950 block"
-							style="font-family: var(--font-title)">{recipe.cookTime}</span
-						>
+						<span class="text-sm font-semibold block">{recipe.cookTime}</span>
 					</div>
 				</div>
 
-				<div class="meta-item">
+				<div class="meta-item bg-surface-100-900 border-surface-200-800 border">
 					<svg
 						class="w-5 h-5 mt-0.5 shrink-0"
 						fill="none"
@@ -211,18 +194,14 @@
 						/>
 					</svg>
 					<div>
-						<span
-							class="tracking-wide mb-0.5 text-surface-500 block text-[0.7rem] uppercase"
-							style="font-family: var(--font-body)">Portions</span
+						<span class="tracking-wide mb-0.5 text-surface-500 block text-[0.7rem] uppercase"
+							>Portions</span
 						>
-						<span
-							class="text-sm font-semibold text-surface-950 block"
-							style="font-family: var(--font-title)">{recipe.servings}</span
-						>
+						<span class="text-sm font-semibold block">{recipe.servings}</span>
 					</div>
 				</div>
 
-				<div class="meta-item">
+				<div class="meta-item bg-surface-100-900 border-surface-200-800 border">
 					<svg
 						class="w-5 h-5 mt-0.5 shrink-0"
 						fill="none"
@@ -238,14 +217,10 @@
 						/>
 					</svg>
 					<div>
-						<span
-							class="tracking-wide mb-0.5 text-surface-500 block text-[0.7rem] uppercase"
-							style="font-family: var(--font-body)">Difficulté</span
+						<span class="tracking-wide mb-0.5 text-surface-500 block text-[0.7rem] uppercase"
+							>Difficulté</span
 						>
-						<span
-							class="text-sm font-semibold text-surface-950 block"
-							style="font-family: var(--font-title)">{recipe.difficulty}</span
-						>
+						<span class="text-sm font-semibold block">{recipe.difficulty}</span>
 					</div>
 				</div>
 			</div>
@@ -255,10 +230,7 @@
 				class="pl-5 my-8 border-l-3"
 				style="border-color: var(--color-gold); break-inside: avoid"
 			>
-				<h2
-					class="gap-2 text-xl font-semibold mb-4 text-primary-700 flex items-center"
-					style="font-family: var(--font-title)"
-				>
+				<h2 class="gap-2 text-xl font-semibold mb-4 text-primary-700-300 flex items-center">
 					<svg
 						class="w-5 h-5"
 						fill="none"
@@ -276,7 +248,11 @@
 					Ingrédients
 				</h2>
 				{#each recipe.ingredients as ingredient}
-					<div class="ingredient-item">{ingredient}</div>
+					<div
+						class="ingredient-item py-2 border-surface-200-800 leading-normal hover:pl-2 flex items-start border-b transition-all duration-300 last:border-b-0"
+					>
+						{ingredient}
+					</div>
 				{/each}
 			</section>
 
@@ -285,10 +261,7 @@
 				class="pl-5 my-8 border-l-3"
 				style="border-color: var(--color-gold); break-inside: avoid"
 			>
-				<h2
-					class="gap-2 text-xl font-semibold mb-4 text-primary-700 flex items-center"
-					style="font-family: var(--font-title)"
-				>
+				<h2 class="gap-2 text-xl font-semibold mb-4 text-primary-700-300 flex items-center">
 					<svg
 						class="w-5 h-5"
 						fill="none"
@@ -305,10 +278,7 @@
 					</svg>
 					Préparation
 				</h2>
-				<div
-					class="recipe-body leading-loose text-surface-950"
-					style="font-family: var(--font-body)"
-				>
+				<div class="recipe-body leading-loose" style="font-family: var(--font-body)">
 					{#if bodyComponent}
 						<bodyComponent></bodyComponent>
 					{/if}
@@ -318,13 +288,10 @@
 			<!-- Moumy's notes -->
 			{#if recipe.notes}
 				<div
-					class="moumy-notes mt-8 p-6 rounded-xl leading-relaxed text-2xl sm:text-xl text-primary-700 relative"
-					style="font-family: var(--font-handwriting); border: 2px dashed var(--color-gold); background: linear-gradient(135deg, var(--color-cream-dark) 0%, oklch(88% 0.03 68deg) 100%)"
+					class="moumy-notes mt-8 p-6 rounded-xl leading-relaxed text-2xl sm:text-xl text-primary-700-300 bg-surface-100-900 relative"
+					style="font-family: var(--font-handwriting); border: 2px dashed var(--color-gold)"
 				>
-					<div
-						class="gap-2 mb-3 text-base font-semibold text-primary-700 flex items-center"
-						style="font-family: var(--font-title)"
-					>
+					<div class="gap-2 mb-3 text-base font-semibold text-primary-700-300 flex items-center">
 						<svg
 							class="w-5 h-5"
 							fill="currentColor"
@@ -389,7 +356,6 @@
 		border: 4px solid var(--color-primary-700);
 		border-radius: 12px;
 		padding: 8px;
-		background: white;
 		box-shadow: var(--shadow-card);
 		transition: all 0.3s ease;
 	}
@@ -414,9 +380,8 @@
 		align-items: flex-start;
 		gap: 0.625rem;
 		padding: 0.75rem;
-		background: linear-gradient(135deg, var(--color-cream-dark) 0%, oklch(88% 0.03 68deg) 100%);
+		border: 1px solid transparent;
 		border-radius: 10px;
-		border: 1px solid rgba(139, 111, 92, 0.1);
 		transition: all 0.3s ease;
 	}
 
@@ -426,23 +391,8 @@
 	}
 
 	/* ─── Ingredient list (needs ::before pseudo-element) ─── */
-	.ingredient-item {
-		display: flex;
-		align-items: flex-start;
-		padding: 0.5rem 0;
-		border-bottom: 1px solid rgba(139, 111, 92, 0.1);
-		transition: padding-left 0.3s ease;
-		font-family: var(--font-body);
-		color: var(--color-surface-950);
-		line-height: 1.5;
-	}
-
 	.ingredient-item:last-child {
 		border-bottom: none;
-	}
-
-	.ingredient-item:hover {
-		padding-left: 8px;
 	}
 
 	.ingredient-item::before {
