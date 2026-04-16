@@ -52,7 +52,10 @@
 
 <div class="pattern-overlay"></div>
 
-<div class="recipe-page max-w-6xl px-4 md:px-6 relative z-10 mx-auto">
+<div
+	class="max-w-6xl px-4 md:px-6 relative z-10 mx-auto"
+	style="padding-top: var(--space-section); padding-bottom: var(--space-section-lg)"
+>
 	<!-- Back link -->
 	<Button variant="ghost" size="sm" onclick={() => history.back()} class="no-print">
 		<span class="gap-1 flex items-center">
@@ -64,9 +67,9 @@
 	</Button>
 
 	<!-- Two-column grid -->
-	<div class="recipe-grid mt-6 md:mt-8">
+	<div class="md:grid-cols-[1fr_2fr] gap-8 md:gap-12 mt-6 md:mt-8 grid grid-cols-1">
 		<!-- Left: Manuscript image (sticky on desktop) -->
-		<div class="manuscript-col fade-in">
+		<div class="fade-in">
 			<div class="md:sticky md:top-8">
 				<div class="recipe-image-frame">
 					{#if recipe.manuscript}
@@ -76,8 +79,17 @@
 							class="rounded-lg w-full"
 						/>
 					{:else}
-						<div class="manuscript-placeholder">
-							<svg class="placeholder-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<div
+							class="sm:min-h-[200px] p-8 rounded-lg bg-surface-100-900 flex min-h-[280px] flex-col items-center justify-center border-2 border-dashed text-center"
+							style="border-color: var(--color-gold)"
+						>
+							<svg
+								class="w-12 h-12 mb-4 opacity-60"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+								style="color: var(--color-gold)"
+							>
 								<path
 									stroke-linecap="round"
 									stroke-linejoin="round"
@@ -85,8 +97,18 @@
 									d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
 								/>
 							</svg>
-							<p class="placeholder-text">Le manuscrit<br />de Moumy</p>
-							<p class="placeholder-sub">{recipe.categoryLabel}</p>
+							<p
+								class="text-xl leading-normal m-0 text-surface-950"
+								style="font-family: var(--font-handwriting)"
+							>
+								Le manuscrit<br />de Moumy
+							</p>
+							<p
+								class="text-xs tracking-wide mt-2 text-surface-500 uppercase"
+								style="font-family: var(--font-body)"
+							>
+								{recipe.categoryLabel}
+							</p>
 						</div>
 					{/if}
 				</div>
@@ -94,17 +116,33 @@
 		</div>
 
 		<!-- Right: Recipe content -->
-		<div class="content-col fade-in" style="animation-delay: 0.1s;">
+		<div class="fade-in" style="animation-delay: 0.1s;">
 			<Badge variant="gold">{recipe.categoryLabel}</Badge>
 
-			<h1 class="recipe-title mt-4 mb-2">{recipe.title}</h1>
+			<h1
+				class="text-4xl md:text-[2.75rem] font-bold leading-tight mt-4 mb-2 text-surface-950"
+				style="font-family: var(--font-title)"
+			>
+				{recipe.title}
+			</h1>
 
-			<p class="recipe-excerpt mb-6">{recipe.excerpt}</p>
+			<p
+				class="text-lg leading-relaxed mb-6 text-surface-700 italic"
+				style="font-family: var(--font-body)"
+			>
+				{recipe.excerpt}
+			</p>
 
 			<!-- Meta info grid -->
-			<div class="meta-grid mb-8">
+			<div class="sm:grid-cols-4 gap-4 mb-8 grid grid-cols-2">
 				<div class="meta-item">
-					<svg class="meta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<svg
+						class="w-5 h-5 mt-0.5 shrink-0"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+						style="color: var(--color-gold)"
+					>
 						<path
 							stroke-linecap="round"
 							stroke-linejoin="round"
@@ -113,13 +151,25 @@
 						/>
 					</svg>
 					<div>
-						<span class="meta-label">Préparation</span>
-						<span class="meta-value">{recipe.prepTime}</span>
+						<span
+							class="tracking-wide mb-0.5 text-surface-500 block text-[0.7rem] uppercase"
+							style="font-family: var(--font-body)">Préparation</span
+						>
+						<span
+							class="text-sm font-semibold text-surface-950 block"
+							style="font-family: var(--font-title)">{recipe.prepTime}</span
+						>
 					</div>
 				</div>
 
 				<div class="meta-item">
-					<svg class="meta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<svg
+						class="w-5 h-5 mt-0.5 shrink-0"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+						style="color: var(--color-gold)"
+					>
 						<path
 							stroke-linecap="round"
 							stroke-linejoin="round"
@@ -134,13 +184,25 @@
 						/>
 					</svg>
 					<div>
-						<span class="meta-label">Cuisson</span>
-						<span class="meta-value">{recipe.cookTime}</span>
+						<span
+							class="tracking-wide mb-0.5 text-surface-500 block text-[0.7rem] uppercase"
+							style="font-family: var(--font-body)">Cuisson</span
+						>
+						<span
+							class="text-sm font-semibold text-surface-950 block"
+							style="font-family: var(--font-title)">{recipe.cookTime}</span
+						>
 					</div>
 				</div>
 
 				<div class="meta-item">
-					<svg class="meta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<svg
+						class="w-5 h-5 mt-0.5 shrink-0"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+						style="color: var(--color-gold)"
+					>
 						<path
 							stroke-linecap="round"
 							stroke-linejoin="round"
@@ -149,13 +211,25 @@
 						/>
 					</svg>
 					<div>
-						<span class="meta-label">Portions</span>
-						<span class="meta-value">{recipe.servings}</span>
+						<span
+							class="tracking-wide mb-0.5 text-surface-500 block text-[0.7rem] uppercase"
+							style="font-family: var(--font-body)">Portions</span
+						>
+						<span
+							class="text-sm font-semibold text-surface-950 block"
+							style="font-family: var(--font-title)">{recipe.servings}</span
+						>
 					</div>
 				</div>
 
 				<div class="meta-item">
-					<svg class="meta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<svg
+						class="w-5 h-5 mt-0.5 shrink-0"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+						style="color: var(--color-gold)"
+					>
 						<path
 							stroke-linecap="round"
 							stroke-linejoin="round"
@@ -164,16 +238,34 @@
 						/>
 					</svg>
 					<div>
-						<span class="meta-label">Difficulté</span>
-						<span class="meta-value">{recipe.difficulty}</span>
+						<span
+							class="tracking-wide mb-0.5 text-surface-500 block text-[0.7rem] uppercase"
+							style="font-family: var(--font-body)">Difficulté</span
+						>
+						<span
+							class="text-sm font-semibold text-surface-950 block"
+							style="font-family: var(--font-title)">{recipe.difficulty}</span
+						>
 					</div>
 				</div>
 			</div>
 
 			<!-- Ingredients -->
-			<section class="recipe-section">
-				<h2 class="section-title">
-					<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+			<section
+				class="pl-5 my-8 border-l-3"
+				style="border-color: var(--color-gold); break-inside: avoid"
+			>
+				<h2
+					class="gap-2 text-xl font-semibold mb-4 text-primary-700 flex items-center"
+					style="font-family: var(--font-title)"
+				>
+					<svg
+						class="w-5 h-5"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+						style="color: var(--color-gold)"
+					>
 						<path
 							stroke-linecap="round"
 							stroke-linejoin="round"
@@ -189,9 +281,21 @@
 			</section>
 
 			<!-- Preparation steps (body from mdsvex) -->
-			<section class="recipe-section">
-				<h2 class="section-title">
-					<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+			<section
+				class="pl-5 my-8 border-l-3"
+				style="border-color: var(--color-gold); break-inside: avoid"
+			>
+				<h2
+					class="gap-2 text-xl font-semibold mb-4 text-primary-700 flex items-center"
+					style="font-family: var(--font-title)"
+				>
+					<svg
+						class="w-5 h-5"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+						style="color: var(--color-gold)"
+					>
 						<path
 							stroke-linecap="round"
 							stroke-linejoin="round"
@@ -201,7 +305,10 @@
 					</svg>
 					Préparation
 				</h2>
-				<div class="recipe-body">
+				<div
+					class="recipe-body leading-loose text-surface-950"
+					style="font-family: var(--font-body)"
+				>
 					{#if bodyComponent}
 						<bodyComponent></bodyComponent>
 					{/if}
@@ -210,16 +317,27 @@
 
 			<!-- Moumy's notes -->
 			{#if recipe.notes}
-				<div class="moumy-notes">
-					<div class="notes-header">
-						<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+				<div
+					class="moumy-notes mt-8 p-6 rounded-xl leading-relaxed text-2xl sm:text-xl text-primary-700 relative"
+					style="font-family: var(--font-handwriting); border: 2px dashed var(--color-gold); background: linear-gradient(135deg, var(--color-cream-dark) 0%, oklch(88% 0.03 68deg) 100%)"
+				>
+					<div
+						class="gap-2 mb-3 text-base font-semibold text-primary-700 flex items-center"
+						style="font-family: var(--font-title)"
+					>
+						<svg
+							class="w-5 h-5"
+							fill="currentColor"
+							viewBox="0 0 24 24"
+							style="color: var(--color-gold)"
+						>
 							<path
 								d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
 							/>
 						</svg>
 						<span>Notes de Moumy</span>
 					</div>
-					<p class="notes-text">{recipe.notes}</p>
+					<p class="pl-4">{recipe.notes}</p>
 				</div>
 			{/if}
 
@@ -257,7 +375,7 @@
 </div>
 
 <style>
-	/* ─── Pattern overlay (same as homepage) ─── */
+	/* ─── Pattern overlay ─── */
 	.pattern-overlay {
 		background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238B6F5C' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 		position: fixed;
@@ -266,29 +384,9 @@
 		z-index: 0;
 	}
 
-	/* ─── Page wrapper ─── */
-	.recipe-page {
-		padding-top: var(--space-section);
-		padding-bottom: var(--space-section-lg);
-	}
-
-	/* ─── Two-column grid ─── */
-	.recipe-grid {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 2rem;
-	}
-
-	@media (min-width: 768px) {
-		.recipe-grid {
-			grid-template-columns: 1fr 2fr;
-			gap: 3rem;
-		}
-	}
-
-	/* ─── Manuscript image frame ─── */
+	/* ─── Manuscript image frame (pseudo-states need CSS) ─── */
 	.recipe-image-frame {
-		border: 4px solid var(--color-warm-brown);
+		border: 4px solid var(--color-primary-700);
 		border-radius: 12px;
 		padding: 8px;
 		background: white;
@@ -310,82 +408,7 @@
 		transform: scale(1.02);
 	}
 
-	/* ─── Manuscript placeholder (when no image) ─── */
-	.manuscript-placeholder {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		min-height: 280px;
-		padding: 2rem;
-		border: 2px dashed var(--color-gold);
-		border-radius: 8px;
-		background: var(--color-cream-dark);
-		text-align: center;
-	}
-
-	.placeholder-icon {
-		width: 48px;
-		height: 48px;
-		color: var(--color-gold);
-		margin-bottom: 1rem;
-		opacity: 0.6;
-	}
-
-	.placeholder-text {
-		font-family: var(--font-handwriting);
-		font-size: 1.25rem;
-		color: oklch(43% 0.055 52deg);
-		line-height: 1.5;
-		margin: 0;
-	}
-
-	.placeholder-sub {
-		font-family: var(--font-body);
-		font-size: 0.8rem;
-		color: oklch(65% 0.06 54deg);
-		margin-top: 0.5rem;
-		text-transform: uppercase;
-		letter-spacing: 0.5px;
-	}
-
-	/* ─── Recipe title ─── */
-	.recipe-title {
-		font-family: var(--font-title);
-		font-size: 2.25rem;
-		font-weight: 700;
-		line-height: 1.2;
-		color: oklch(24% 0.035 52deg);
-	}
-
-	@media (min-width: 768px) {
-		.recipe-title {
-			font-size: 2.75rem;
-		}
-	}
-
-	/* ─── Recipe excerpt ─── */
-	.recipe-excerpt {
-		font-family: var(--font-body);
-		font-style: italic;
-		font-size: 1.1rem;
-		color: oklch(47% 0.04 56deg);
-		line-height: 1.6;
-	}
-
-	/* ─── Meta info grid ─── */
-	.meta-grid {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: 1rem;
-	}
-
-	@media (min-width: 640px) {
-		.meta-grid {
-			grid-template-columns: repeat(4, 1fr);
-		}
-	}
-
+	/* ─── Meta items ─── */
 	.meta-item {
 		display: flex;
 		align-items: flex-start;
@@ -402,56 +425,7 @@
 		transform: translateY(-1px);
 	}
 
-	.meta-icon {
-		width: 20px;
-		height: 20px;
-		color: var(--color-gold);
-		flex-shrink: 0;
-		margin-top: 2px;
-	}
-
-	.meta-label {
-		display: block;
-		font-family: var(--font-body);
-		font-size: 0.7rem;
-		text-transform: uppercase;
-		letter-spacing: 0.5px;
-		color: oklch(65% 0.06 54deg);
-		margin-bottom: 2px;
-	}
-
-	.meta-value {
-		display: block;
-		font-family: var(--font-title);
-		font-size: 0.9rem;
-		font-weight: 600;
-		color: oklch(24% 0.035 52deg);
-	}
-
-	/* ─── Recipe section (ingredients, steps) ─── */
-	.recipe-section {
-		border-left: 3px solid var(--color-gold);
-		padding-left: 1.25rem;
-		margin: 2rem 0;
-		page-break-inside: avoid;
-	}
-
-	.section-title {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		font-family: var(--font-title);
-		font-size: 1.35rem;
-		font-weight: 600;
-		color: var(--color-warm-brown);
-		margin-bottom: 1rem;
-	}
-
-	.section-title svg {
-		color: var(--color-gold);
-	}
-
-	/* ─── Ingredient list with gold bullets ─── */
+	/* ─── Ingredient list (needs ::before pseudo-element) ─── */
 	.ingredient-item {
 		display: flex;
 		align-items: flex-start;
@@ -459,7 +433,7 @@
 		border-bottom: 1px solid rgba(139, 111, 92, 0.1);
 		transition: padding-left 0.3s ease;
 		font-family: var(--font-body);
-		color: oklch(24% 0.035 52deg);
+		color: var(--color-surface-950);
 		line-height: 1.5;
 	}
 
@@ -480,13 +454,7 @@
 		flex-shrink: 0;
 	}
 
-	/* ─── Recipe body: style the mdsvex-rendered ol/li as gold circle steps ─── */
-	.recipe-body {
-		font-family: var(--font-body);
-		color: oklch(24% 0.035 52deg);
-		line-height: 1.8;
-	}
-
+	/* ─── Recipe body: mdsvex-rendered steps (needs :global + ::before) ─── */
 	.recipe-body :global(ol) {
 		list-style: none;
 		counter-reset: recipe-step;
@@ -510,7 +478,7 @@
 		width: 32px;
 		height: 32px;
 		background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-light) 100%);
-		color: oklch(24% 0.035 52deg);
+		color: var(--color-surface-950);
 		border-radius: 50%;
 		font-family: var(--font-title);
 		font-weight: 600;
@@ -525,20 +493,7 @@
 		margin: 0;
 	}
 
-	/* ─── Moumy notes ─── */
-	.moumy-notes {
-		font-family: var(--font-handwriting);
-		font-size: 1.5rem;
-		color: oklch(43% 0.055 52deg);
-		background: linear-gradient(135deg, var(--color-cream-dark) 0%, oklch(88% 0.03 68deg) 100%);
-		padding: 1.5rem;
-		border-radius: 12px;
-		border: 2px dashed var(--color-gold);
-		margin-top: 2rem;
-		line-height: 1.6;
-		position: relative;
-	}
-
+	/* ─── Moumy notes (needs ::before pseudo-element) ─── */
 	.moumy-notes::before {
 		content: '\201C';
 		position: absolute;
@@ -551,26 +506,7 @@
 		line-height: 1;
 	}
 
-	.notes-header {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		margin-bottom: 0.75rem;
-		font-family: var(--font-title);
-		font-size: 1rem;
-		font-weight: 600;
-		color: var(--color-warm-brown);
-	}
-
-	.notes-header svg {
-		color: var(--color-gold);
-	}
-
-	.notes-text {
-		padding-left: 1rem;
-	}
-
-	/* ─── Fade-in animation ─── */
+	/* ─── Animations ─── */
 	.fade-in {
 		animation: fadeIn 0.6s ease forwards;
 	}
@@ -586,89 +522,35 @@
 		}
 	}
 
-	/* ─── Print styles ─── */
+	/* ─── Print ─── */
 	@media print {
 		.no-print {
 			display: none !important;
 		}
-
 		.pattern-overlay {
 			display: none;
 		}
-
-		.recipe-page {
-			padding: 0;
-			max-width: 100%;
+		.recipe-image-frame {
+			border-color: #ccc;
+			box-shadow: none;
 		}
-
-		.recipe-grid {
-			grid-template-columns: 1fr;
-			gap: 1.5rem;
-		}
-
-		.manuscript-col {
-			display: none;
-		}
-
-		.recipe-section {
-			border-left: 2px solid #ccc;
-			page-break-inside: avoid;
-		}
-
 		.recipe-body :global(li)::before {
 			background: #ccc;
 			color: #000;
 		}
-
-		.moumy-notes {
-			border: 1px dashed #999;
-			background: #f9f9f9;
-			font-size: 1.1rem;
-		}
-
 		.meta-item {
 			border: 1px solid #ddd;
 			background: #f5f5f5;
 		}
-
 		.meta-item:hover {
 			transform: none;
 		}
 	}
 
-	/* ─── Mobile responsive ─── */
+	/* ─── Mobile ─── */
 	@media (max-width: 640px) {
-		.recipe-title {
-			font-size: 1.75rem;
-		}
-
-		.recipe-excerpt {
-			font-size: 1rem;
-		}
-
-		.meta-grid {
-			gap: 0.625rem;
-		}
-
 		.meta-item {
 			padding: 0.5rem;
-		}
-
-		.meta-value {
-			font-size: 0.8rem;
-		}
-
-		.moumy-notes {
-			font-size: 1.2rem;
-			padding: 1.25rem;
-		}
-
-		.placeholder-text {
-			font-size: 1.1rem;
-		}
-
-		.manuscript-placeholder {
-			min-height: 200px;
 		}
 	}
 </style>
