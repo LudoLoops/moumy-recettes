@@ -280,7 +280,7 @@
 				</h2>
 				<div class="recipe-body leading-loose" style="font-family: var(--font-body)">
 					{#if bodyComponent}
-						<bodyComponent></bodyComponent>
+						<svelte:component this={bodyComponent} />
 					{/if}
 				</div>
 			</section>
