@@ -26,17 +26,13 @@
 	);
 </script>
 
-<div
-	class={rootClass}
-	role="separator"
-	aria-orientation={orientation}
->
+<div class={rootClass} role="separator" aria-orientation={orientation}>
 	{#if label}
-		<span class="sf-divider-line" />
+		<span class="sf-divider-line"></span>
 		<span class="sf-divider-label">{label}</span>
-		<span class="sf-divider-line" />
+		<span class="sf-divider-line"></span>
 	{:else}
-		<span class="sf-divider-line" />
+		<span class="sf-divider-line"></span>
 	{/if}
 </div>
 

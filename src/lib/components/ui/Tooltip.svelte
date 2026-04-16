@@ -18,18 +18,10 @@
 		children: Snippet;
 	}
 
-	let {
-		content,
-		side = 'top',
-		delay = 200,
-		class: className = '',
-		children
-	}: Props = $props();
-
-	const id = `sf-tooltip-${Math.random().toString(36).slice(2, 9)}`;
+	let { content, side = 'top', delay = 200, class: className = '', children }: Props = $props();
 
 	const api = useTooltip({
-		id,
+		id: `sf-tooltip-${Math.random().toString(36).slice(2, 9)}`,
 		positioning: { placement: side },
 		openDelay: delay
 	});
@@ -37,26 +29,13 @@
 	const contentClass = $derived(cn('sf-tooltip', className));
 </script>
 
-<Tooltip.Provider api={api}>
-	<Tooltip.Trigger api={api}>
+<Tooltip.Provider value={api}>
+	<Tooltip.Trigger>
 		{@render children()}
 	</Tooltip.Trigger>
-	<Tooltip.Positioner api={api}>
-		<Tooltip.Content api={api} class={contentClass}>
+	<Tooltip.Positioner>
+		<Tooltip.Content class={contentClass}>
 			{content}
 		</Tooltip.Content>
 	</Tooltip.Positioner>
 </Tooltip.Provider>
-
-<style>
-	.sf-tooltip {
-		background-color: var(--tooltip-bg);
-		color: var(--tooltip-color);
-		font-size: var(--tooltip-font-size);
-		padding: var(--tooltip-py) var(--tooltip-px);
-		border-radius: var(--tooltip-radius);
-		line-height: 1.4;
-		pointer-events: none;
-		max-width: 16rem;
-	}
-</style>
