@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { Badge, Button } from '$lib/components';
+	import { goto } from '$app/navigation';
 
 	let { data }: { data: PageData } = $props();
 	const recipe = $derived(data.recipe);
@@ -40,6 +41,25 @@
 			await navigator.clipboard.writeText(window.location.href);
 		}
 	}
+
+	function handleBack() {
+		try {
+			const ref = document.referrer;
+			if (ref) {
+				const refUrl = new URL(ref);
+				if (refUrl.origin === window.location.origin && refUrl.pathname === '/') {
+					// Came from landing page → go to /recettes with any filters
+					const params = refUrl.searchParams.toString();
+					goto('/recettes' + (params ? '?' + params : ''));
+					return;
+				}
+			}
+		} catch {
+			// Invalid referrer, ignore
+		}
+		// Default: normal history back (preserves /recettes filters)
+		history.back();
+	}
 </script>
 
 <svelte:head>
@@ -57,7 +77,7 @@
 	style="padding-top: var(--space-section); padding-bottom: var(--space-section-lg)"
 >
 	<!-- Back link -->
-	<Button variant="ghost" size="sm" onclick={() => history.back()} class="no-print">
+	<Button variant="ghost" size="sm" onclick={handleBack} class="no-print">
 		<span class="gap-1 flex items-center">
 			<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
