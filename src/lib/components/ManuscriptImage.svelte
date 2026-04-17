@@ -15,9 +15,14 @@
 	});
 
 	const manuscriptSrc = $derived.by(() => {
-		for (const [path, mod] of Object.entries(imageModules)) {
-			if (path.includes(`/${recipe.slug}.`)) {
-				return mod.default;
+		// Try full slug first, then base slug (cut after first _): BrA147_B → BrA147
+		const baseSlug = recipe.slug.split('_')[0];
+		const candidates = baseSlug !== recipe.slug ? [recipe.slug, baseSlug] : [recipe.slug];
+		for (const candidate of candidates) {
+			for (const [path, mod] of Object.entries(imageModules)) {
+				if (path.includes(`/${candidate}.`)) {
+					return mod.default;
+				}
 			}
 		}
 		return null;
