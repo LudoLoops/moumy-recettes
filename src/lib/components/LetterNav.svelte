@@ -6,7 +6,7 @@
 	let { letters }: Props = $props();
 </script>
 
-<nav class="py-6 border-primary-100-800 relative z-1 border-b" aria-label="Navigation alphabétique">
+<nav class="py-6 relative z-1" aria-label="Navigation alphabétique">
 	<ul class="gap-2 flex flex-wrap justify-center">
 		{#each letters as letter}
 			<li>
