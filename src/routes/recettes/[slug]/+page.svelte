@@ -280,7 +280,7 @@
 						style="color: var(--color-gold); font-family: var(--font-title)"
 						aria-hidden="true"
 					>
-						\u201C
+						{'\u201C'}
 					</span>
 					<div class="gap-2 mb-3 text-base font-semibold text-primary-700-300 flex items-center">
 						<svg
