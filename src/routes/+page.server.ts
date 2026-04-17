@@ -1,4 +1,4 @@
-import { getAllRecipes } from '$lib/data/recipes';
+import { getAllRecipes } from '$data/recettes';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {

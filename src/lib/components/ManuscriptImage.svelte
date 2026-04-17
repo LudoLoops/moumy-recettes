@@ -9,11 +9,19 @@
 
 	let { recipe }: Props = $props();
 
-	// Manuscript image: auto-detected from slug
-	const manuscriptPath = $derived(`/img/${recipe.slug}.jpg`);
+	// Import all manuscript images, match by slug
+	const imageModules = import.meta.glob<{ default: string }>('$data/img/*.{jpg,jpeg,png,webp}', {
+		eager: true
+	});
 
-	// Try to load the image, fallback to placeholder on error
-	let showImage = $state(true);
+	const manuscriptSrc = $derived.by(() => {
+		for (const [path, mod] of Object.entries(imageModules)) {
+			if (path.includes(`/${recipe.slug}.`)) {
+				return mod.default;
+			}
+		}
+		return null;
+	});
 </script>
 
 <div class="md:sticky md:top-8">
@@ -21,13 +29,12 @@
 		class="bg-surface-50-950 rounded-3xl p-2 hover:-translate-y-0.5 hover:shadow-lg border-4 transition-all duration-300"
 		style="border-color: var(--color-primary-700); box-shadow: var(--shadow-card)"
 	>
-		{#if showImage}
-			<enhanced:img
-				src={manuscriptPath}
+		{#if manuscriptSrc}
+			<img
+				src={manuscriptSrc}
 				alt={`Manuscrit de ${recipe.title}`}
 				class="rounded-2xl w-full transition-transform duration-300 hover:scale-[1.02]"
 				loading="lazy"
-				onerror={() => (showImage = false)}
 			/>
 		{:else}
 			<div

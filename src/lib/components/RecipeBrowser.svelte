@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { categories } from '$lib/data/recipes';
-	import type { Recipe } from '$lib/data/recipes';
+	import { categories } from '$data/recettes';
+	import type { Recipe } from '$data/recettes';
 	import { Button, Badge, Card, SearchInput, EmptyState } from '$lib/components';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';

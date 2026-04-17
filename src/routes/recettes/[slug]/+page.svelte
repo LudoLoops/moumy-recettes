@@ -7,15 +7,18 @@
 	let { data }: { data: PageData } = $props();
 	const recipe = $derived(data.recipe);
 
-	// Eager-load all mdsvex recipe modules
-	// NOTE: This expects filename = slug (e.g., "boeuf-bourguignon.md" has slug: "boeuf-bourguignon")
-	const recipeModules = import.meta.glob<{ default: any }>('$lib/data/recipes/*.md', {
+	// Eager-load all mdsvex recipe modules (supports subdirectories)
+	const recipeModules = import.meta.glob<{ default: any }>('$data/recettes/**/*.md', {
 		eager: true
 	});
 
 	const bodyComponent = $derived(() => {
-		const module = recipeModules[`$lib/data/recipes/${recipe.slug}.md`];
-		return module?.default || null;
+		for (const [path, mod] of Object.entries(recipeModules)) {
+			if (path.endsWith(`/${recipe.slug}.md`)) {
+				return mod.default;
+			}
+		}
+		return null;
 	});
 
 	function handlePrint() {
@@ -90,12 +93,12 @@
 	<!-- Two-column grid -->
 	<div class="md:grid-cols-[1fr_2fr] gap-8 md:gap-12 mt-6 md:mt-8 grid grid-cols-1">
 		<!-- Left: Manuscript image (sticky on desktop) -->
-		<div class="animate-[fadeIn_0.6s_ease_forwards] opacity-0">
+		<div>
 			<ManuscriptImage {recipe} />
 		</div>
 
 		<!-- Right: Recipe content -->
-		<div class="animate-[fadeIn_0.6s_ease_0.1s_forwards] opacity-0">
+		<div>
 			<Badge variant="gold">{recipe.categoryLabel}</Badge>
 
 			<h1 class="text-4xl md:text-[2.75rem] leading-tight mt-4 mb-2">

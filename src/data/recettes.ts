@@ -27,7 +27,7 @@ export interface Recipe extends RecipeMeta {
 // Loader — import.meta.glob reads all .md files eagerly at build time
 // ---------------------------------------------------------------------------
 
-const recipeFiles = import.meta.glob<{ metadata: RecipeMeta }>('./recipes/*.md', {
+const recipeFiles = import.meta.glob<{ metadata: RecipeMeta }>('./recettes/**/*.md', {
 	eager: true
 });
 

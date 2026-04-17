@@ -1,4 +1,4 @@
-import { getRecipeBySlug, getAllRecipes } from '$lib/data/recipes';
+import { getRecipeBySlug, getAllRecipes } from '$data/recettes';
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad, EntryGenerator } from './$types';
 

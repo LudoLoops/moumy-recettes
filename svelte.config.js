@@ -9,6 +9,9 @@ const config = {
 	},
 	kit: {
 		adapter: adapter(),
+		alias: {
+			$data: 'src/data'
+		},
 		prerender: {
 			handleHttpError: 'warn'
 		}

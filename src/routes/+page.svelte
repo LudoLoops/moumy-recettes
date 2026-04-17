@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getAllRecipes } from '$lib/data/recipes';
+	import { getAllRecipes } from '$data/recettes';
 	import { RecipeBrowser } from '$lib/components';
 	import { page } from '$app/stores';
 
