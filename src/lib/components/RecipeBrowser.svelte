@@ -175,7 +175,9 @@
 									<div class="p-6">
 										<Badge variant="gold" class="mb-3">{recipe.categoryDisplay}</Badge>
 
-										<h2 class="text-xl font-semibold leading-tight mb-2 text-primary-900-100">
+										<h2
+											class="text-xl font-semibold leading-tight mb-2 text-primary-900-100 capitalize"
+										>
 											{recipe.title}
 										</h2>
 										<p class="text-sm leading-relaxed mb-3 text-primary-600-400">

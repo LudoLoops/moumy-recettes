@@ -90,7 +90,7 @@
 		<div>
 			<Badge variant="gold">{recipe.categoryDisplay}</Badge>
 
-			<h1 class="text-4xl md:text-[2.75rem] leading-tight mt-4 mb-2">
+			<h1 class="text-4xl md:text-[2.75rem] leading-tight mt-4 mb-2 capitalize">
 				{recipe.title}
 			</h1>
 
