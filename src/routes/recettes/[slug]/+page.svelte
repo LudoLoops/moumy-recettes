@@ -88,7 +88,7 @@
 
 		<!-- Right: Recipe content -->
 		<div>
-			<Badge variant="gold">{recipe.categoryLabel}</Badge>
+			<Badge variant="gold">{recipe.categoryDisplay}</Badge>
 
 			<h1 class="text-4xl md:text-[2.75rem] leading-tight mt-4 mb-2">
 				{recipe.title}

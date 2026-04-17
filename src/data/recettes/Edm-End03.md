@@ -1,7 +1,7 @@
 ---
-title: chicorée à la flamande
+title: Chicorée à la flamande
 slug: Edm-End03
-manuscript: ""
+manuscript: ''
 category: gratin
 categoryLabel: Gratin
 excerpt:
@@ -15,7 +15,7 @@ ingredients:
   - 33cl de béchamel au gruyère
   - 75g de beurre
   - 50g de gruyère rapé
-notes: 
+notes:
 ---
 
 1. Eplucher et essuyer les endives sans les laver.

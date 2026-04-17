@@ -1,14 +1,14 @@
 ---
-title: risotto aux petites courgettes de printemps
+title: Risotto aux petites courgettes de printemps
 slug: Edm-Riz08
-manuscript: ""
-category: "plats"
-categoryLabel: "Plats principaux"
-excerpt: 
+manuscript: ''
+category: 'plats'
+categoryLabel: 'Plats principaux'
+excerpt:
 prepTime: 20
 cookTime: 40
 servings: 6
-difficulty: "Facile"
+difficulty: 'Facile'
 ingredients:
   - 500g de riz
   - 8 petites courgettes
@@ -17,7 +17,7 @@ ingredients:
   - 1 bouquet de persil
   - 1 bouillon de volaille
   - 80g de gruyère râpé
-notes: "on peut ajouter 4 belles tomates et un demi verre de vin blanc sec."
+notes: 'on peut ajouter 4 belles tomates et un demi verre de vin blanc sec.'
 ---
 
 1. Faire cuire le riz dans le bouillon.

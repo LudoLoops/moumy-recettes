@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { categories } from '$data/recettes';
+	import { getCategories } from '$data/recettes';
 	import type { Recipe } from '$data/recettes';
-	import { Button, Badge, Card, SearchInput, EmptyState } from '$lib/components';
+	import { Button, Badge, Card, SearchInput, EmptyState, LetterNav } from '$lib/components';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 
@@ -10,6 +10,8 @@
 	}
 
 	let { recipes }: Props = $props();
+
+	let categories = $derived(getCategories());
 
 	// Read initial state from URL search params
 	let searchQuery = $state($page.url.searchParams.get('q') ?? '');
@@ -43,6 +45,22 @@
 		}
 		return result;
 	});
+
+	// Whether to show grouped (letter) view or flat grid
+	let isGrouped = $derived(!searchQuery && currentCategory === 'all');
+
+	// Group recipes by first letter of title
+	let grouped = $derived.by(() => {
+		const groups = new Map<string, Recipe[]>();
+		for (const recipe of filteredRecipes) {
+			const letter = recipe.title[0]?.toUpperCase() || '?';
+			if (!groups.has(letter)) groups.set(letter, []);
+			groups.get(letter)!.push(recipe);
+		}
+		return groups;
+	});
+
+	let letters = $derived(Array.from(grouped.keys()).sort((a, b) => a.localeCompare(b, 'fr')));
 
 	function randomRecipe() {
 		if (recipes.length === 0) return;
@@ -110,21 +128,111 @@
 		</a>
 	</div>
 
-	<!-- Recipe Grid -->
+	<!-- Alphabetical navigation (only in grouped mode) -->
+	{#if isGrouped && letters.length > 0}
+		<div class="no-print fade-in">
+			<LetterNav {letters} />
+		</div>
+	{/if}
+
+	<!-- Content -->
 	{#if filteredRecipes.length === 0}
 		<EmptyState
 			icon="search"
 			title="Aucune recette trouvée"
 			description="Essayez une autre recherche ou catégorie"
 		/>
+	{:else if isGrouped}
+		<!-- Grouped by letter -->
+		{#each letters as letter, i}
+			<section
+				id="lettre-{letter}"
+				class="mb-20 scroll-mt-8 fade-in"
+				style="animation-delay: {i * 0.05}s"
+			>
+				<div class="gap-4 mb-6 pb-3 border-secondary-300-700 flex items-center border-b-2">
+					<span
+						class="w-12 h-12 rounded-xl font-bold text-2xl from-secondary-400
+							to-secondary-300 text-surface-950 max-md:w-10
+							max-md:h-10 max-md:text-xl max-md:rounded-lg
+							inline-flex shrink-0
+							items-center justify-center bg-gradient-to-br font-[family-name:var(--font-title)]"
+					>
+						{letter}
+					</span>
+					<span class="text-sm text-primary-400-600 ml-auto">
+						{grouped.get(letter)?.length ?? 0}
+						recette{grouped.get(letter)?.length !== 1 ? 's' : ''}
+					</span>
+				</div>
+
+				<div class="md:grid-cols-2 lg:grid-cols-3 gap-6 grid grid-cols-1">
+					{#each grouped.get(letter) ?? [] as recipe, j}
+						{@const delay = (i * 0.05 + j * 0.05).toFixed(2)}
+						<article class="recipe-card fade-in" style="animation-delay: {delay}s">
+							<a href="/recettes/{recipe.slug}" class="block no-underline">
+								<Card variant="elevated" noPadding>
+									<div class="p-6">
+										<Badge variant="gold" class="mb-3">{recipe.categoryDisplay}</Badge>
+
+										<h2 class="text-xl font-semibold leading-tight mb-2 text-primary-900-100">
+											{recipe.title}
+										</h2>
+										<p class="text-sm leading-relaxed mb-3 text-primary-600-400">
+											{recipe.excerpt}
+										</p>
+										<div class="gap-4 text-xs text-primary-400-600 flex items-center">
+											<span class="gap-1 flex items-center">
+												<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+													><path
+														stroke-linecap="round"
+														stroke-linejoin="round"
+														stroke-width="2"
+														d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+													/></svg
+												>
+												{recipe.prepTime}
+											</span>
+											<span class="gap-1 flex items-center">
+												<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+													><path
+														stroke-linecap="round"
+														stroke-linejoin="round"
+														stroke-width="2"
+														d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+													/></svg
+												>
+												{recipe.servings}
+											</span>
+											<span class="gap-1 flex items-center">
+												<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+													><path
+														stroke-linecap="round"
+														stroke-linejoin="round"
+														stroke-width="2"
+														d="M13 10V3L4 14h7v7l9-11h-7z"
+													/></svg
+												>
+												{recipe.difficulty}
+											</span>
+										</div>
+									</div>
+								</Card>
+							</a>
+						</article>
+					{/each}
+				</div>
+			</section>
+		{/each}
 	{:else}
+		<!-- Flat grid (when searching or filtering by category) -->
 		<div class="md:grid-cols-2 lg:grid-cols-3 gap-6 grid grid-cols-1">
 			{#each filteredRecipes as recipe, i}
 				<article class="recipe-card fade-in" style="animation-delay: {i * 0.05}s">
 					<a href="/recettes/{recipe.slug}" class="block no-underline">
 						<Card variant="elevated" noPadding>
 							<div class="p-6">
-								<Badge variant="gold" class="mb-3">{recipe.categoryLabel}</Badge>
+								<Badge variant="gold" class="mb-3">{recipe.categoryDisplay}</Badge>
 
 								<h2 class="text-xl font-semibold leading-tight mb-2 text-primary-900-100">
 									{recipe.title}

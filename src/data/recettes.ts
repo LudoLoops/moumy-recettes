@@ -8,7 +8,6 @@
 export interface RecipeMeta {
 	title: string;
 	category: string;
-	categoryLabel: string;
 	excerpt: string;
 	prepTime: string;
 	cookTime: string;
@@ -21,6 +20,8 @@ export interface RecipeMeta {
 export interface Recipe extends RecipeMeta {
 	/** Slug derived from filename */
 	slug: string;
+	/** Capitalized category for display */
+	categoryDisplay: string;
 }
 
 // ---------------------------------------------------------------------------
@@ -36,16 +37,26 @@ const recipeBodies = import.meta.glob<{ default: any }>('./recettes/**/*.md', {
 	eager: true
 });
 
+/** Capitalize first letter of a category for display */
+function capitalize(s: string): string {
+	if (!s) return s;
+	return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
 /**
  * Get all recipes, sorted alphabetically by title.
  * Slug is derived from filename.
  */
 export function getAllRecipes(): Recipe[] {
 	return Object.entries(recipeFiles)
-		.map(([path, module]) => ({
-			...module.metadata,
-			slug: path.match(/\/([^/]+)\.md$/)?.[1] || ''
-		}))
+		.map(([path, module]) => {
+			const meta = module.metadata;
+			return {
+				...meta,
+				slug: path.match(/\/([^/]+)\.md$/)?.[1] || '',
+				categoryDisplay: capitalize(meta.category)
+			};
+		})
 		.sort((a, b) => a.title.localeCompare(b.title, 'fr'));
 }
 
@@ -98,9 +109,9 @@ export function getAllIngredients(): Map<string, Recipe[]> {
 // ---------------------------------------------------------------------------
 
 /** Articles to strip from the beginning */
-const ARTICLES = ['une', 'un'];
+const ARTICLES = ['une', 'un', 'le', 'la', 'les'];
 
-/** Size adjectives to strip from the beginning (e.g. "gros oignons" → "oignons") */
+/** Descriptive adjectives to strip from the beginning (e.g. "gros oignons", "fines tranches") */
 const SIZE_ADJECTIVES = [
 	'petit',
 	'petite',
@@ -111,8 +122,13 @@ const SIZE_ADJECTIVES = [
 	'grands',
 	'grand',
 	'grandes',
-	'gros',
-	'grosse'
+	'fin',
+	'fine',
+	'fins',
+	'fines',
+	'épais',
+	'épaisse',
+	'épaisses'
 ];
 
 /** Abbreviated units that appear right after a number (no space needed) */
@@ -141,7 +157,12 @@ const WORD_UNITS = [
 	'morceau',
 	'morceaux',
 	'gousse',
-	'gousses'
+	'gousses',
+	'sachet',
+	'sachets',
+	'verre',
+	'verres',
+	'jus'
 ];
 
 /** Connectors that follow a unit (e.g. "de farine", "d'ail") */
@@ -180,11 +201,11 @@ function normalizeIngredient(ing: string): string {
 	s = s.replace(parensRe, '');
 	s = s.replace(leadingDashRe, '');
 	s = s.replace(articlesRe, '');
-	s = s.replace(sizeAdjRe, '');
 	s = s.replace(rangeRe, '');
 	s = s.replace(abbrevUnitsRe, '');
 	s = s.replace(wordUnitsWithNumRe, '');
 	s = s.replace(bareNumRe, '');
+	s = s.replace(sizeAdjRe, '');
 	s = s.replace(wordUnitsBareRe, '');
 
 	return s.trim();
@@ -270,13 +291,28 @@ export function searchIngredients(query: string): { original: string; recipes: R
 }
 
 // ---------------------------------------------------------------------------
-// Categories
+// Categories — derived from recipe frontmatter
 // ---------------------------------------------------------------------------
 
-export const categories = [
-	{ key: 'all', label: 'Toutes les recettes' },
-	{ key: 'desserts', label: 'Desserts' },
-	{ key: 'plats', label: 'Plats principaux' },
-	{ key: 'soupes', label: 'Soupes' },
-	{ key: 'pains', label: 'Pains' }
-] as const;
+export interface Category {
+	key: string;
+	label: string;
+	count: number;
+}
+
+/**
+ * Get all unique categories from recipes, sorted alphabetically (French locale).
+ * Label is the capitalized category value.
+ */
+export function getCategories(): Category[] {
+	const map = new Map<string, number>();
+
+	for (const recipe of getAllRecipes()) {
+		const key = recipe.category;
+		map.set(key, (map.get(key) ?? 0) + 1);
+	}
+
+	return [...map.entries()]
+		.sort((a, b) => a[0].localeCompare(b[0], 'fr'))
+		.map(([key, count]) => ({ key, label: capitalize(key), count }));
+}
