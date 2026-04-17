@@ -4,7 +4,7 @@
 	interface Recipe {
 		slug: string;
 		title: string;
-		categoryLabel: string;
+		categoryDisplay: string;
 	}
 
 	interface Props {
@@ -53,7 +53,7 @@
 					<span class="font-medium text-primary-900-100 leading-snug text-[0.9375rem]"
 						>{recipe.title}</span
 					>
-					<Badge variant="gold">{recipe.categoryLabel}</Badge>
+					<Badge variant="gold">{recipe.categoryDisplay}</Badge>
 				</a>
 			{/each}
 		</div>

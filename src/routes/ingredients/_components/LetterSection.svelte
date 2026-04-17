@@ -4,7 +4,7 @@
 	interface Recipe {
 		slug: string;
 		title: string;
-		categoryLabel: string;
+		categoryDisplay: string;
 	}
 
 	interface Ingredient {

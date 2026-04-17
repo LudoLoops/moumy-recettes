@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { categories } from '$data/recettes';
+	import { getCategories } from '$data/recettes';
 	import type { Recipe } from '$data/recettes';
 	import { Button, Badge, Card, SearchInput, EmptyState, LetterNav } from '$lib/components';
 	import { goto } from '$app/navigation';
@@ -10,6 +10,8 @@
 	}
 
 	let { recipes }: Props = $props();
+
+	let categories = $derived(getCategories());
 
 	// Read initial state from URL search params
 	let searchQuery = $state($page.url.searchParams.get('q') ?? '');
@@ -171,7 +173,7 @@
 							<a href="/recettes/{recipe.slug}" class="block no-underline">
 								<Card variant="elevated" noPadding>
 									<div class="p-6">
-										<Badge variant="gold" class="mb-3">{recipe.categoryLabel}</Badge>
+										<Badge variant="gold" class="mb-3">{recipe.categoryDisplay}</Badge>
 
 										<h2 class="text-xl font-semibold leading-tight mb-2 text-primary-900-100">
 											{recipe.title}
@@ -230,7 +232,7 @@
 					<a href="/recettes/{recipe.slug}" class="block no-underline">
 						<Card variant="elevated" noPadding>
 							<div class="p-6">
-								<Badge variant="gold" class="mb-3">{recipe.categoryLabel}</Badge>
+								<Badge variant="gold" class="mb-3">{recipe.categoryDisplay}</Badge>
 
 								<h2 class="text-xl font-semibold leading-tight mb-2 text-primary-900-100">
 									{recipe.title}

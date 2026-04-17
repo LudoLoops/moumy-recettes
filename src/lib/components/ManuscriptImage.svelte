@@ -3,7 +3,7 @@
 		recipe: {
 			slug: string;
 			title: string;
-			categoryLabel: string;
+			categoryDisplay: string;
 		};
 	}
 
@@ -90,7 +90,7 @@
 					Le manuscrit<br />de Moumy
 				</p>
 				<p class="text-xs tracking-wide mt-2 text-surface-500 uppercase">
-					{recipe.categoryLabel}
+					{recipe.categoryDisplay}
 				</p>
 			</div>
 		{/if}

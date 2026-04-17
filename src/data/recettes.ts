@@ -8,7 +8,6 @@
 export interface RecipeMeta {
 	title: string;
 	category: string;
-	categoryLabel: string;
 	excerpt: string;
 	prepTime: string;
 	cookTime: string;
@@ -21,6 +20,8 @@ export interface RecipeMeta {
 export interface Recipe extends RecipeMeta {
 	/** Slug derived from filename */
 	slug: string;
+	/** Capitalized category for display */
+	categoryDisplay: string;
 }
 
 // ---------------------------------------------------------------------------
@@ -36,16 +37,26 @@ const recipeBodies = import.meta.glob<{ default: any }>('./recettes/**/*.md', {
 	eager: true
 });
 
+/** Capitalize first letter of a category for display */
+function capitalize(s: string): string {
+	if (!s) return s;
+	return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
 /**
  * Get all recipes, sorted alphabetically by title.
  * Slug is derived from filename.
  */
 export function getAllRecipes(): Recipe[] {
 	return Object.entries(recipeFiles)
-		.map(([path, module]) => ({
-			...module.metadata,
-			slug: path.match(/\/([^/]+)\.md$/)?.[1] || ''
-		}))
+		.map(([path, module]) => {
+			const meta = module.metadata;
+			return {
+				...meta,
+				slug: path.match(/\/([^/]+)\.md$/)?.[1] || '',
+				categoryDisplay: capitalize(meta.category)
+			};
+		})
 		.sort((a, b) => a.title.localeCompare(b.title, 'fr'));
 }
 
@@ -280,13 +291,28 @@ export function searchIngredients(query: string): { original: string; recipes: R
 }
 
 // ---------------------------------------------------------------------------
-// Categories
+// Categories — derived from recipe frontmatter
 // ---------------------------------------------------------------------------
 
-export const categories = [
-	{ key: 'all', label: 'Toutes les recettes' },
-	{ key: 'desserts', label: 'Desserts' },
-	{ key: 'plats', label: 'Plats principaux' },
-	{ key: 'soupes', label: 'Soupes' },
-	{ key: 'pains', label: 'Pains' }
-] as const;
+export interface Category {
+	key: string;
+	label: string;
+	count: number;
+}
+
+/**
+ * Get all unique categories from recipes, sorted alphabetically (French locale).
+ * Label is the capitalized category value.
+ */
+export function getCategories(): Category[] {
+	const map = new Map<string, number>();
+
+	for (const recipe of getAllRecipes()) {
+		const key = recipe.category;
+		map.set(key, (map.get(key) ?? 0) + 1);
+	}
+
+	return [...map.entries()]
+		.sort((a, b) => a[0].localeCompare(b[0], 'fr'))
+		.map(([key, count]) => ({ key, label: capitalize(key), count }));
+}

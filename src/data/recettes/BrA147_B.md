@@ -1,7 +1,7 @@
 ---
-title: gâteau au citron
+title: Gâteau au citron
 slug: BrA147-B
-manuscript: ""
+manuscript: ''
 category: desserts
 categoryLabel: Desserts
 excerpt:
