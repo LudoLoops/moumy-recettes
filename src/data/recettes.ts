@@ -98,9 +98,9 @@ export function getAllIngredients(): Map<string, Recipe[]> {
 // ---------------------------------------------------------------------------
 
 /** Articles to strip from the beginning */
-const ARTICLES = ['une', 'un'];
+const ARTICLES = ['une', 'un', 'le', 'la', 'les'];
 
-/** Size adjectives to strip from the beginning (e.g. "gros oignons" → "oignons") */
+/** Descriptive adjectives to strip from the beginning (e.g. "gros oignons", "fines tranches") */
 const SIZE_ADJECTIVES = [
 	'petit',
 	'petite',
@@ -111,8 +111,13 @@ const SIZE_ADJECTIVES = [
 	'grands',
 	'grand',
 	'grandes',
-	'gros',
-	'grosse'
+	'fin',
+	'fine',
+	'fins',
+	'fines',
+	'épais',
+	'épaisse',
+	'épaisses'
 ];
 
 /** Abbreviated units that appear right after a number (no space needed) */
@@ -141,7 +146,12 @@ const WORD_UNITS = [
 	'morceau',
 	'morceaux',
 	'gousse',
-	'gousses'
+	'gousses',
+	'sachet',
+	'sachets',
+	'verre',
+	'verres',
+	'jus'
 ];
 
 /** Connectors that follow a unit (e.g. "de farine", "d'ail") */
@@ -180,11 +190,11 @@ function normalizeIngredient(ing: string): string {
 	s = s.replace(parensRe, '');
 	s = s.replace(leadingDashRe, '');
 	s = s.replace(articlesRe, '');
-	s = s.replace(sizeAdjRe, '');
 	s = s.replace(rangeRe, '');
 	s = s.replace(abbrevUnitsRe, '');
 	s = s.replace(wordUnitsWithNumRe, '');
 	s = s.replace(bareNumRe, '');
+	s = s.replace(sizeAdjRe, '');
 	s = s.replace(wordUnitsBareRe, '');
 
 	return s.trim();
