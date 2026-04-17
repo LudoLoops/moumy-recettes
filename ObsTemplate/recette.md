@@ -1,7 +1,5 @@
 ---
 title: 
-slug: 
-manuscript: ""
 category: 
 categoryLabel: 
 excerpt:
