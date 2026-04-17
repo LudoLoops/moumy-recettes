@@ -23,8 +23,7 @@ bun check            # TypeScript type check
 bun lint             # ESLint + Prettier check
 bun format           # Format code
 bun test:unit        # Run Vitest tests
-bun db:push          # Push Drizzle schema to DB
-bun db:studio        # Drizzle Studio GUI
+
 ```
 
 ## Project Structure

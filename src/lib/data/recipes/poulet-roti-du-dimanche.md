@@ -5,7 +5,7 @@ manuscript: ""
 category: "plats"
 categoryLabel: "Plats principaux"
 excerpt: "Le poulet rôti traditionnel, tendre et juteux, parfumé aux herbes de Provence."
-prepTime: "20 min"
+prepTime: 20
 cookTime: "1h15"
 servings: "6 personnes"
 difficulty: "Facile"

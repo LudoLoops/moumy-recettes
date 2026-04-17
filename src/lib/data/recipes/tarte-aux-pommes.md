@@ -5,7 +5,7 @@ manuscript: ""
 category: "desserts"
 categoryLabel: "Desserts"
 excerpt: "La tarte aux pommes traditionnelle avec une pâte sablée maison et des pommes dorées à la perfection."
-prepTime: "30 min"
+prepTime: 30
 cookTime: "40 min"
 servings: "8 personnes"
 difficulty: "Facile"

@@ -5,7 +5,7 @@ manuscript: ""
 category: "soupes"
 categoryLabel: "Soupes"
 excerpt: "Un velouté onctueux et réconfortant, parfait pour les soirées d'automne."
-prepTime: "15 min"
+prepTime: 15
 cookTime: "25 min"
 servings: "6 personnes"
 difficulty: "Facile"

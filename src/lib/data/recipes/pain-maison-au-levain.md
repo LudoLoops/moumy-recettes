@@ -5,7 +5,7 @@ manuscript: ""
 category: "pains"
 categoryLabel: "Pains"
 excerpt: "Un pain artisanal au levain naturel avec une croûte croustillante et une mie alvéolée."
-prepTime: "20 min"
+prepTime: 20
 cookTime: "30 min"
 servings: "1 pain"
 difficulty: "Difficile"

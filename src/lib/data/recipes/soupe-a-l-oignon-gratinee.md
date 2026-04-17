@@ -5,7 +5,7 @@ manuscript: ""
 category: "soupes"
 categoryLabel: "Soupes"
 excerpt: "Une soupe réconfortante avec des oignons caramélisés et une couche de fromage doré."
-prepTime: "15 min"
+prepTime: 15
 cookTime: "45 min"
 servings: "6 personnes"
 difficulty: "Moyen"
