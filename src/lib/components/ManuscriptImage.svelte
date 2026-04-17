@@ -27,7 +27,23 @@
 		}
 		return null;
 	});
+
+	let modalOpen = $state(false);
+
+	function openModal() {
+		if (manuscriptSrc) modalOpen = true;
+	}
+
+	function closeModal() {
+		modalOpen = false;
+	}
+
+	function handleKeydown(e: KeyboardEvent) {
+		if (e.key === 'Escape') closeModal();
+	}
 </script>
+
+<svelte:window onkeydown={handleKeydown} />
 
 <div class="md:sticky md:top-8">
 	<div
@@ -35,12 +51,19 @@
 		style="border-color: var(--color-primary-700); box-shadow: var(--shadow-card)"
 	>
 		{#if manuscriptSrc}
-			<img
-				src={manuscriptSrc}
-				alt={`Manuscrit de ${recipe.title}`}
-				class="rounded-2xl w-full transition-transform duration-300 hover:scale-[1.02]"
-				loading="lazy"
-			/>
+			<button
+				type="button"
+				onclick={openModal}
+				class="rounded-2xl block w-full cursor-zoom-in overflow-hidden"
+				aria-label="Agrandir le manuscrit"
+			>
+				<img
+					src={manuscriptSrc}
+					alt={`Manuscrit de ${recipe.title}`}
+					class="w-full transition-transform duration-300 hover:scale-[1.02]"
+					loading="lazy"
+				/>
+			</button>
 		{:else}
 			<div
 				class="sm:min-h-[200px] p-8 rounded-2xl bg-surface-100-900 flex min-h-[280px] flex-col items-center justify-center border-2 border-dashed text-center"
@@ -73,3 +96,36 @@
 		{/if}
 	</div>
 </div>
+
+{#if modalOpen}
+	<!-- svelte-ignore a11y_click_events_have_key_events -->
+	<!-- svelte-ignore a11y_no_static_element_interactions -->
+	<div
+		class="inset-0 bg-black/80 backdrop-blur-sm fixed z-50 flex animate-[fadeIn_0.2s_ease_forwards] items-center justify-center print:hidden"
+		onclick={closeModal}
+		role="dialog"
+		aria-label="Manuscrit agrandi"
+	>
+		<img
+			src={manuscriptSrc!}
+			alt={`Manuscrit de ${recipe.title}`}
+			class="rounded-lg shadow-2xl max-h-[90vh] max-w-[90vw]"
+			onclick={(e) => e.stopPropagation()}
+		/>
+		<button
+			type="button"
+			onclick={closeModal}
+			class="top-4 right-4 p-2 bg-white/10 hover:bg-white/20 text-white absolute rounded-full transition-colors"
+			aria-label="Fermer"
+		>
+			<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="2"
+					d="M6 18L18 6M6 6l12 12"
+				/>
+			</svg>
+		</button>
+	</div>
+{/if}
