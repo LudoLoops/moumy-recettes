@@ -31,6 +31,11 @@ const recipeFiles = import.meta.glob<{ metadata: RecipeMeta }>('./recettes/**/*.
 	eager: true
 });
 
+// Separate glob for body components (default exports from mdsvex)
+const recipeBodies = import.meta.glob<{ default: any }>('./recettes/**/*.md', {
+	eager: true
+});
+
 /**
  * Get all recipes, sorted alphabetically by title.
  * Slug is derived from filename.
@@ -49,6 +54,18 @@ export function getAllRecipes(): Recipe[] {
  */
 export function getRecipeBySlug(slug: string): Recipe | undefined {
 	return getAllRecipes().find((r) => r.slug === slug);
+}
+
+/**
+ * Get the mdsvex body component for a recipe by slug.
+ */
+export function getRecipeBody(slug: string): any {
+	for (const [path, mod] of Object.entries(recipeBodies)) {
+		if (path.endsWith(`/${slug}.md`)) {
+			return mod.default;
+		}
+	}
+	return null;
 }
 
 /**

@@ -1,25 +1,14 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { Badge, Button } from '$lib/components';
+	import { getRecipeBody } from '$data/recettes';
 	import ManuscriptImage from '$lib/components/ManuscriptImage.svelte';
 	import { goto } from '$app/navigation';
 
 	let { data }: { data: PageData } = $props();
 	const recipe = $derived(data.recipe);
 
-	// Eager-load all mdsvex recipe modules (supports subdirectories)
-	const recipeModules = import.meta.glob<{ default: any }>('$data/recettes/**/*.md', {
-		eager: true
-	});
-
-	const bodyComponent = $derived(() => {
-		for (const [path, mod] of Object.entries(recipeModules)) {
-			if (path.endsWith(`/${recipe.slug}.md`)) {
-				return mod.default;
-			}
-		}
-		return null;
-	});
+	const bodyComponent = $derived(getRecipeBody(recipe.slug));
 
 	function handlePrint() {
 		window.print();
