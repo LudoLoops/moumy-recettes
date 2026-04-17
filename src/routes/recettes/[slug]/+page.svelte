@@ -1,23 +1,21 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { Badge, Button } from '$lib/components';
+	import ManuscriptImage from '$lib/components/ManuscriptImage.svelte';
 	import { goto } from '$app/navigation';
 
 	let { data }: { data: PageData } = $props();
 	const recipe = $derived(data.recipe);
 
-	// Eager-load all mdsvex recipe modules for the body component
+	// Eager-load all mdsvex recipe modules
+	// NOTE: This expects filename = slug (e.g., "boeuf-bourguignon.md" has slug: "boeuf-bourguignon")
 	const recipeModules = import.meta.glob<{ default: any }>('$lib/data/recipes/*.md', {
 		eager: true
 	});
 
-	const bodyComponent = $derived.by(() => {
-		for (const [path, mod] of Object.entries(recipeModules)) {
-			if (path.includes(`/${recipe.slug}.md`)) {
-				return mod.default;
-			}
-		}
-		return null;
+	const bodyComponent = $derived(() => {
+		const module = recipeModules[`$lib/data/recipes/${recipe.slug}.md`];
+		return module?.default || null;
 	});
 
 	function handlePrint() {
@@ -70,7 +68,10 @@
 	<meta property="og:type" content="article" />
 </svelte:head>
 
-<div class="pattern-overlay"></div>
+<div
+	class="inset-0 pointer-events-none fixed z-0"
+	style="background-image: url(&quot;data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238B6F5C' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E&quot;)"
+></div>
 
 <div
 	class="max-w-6xl px-4 md:px-6 relative z-10 mx-auto"
@@ -89,51 +90,12 @@
 	<!-- Two-column grid -->
 	<div class="md:grid-cols-[1fr_2fr] gap-8 md:gap-12 mt-6 md:mt-8 grid grid-cols-1">
 		<!-- Left: Manuscript image (sticky on desktop) -->
-		<div class="fade-in">
-			<div class="md:sticky md:top-8">
-				<div class="recipe-image-frame bg-surface-50-950">
-					{#if recipe.manuscript}
-						<img
-							src={recipe.manuscript}
-							alt="Manuscrit de {recipe.title}"
-							class="rounded-lg w-full"
-						/>
-					{:else}
-						<div
-							class="sm:min-h-[200px] p-8 rounded-lg bg-surface-100-900 flex min-h-[280px] flex-col items-center justify-center border-2 border-dashed text-center"
-							style="border-color: var(--color-gold)"
-						>
-							<svg
-								class="w-12 h-12 mb-4 opacity-60"
-								fill="none"
-								stroke="currentColor"
-								viewBox="0 0 24 24"
-								style="color: var(--color-gold)"
-							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									stroke-width="1.5"
-									d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-								/>
-							</svg>
-							<p
-								class="text-xl leading-normal m-0 text-surface-950-50"
-								style="font-family: var(--font-handwriting)"
-							>
-								Le manuscrit<br />de Moumy
-							</p>
-							<p class="text-xs tracking-wide mt-2 text-surface-500 uppercase">
-								{recipe.categoryLabel}
-							</p>
-						</div>
-					{/if}
-				</div>
-			</div>
+		<div class="animate-[fadeIn_0.6s_ease_forwards] opacity-0">
+			<ManuscriptImage {recipe} />
 		</div>
 
 		<!-- Right: Recipe content -->
-		<div class="fade-in" style="animation-delay: 0.1s;">
+		<div class="animate-[fadeIn_0.6s_ease_0.1s_forwards] opacity-0">
 			<Badge variant="gold">{recipe.categoryLabel}</Badge>
 
 			<h1 class="text-4xl md:text-[2.75rem] leading-tight mt-4 mb-2">
@@ -146,7 +108,9 @@
 
 			<!-- Meta info grid -->
 			<div class="sm:grid-cols-4 gap-4 mb-8 grid grid-cols-2">
-				<div class="meta-item bg-surface-100-900 border-surface-200-800 border">
+				<div
+					class="gap-2.5 p-3 hover:border-gold sm:p-2 bg-surface-100-900 border-surface-200-800 flex items-start rounded-[10px] border border-transparent transition-all duration-300 hover:-translate-y-px"
+				>
 					<svg
 						class="w-5 h-5 mt-0.5 shrink-0"
 						fill="none"
@@ -169,7 +133,9 @@
 					</div>
 				</div>
 
-				<div class="meta-item bg-surface-100-900 border-surface-200-800 border">
+				<div
+					class="gap-2.5 p-3 hover:border-gold sm:p-2 bg-surface-100-900 border-surface-200-800 flex items-start rounded-[10px] border border-transparent transition-all duration-300 hover:-translate-y-px"
+				>
 					<svg
 						class="w-5 h-5 mt-0.5 shrink-0"
 						fill="none"
@@ -198,7 +164,9 @@
 					</div>
 				</div>
 
-				<div class="meta-item bg-surface-100-900 border-surface-200-800 border">
+				<div
+					class="gap-2.5 p-3 hover:border-gold sm:p-2 bg-surface-100-900 border-surface-200-800 flex items-start rounded-[10px] border border-transparent transition-all duration-300 hover:-translate-y-px"
+				>
 					<svg
 						class="w-5 h-5 mt-0.5 shrink-0"
 						fill="none"
@@ -221,7 +189,9 @@
 					</div>
 				</div>
 
-				<div class="meta-item bg-surface-100-900 border-surface-200-800 border">
+				<div
+					class="gap-2.5 p-3 hover:border-gold sm:p-2 bg-surface-100-900 border-surface-200-800 flex items-start rounded-[10px] border border-transparent transition-all duration-300 hover:-translate-y-px"
+				>
 					<svg
 						class="w-5 h-5 mt-0.5 shrink-0"
 						fill="none"
@@ -269,8 +239,9 @@
 				</h2>
 				{#each recipe.ingredients as ingredient}
 					<div
-						class="ingredient-item py-2 border-surface-200-800 leading-normal hover:pl-2 flex items-start border-b transition-all duration-300 last:border-b-0"
+						class="py-2 border-surface-200-800 leading-normal hover:pl-2 flex items-start border-b transition-all duration-300 last:border-b-0"
 					>
+						<span class="mr-3 font-bold text-xl shrink-0" style="color: var(--color-gold)">•</span>
 						{ingredient}
 					</div>
 				{/each}
@@ -300,7 +271,8 @@
 				</h2>
 				<div class="recipe-body leading-loose" style="font-family: var(--font-body)">
 					{#if bodyComponent}
-						<svelte:component this={bodyComponent} />
+						{@const Body = bodyComponent}
+						<Body />
 					{/if}
 				</div>
 			</section>
@@ -308,9 +280,16 @@
 			<!-- Moumy's notes -->
 			{#if recipe.notes}
 				<div
-					class="moumy-notes mt-8 p-6 rounded-xl leading-relaxed text-2xl sm:text-xl text-primary-700-300 bg-surface-100-900 relative"
+					class="mt-8 p-6 rounded-xl leading-relaxed text-2xl sm:text-xl text-primary-700-300 bg-surface-100-900 relative"
 					style="font-family: var(--font-handwriting); border: 2px dashed var(--color-gold)"
 				>
+					<span
+						class="top-2 left-3 text-5xl absolute leading-none opacity-30"
+						style="color: var(--color-gold); font-family: var(--font-title)"
+						aria-hidden="true"
+					>
+						\u201C
+					</span>
 					<div class="gap-2 mb-3 text-base font-semibold text-primary-700-300 flex items-center">
 						<svg
 							class="w-5 h-5"
@@ -362,69 +341,7 @@
 </div>
 
 <style>
-	/* ─── Pattern overlay ─── */
-	.pattern-overlay {
-		background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238B6F5C' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-		position: fixed;
-		inset: 0;
-		pointer-events: none;
-		z-index: 0;
-	}
-
-	/* ─── Manuscript image frame (pseudo-states need CSS) ─── */
-	.recipe-image-frame {
-		border: 4px solid var(--color-primary-700);
-		border-radius: 12px;
-		padding: 8px;
-		box-shadow: var(--shadow-card);
-		transition: all 0.3s ease;
-	}
-
-	.recipe-image-frame:hover {
-		transform: translateY(-2px);
-		box-shadow: var(--shadow-hover);
-	}
-
-	.recipe-image-frame img {
-		border-radius: 8px;
-		transition: transform 0.3s ease;
-	}
-
-	.recipe-image-frame img:hover {
-		transform: scale(1.02);
-	}
-
-	/* ─── Meta items ─── */
-	.meta-item {
-		display: flex;
-		align-items: flex-start;
-		gap: 0.625rem;
-		padding: 0.75rem;
-		border: 1px solid transparent;
-		border-radius: 10px;
-		transition: all 0.3s ease;
-	}
-
-	.meta-item:hover {
-		border-color: var(--color-gold);
-		transform: translateY(-1px);
-	}
-
-	/* ─── Ingredient list (needs ::before pseudo-element) ─── */
-	.ingredient-item:last-child {
-		border-bottom: none;
-	}
-
-	.ingredient-item::before {
-		content: '\2022';
-		color: var(--color-gold);
-		font-weight: bold;
-		font-size: 1.25rem;
-		margin-right: 0.75rem;
-		flex-shrink: 0;
-	}
-
-	/* ─── Recipe body: mdsvex-rendered steps (needs :global + ::before) ─── */
+	/* ─── Recipe body: mdsvex-rendered steps (counter + :global needed) ─── */
 	.recipe-body :global(ol) {
 		list-style: none;
 		counter-reset: recipe-step;
@@ -456,29 +373,18 @@
 		position: absolute;
 		left: 0;
 		top: 2px;
-		flex-shrink: 0;
 	}
 
 	.recipe-body :global(p) {
 		margin: 0;
 	}
 
-	/* ─── Moumy notes (needs ::before pseudo-element) ─── */
-	.moumy-notes::before {
-		content: '\201C';
-		position: absolute;
-		top: 8px;
-		left: 12px;
-		font-size: 3rem;
-		color: var(--color-gold);
-		opacity: 0.3;
-		font-family: var(--font-title);
-		line-height: 1;
-	}
-
-	/* ─── Animations ─── */
-	.fade-in {
-		animation: fadeIn 0.6s ease forwards;
+	/* ─── Print ─── */
+	@media print {
+		.recipe-body :global(li)::before {
+			background: #ccc;
+			color: #000;
+		}
 	}
 
 	@keyframes fadeIn {
@@ -489,38 +395,6 @@
 		to {
 			opacity: 1;
 			transform: translateY(0);
-		}
-	}
-
-	/* ─── Print ─── */
-	@media print {
-		.no-print {
-			display: none !important;
-		}
-		.pattern-overlay {
-			display: none;
-		}
-		.recipe-image-frame {
-			border-color: #ccc;
-			box-shadow: none;
-		}
-		.recipe-body :global(li)::before {
-			background: #ccc;
-			color: #000;
-		}
-		.meta-item {
-			border: 1px solid #ddd;
-			background: #f5f5f5;
-		}
-		.meta-item:hover {
-			transform: none;
-		}
-	}
-
-	/* ─── Mobile ─── */
-	@media (max-width: 640px) {
-		.meta-item {
-			padding: 0.5rem;
 		}
 	}
 </style>

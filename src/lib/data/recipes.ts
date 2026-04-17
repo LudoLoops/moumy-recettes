@@ -7,8 +7,6 @@
 
 export interface RecipeMeta {
 	title: string;
-	slug: string;
-	manuscript?: string;
 	category: string;
 	categoryLabel: string;
 	excerpt: string;
@@ -35,12 +33,13 @@ const recipeFiles = import.meta.glob<{ metadata: RecipeMeta }>('./recipes/*.md',
 
 /**
  * Get all recipes, sorted alphabetically by title.
+ * Slug is derived from filename.
  */
 export function getAllRecipes(): Recipe[] {
 	return Object.entries(recipeFiles)
 		.map(([path, module]) => ({
 			...module.metadata,
-			slug: module.metadata.slug || path.match(/\/([^/]+)\.md$/)?.[1] || ''
+			slug: path.match(/\/([^/]+)\.md$/)?.[1] || ''
 		}))
 		.sort((a, b) => a.title.localeCompare(b.title, 'fr'));
 }
