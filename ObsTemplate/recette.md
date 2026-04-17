@@ -1,7 +1,6 @@
 ---
 title: 
 category: 
-categoryLabel: 
 excerpt:
 prepTime: 
 cookTime: 
