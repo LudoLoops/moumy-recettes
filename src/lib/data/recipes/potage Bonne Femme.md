@@ -1,0 +1,29 @@
+---
+title: potage "Bonne Femme"
+slug: FGo03-16
+manuscript: ""
+category: "soupes"
+categoryLabel: "Soupes"
+excerpt: 
+prepTime: 10
+cookTime: 25
+servings: 4
+difficulty: "Facile"
+ingredients:
+  - 3 poireaux
+  - 1 pommes de terre
+  - eau
+  - beurre
+  - sel
+notes: 
+---
+
+1. Emincer les poireaux.
+
+2. Les faire blondir au beurre.
+
+3. Mettre de l'eau. Saler
+
+4. Faire cuire doucement.
+
+5. Une fois cuit: mettre un morceau de beurre.

@@ -1,5 +1,5 @@
 ---
-title: Crumble aux pommes
+title: crumble aux pommes
 slug: BrA148
 manuscript: ""
 category: desserts
@@ -11,9 +11,9 @@ servings: 4
 difficulty: facile
 ingredients:
   - 6 pommes acidulées
-  - 75grs de beurre
-  - 100grs de sucre brun
-  - 100grs de farine
+  - 75g de beurre
+  - 100g de sucre brun
+  - 100g de farine
   - 1 sachet de sucre vanillé
   - le jus d'un citron
 notes: 

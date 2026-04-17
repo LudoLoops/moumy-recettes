@@ -1,5 +1,5 @@
 ---
-title: Bœuf bourguignon
+title: Bœuf bourguignons
 slug: boeuf-bourguignon
 manuscript: ""
 category: plats

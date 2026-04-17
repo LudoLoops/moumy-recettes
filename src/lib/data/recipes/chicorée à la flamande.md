@@ -13,8 +13,8 @@ ingredients:
   - 6 belles endives
   - 6 fines tranches de janbon blanc
   - 33cl de béchamel au gruyère
-  - 75grs de beurre
-  - 50grs de gruyère rapé
+  - 75g de beurre
+  - 50g de gruyère rapé
 notes: 
 ---
 

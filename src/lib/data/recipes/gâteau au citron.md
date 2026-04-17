@@ -11,16 +11,15 @@ servings: 8
 difficulty: Facile
 ingredients:
   - 2 citrons
-  - 250grs de sucre en poudre
-  - 150grs de beurre
-  - 150grs de farine
-  - 3 oeufs
+  - 250g de sucre en poudre
+  - 150g de beurre
+  - 150g de farine
+  - 3 œufs
   - 1 cuillère à café de levure
 notes: Pour le gâteau à l'orange remplacer les citrons par des oranges.
 ---
 
 1. Mélanger en crème le beurre et la moitié du sucre.
-
 2. Ajouter les œufs entiers en battant la pâte pour aérer.
 3. Ajouter le zeste des fruits et la levure.
 4. Verser dans un moule bien beurré et cuire à four modéré 35 minutes.

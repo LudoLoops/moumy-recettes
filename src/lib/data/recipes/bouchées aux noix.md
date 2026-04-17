@@ -1,0 +1,24 @@
+---
+title: bouchées aux noix
+slug: FGo03-01
+manuscript: ""
+category: dessert
+categoryLabel: "Dessert"
+excerpt: La spécialité de Moumy pour Noel ses bouchées aux noix
+prepTime: 20
+cookTime: 0
+servings: 20
+difficulty: "Difficile"
+ingredients:
+  - 200g de noix
+  - 200g de sucre
+  - 1 verre de rhum
+  - 1 œuf
+notes: "La spécialité de Moumy pour Noel ses bouchées aux noix."
+---
+
+1. Mélangez le tout.
+
+2. Faire de petites bouchées à la main.
+
+3. Les rouler dans le sucre.
