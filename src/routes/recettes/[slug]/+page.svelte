@@ -296,6 +296,13 @@
 						<span>Notes de Moumy</span>
 					</div>
 					<p class="pl-4">{recipe.notes}</p>
+					<span
+						class="bottom-2 right-3 text-5xl absolute leading-none opacity-30"
+						style="color: var(--color-gold); font-family: var(--font-title)"
+						aria-hidden="true"
+					>
+						{'\u201D'}
+					</span>
 				</div>
 			{/if}
 
