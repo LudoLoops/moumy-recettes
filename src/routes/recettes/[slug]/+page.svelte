@@ -66,8 +66,8 @@
 ></div>
 
 <div
-	class="max-w-6xl px-4 md:px-6 relative z-10 mx-auto"
-	style="padding-top: var(--space-section); padding-bottom: var(--space-section-lg)"
+	class="max-w-6xl px-4 md:px-6 relative z-10 mx-auto pt-4"
+	style="padding-bottom: var(--space-section-lg)"
 >
 	<!-- Back link -->
 	<Button variant="ghost" size="sm" onclick={handleBack} class="no-print">
