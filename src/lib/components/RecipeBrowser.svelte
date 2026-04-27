@@ -126,39 +126,97 @@
 	<!-- Easter egg card -->
 	{#if easterEgg}
 		<div class="mb-10 fade-in">
-			<article class="recipe-card easter-egg-card">
+			<article class="easter-egg-card max-w-2xl mx-auto">
 				<Card variant="elevated" noPadding>
-					<div class="p-6">
-						<Badge variant="gold" class="mb-3">Sith</Badge>
+					<div class="p-6 md:p-8">
+						<!-- Header -->
+						<Badge variant="gold" class="mb-3">Côté Obscur</Badge>
 
-						<h2 class="text-xl font-semibold leading-tight mb-2 text-primary-900-100">
-							Karate de Prison Sith
+						<h2 class="text-2xl leading-tight mb-2 text-primary-900-100 capitalize">
+							Karate de Prison de Mimban
 						</h2>
-						<p class="text-sm leading-relaxed mb-3 text-primary-600-400">
-							La recette secrète des gardes de la prison de Mimban. Transmise de génération en génération par les détenus les plus redoutables.
+						<p class="text-sm leading-relaxed mb-6 text-surface-700-300 italic">
+							Recette traditionnelle de la prison impériale de Mimban. Se prépare en silence absolu pour ne pas alerter les gardes.
 						</p>
-						<div class="gap-4 text-xs text-primary-400-600 flex items-center">
-							<span class="gap-1 flex items-center">
-								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-								Prép 666min
-							</span>
-							<span class="gap-1 flex items-center">
-								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-								Cuisson 19min
-							</span>
-							<span class="gap-1 flex items-center">
-								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-								1 prisonnier
-							</span>
-							<span class="gap-1 flex items-center">
-								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-								Côté Obscur
-							</span>
+
+						<!-- Meta -->
+						<div class="sm:grid-cols-4 gap-3 mb-8 grid grid-cols-2">
+							<div class="gap-2 p-2 bg-surface-100-900 flex items-start rounded-[10px]">
+								<svg class="w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: var(--color-gold)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+								<div>
+									<span class="text-surface-500 block text-[0.7rem] uppercase tracking-wide">Préparation</span>
+									<span class="text-sm font-semibold">666 min</span>
+								</div>
+							</div>
+							<div class="gap-2 p-2 bg-surface-100-900 flex items-start rounded-[10px]">
+								<svg class="w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: var(--color-gold)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z" /></svg>
+								<div>
+									<span class="text-surface-500 block text-[0.7rem] uppercase tracking-wide">Cuisson</span>
+									<span class="text-sm font-semibold">19 min</span>
+								</div>
+							</div>
+							<div class="gap-2 p-2 bg-surface-100-900 flex items-start rounded-[10px]">
+								<svg class="w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: var(--color-gold)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+								<div>
+									<span class="text-surface-500 block text-[0.7rem] uppercase tracking-wide">Portions</span>
+									<span class="text-sm font-semibold">1 prisonnier</span>
+								</div>
+							</div>
+							<div class="gap-2 p-2 bg-surface-100-900 flex items-start rounded-[10px]">
+								<svg class="w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: var(--color-gold)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+								<div>
+									<span class="text-surface-500 block text-[0.7rem] uppercase tracking-wide">Difficulté</span>
+									<span class="text-sm font-semibold">Dark Side</span>
+								</div>
+							</div>
 						</div>
-						<div class="mt-4 pt-3 border-t border-secondary-300-700">
-							<p class="text-xs italic text-secondary-600-400">
-								✨ Que la Force soit avec ta cuisine.
-							</p>
+
+						<!-- Ingredients -->
+						<section class="pl-5 my-6 border-l-3" style="border-color: var(--color-gold)">
+							<h3 class="gap-2 text-lg font-semibold mb-3 text-primary-700-300 flex items-center">
+								<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: var(--color-gold)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>
+								Ingrédients
+							</h3>
+							{#each [
+								'500g de nouilles de cantine',
+								'2 poignées de riz de contrebande',
+								'1 litre de bouillon de wookiee',
+								"3 gousses d'ail de Tatooine",
+								'Sel de Cérés (goût météoritique)',
+								'Poivre de Kessel (façonné en moins de 12 parsecs)',
+								'1 pincée de poudre noire du Côté Obscur'
+							] as ingredient}
+								<div class="py-1.5 border-surface-200-800 hover:pl-2 flex items-start border-b transition-all duration-300 last:border-b-0">
+									<span class="mr-3 font-bold text-lg shrink-0" style="color: var(--color-gold)">•</span>
+									{ingredient}
+								</div>
+							{/each}
+						</section>
+
+						<!-- Preparation -->
+						<section class="pl-5 my-6 border-l-3" style="border-color: var(--color-gold)">
+							<h3 class="gap-2 text-lg font-semibold mb-3 text-primary-700-300 flex items-center">
+								<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: var(--color-gold)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+								Préparation
+							</h3>
+							<ol class="easter-steps">
+								<li>Récupérer les ingrédients en douce pendant la ronde des gardes</li>
+								<li>Faire chauffer le bouillon de wookiee sur le chauffage collectif</li>
+								<li>Hacher l'ail de Tatooine avec un fragment de météorite</li>
+								<li>Mélanger le tout en récitant le Code Sith à voix basse</li>
+								<li>Servir froid. La vengeance est un plat qui se mange froid.</li>
+							</ol>
+						</section>
+
+						<!-- Moumy's note -->
+						<div class="mt-6 p-5 rounded-xl text-xl sm:text-lg text-primary-700-300 bg-surface-100-900 relative" style="font-family: var(--font-handwriting); border: 2px dashed var(--color-gold)">
+							<span class="top-1 left-2 text-4xl absolute leading-none opacity-30" style="color: var(--color-gold); font-family: var(--font-title)" aria-hidden="true">{'\u201C'}</span>
+							<div class="gap-2 mb-2 text-sm font-semibold text-primary-700-300 flex items-center">
+								<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" style="color: var(--color-gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
+								<span>Notes de Moumy</span>
+							</div>
+							<p class="pl-4">✨ Moumy disait toujours : La patience est une vertu, sauf quand tu as faim en prison.</p>
+							<span class="bottom-1 right-2 text-4xl absolute leading-none opacity-30" style="color: var(--color-gold); font-family: var(--font-title)" aria-hidden="true">{'\u201D'}</span>
 						</div>
 					</div>
 				</Card>
@@ -347,6 +405,44 @@
 
 	.recipe-card:hover :global(.card)::before {
 		opacity: 1;
+	}
+
+	/* Easter egg: numbered steps (mirrors recipe detail .recipe-body) */
+	.easter-egg-card :global(.easter-steps) {
+		list-style: none;
+		counter-reset: easter-step;
+		padding: 0;
+		margin: 0;
+	}
+
+	.easter-egg-card :global(.easter-steps li) {
+		counter-increment: easter-step;
+		position: relative;
+		padding-left: 3.25rem;
+		margin-bottom: 1.25rem;
+		line-height: 1.8;
+	}
+
+	.easter-egg-card :global(.easter-steps li)::before {
+		content: counter(easter-step);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 32px;
+		height: 32px;
+		background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-gold-light) 100%);
+		color: var(--color-surface-950);
+		border-radius: 50%;
+		font-family: var(--font-title);
+		font-weight: 600;
+		font-size: 0.875rem;
+		position: absolute;
+		left: 0;
+		top: 2px;
+	}
+
+	.easter-egg-card :global(.easter-steps li:last-child) {
+		margin-bottom: 0;
 	}
 
 	/* Easter egg glow */
