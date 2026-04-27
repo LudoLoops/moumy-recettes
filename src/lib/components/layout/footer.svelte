@@ -1,4 +1,5 @@
 <script lang="ts">
+	import content from '$lib/data/content.json';
 	const currentYear = new Date().getFullYear();
 </script>
 
@@ -11,20 +12,19 @@
 					class="text-surface-900-100 hover:text-primary-600-400 text-xl font-bold transition-colors"
 					style="font-family: var(--font-handwriting)"
 				>
-					Les recettes de Moumy
+					{content.footer.brand}
 				</a>
 				<p class="text-surface-600-400 max-w-xs md:text-left text-base text-center">
-					En mémoire de Moumy, qui nous a transmis l'amour de la cuisine et ses secrets de famille
-					précieux.
+					{content.footer.description}
 				</p>
 			</div>
 
 			<div class="md:items-end gap-5 flex flex-col items-center">
 				<div class="text-surface-500 md:items-end gap-1.5 text-sm flex flex-col items-center">
 					<p class="text-primary-600-400 text-base" style="font-family: var(--font-handwriting)">
-						Avec tout notre amour
+						{content.footer.closing}
 					</p>
-					<p>&copy; {currentYear} Les recettes de Moumy — Un hommage familial</p>
+					<p>&copy; {currentYear} {content.footer.copyright}</p>
 				</div>
 			</div>
 		</div>

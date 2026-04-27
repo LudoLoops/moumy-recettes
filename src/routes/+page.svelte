@@ -2,6 +2,7 @@
 	import { getAllRecipes } from '$data/recettes';
 	import { RecipeBrowser } from '$lib/components';
 	import { page } from '$app/stores';
+	import content from '$lib/data/content.json';
 
 	let data = $derived($page.data);
 	let allRecipes = $derived(data.recipes ?? getAllRecipes());
@@ -36,20 +37,19 @@
 				class="fade-in text-2xl md:text-3xl mb-4"
 				style="font-family: var(--font-handwriting); color: var(--color-gold)"
 			>
-				avec amour et souvenirs
+				{content.landing.hero.subtitle}
 			</p>
 			<h1
 				class="hero-title fade-in text-5xl md:text-7xl mb-6 text-primary-700-300"
 				style="font-family: var(--font-handwriting); animation-delay: 0.1s"
 			>
-				Les recettes de Moumy
+				{content.landing.hero.title}
 			</h1>
 			<p
 				class="fade-in text-xl md:text-2xl max-w-2xl leading-relaxed text-primary-600-400 mx-auto"
 				style="font-family: var(--font-title); animation-delay: 0.2s"
 			>
-				En mémoire de Moumy, qui nous a transmis l'amour de la cuisine et ses secrets de famille
-				précieux
+			{content.landing.hero.description}
 			</p>
 			<div class="mt-8 fade-in" style="animation-delay: 0.3s">
 				<div class="gap-3 text-primary-400-600 inline-flex items-center">
@@ -59,7 +59,7 @@
 						/></svg
 					>
 					<span class="text-lg" style="font-family: var(--font-title)"
-						>Un héritage culinaire qui traverse les générations</span
+						>{content.landing.hero.badge}</span
 					>
 				</div>
 			</div>
@@ -78,11 +78,10 @@
 			class="text-3xl md:text-4xl leading-relaxed mb-4 text-primary-700-300"
 			style="font-family: var(--font-handwriting)"
 		>
-			"La cuisine, c'est de l'amour qui se partage. Chaque plat raconte une histoire, chaque recette
-			porte en elle des souvenirs précieux."
+			"{content.landing.quote.text}"
 		</p>
 		<p class="text-lg text-primary-600-400 italic" style="font-family: var(--font-title)">
-			— Moumy
+			{content.landing.quote.attribution}
 		</p>
 	</div>
 </section>
@@ -105,13 +104,10 @@
 			class="text-3xl md:text-4xl mb-8 text-primary-700-300"
 			style="font-family: var(--font-title)"
 		>
-			Souvenirs de famille
+			{content.landing.familyMemories.title}
 		</h2>
 		<p class="leading-relaxed mb-8 text-primary-600-400">
-			Chaque dimanche, Moumy préparait son célèbre poulet rôti. L'odeur remplissait la maison,
-			attirant petits et grands vers la cuisine. Ces recettes ne sont pas seulement des
-			instructions, ce sont des morceaux de notre histoire familiale, transmises avec amour de
-			génération en génération.
+			{content.landing.familyMemories.text}
 		</p>
 		<div class="gap-8 mt-12 flex justify-center">
 			<div class="text-center">
@@ -119,21 +115,21 @@
 					{allRecipes.length}
 				</p>
 				<p class="text-primary-600-400" style="font-family: var(--font-title)">
-					Recettes préservées
+					{content.landing.familyMemories.stats.recipes}
 				</p>
 			</div>
 			<div class="text-center">
 				<p class="text-5xl" style="font-family: var(--font-handwriting); color: var(--color-gold)">
 					&infin;
 				</p>
-				<p class="text-primary-600-400" style="font-family: var(--font-title)">Souvenirs chéris</p>
+				<p class="text-primary-600-400" style="font-family: var(--font-title)">{content.landing.familyMemories.stats.memories}</p>
 			</div>
 			<div class="text-center">
 				<p class="text-5xl" style="font-family: var(--font-handwriting); color: var(--color-gold)">
 					&hearts;
 				</p>
 				<p class="text-primary-600-400" style="font-family: var(--font-title)">
-					Toujours dans nos cœurs
+					{content.landing.familyMemories.stats.hearts}
 				</p>
 			</div>
 		</div>
