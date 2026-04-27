@@ -130,13 +130,13 @@
 				<Card variant="elevated" noPadding>
 					<div class="p-6 md:p-8">
 						<!-- Header -->
-						<Badge variant="gold" class="mb-3">Ordre Jedi</Badge>
+						<Badge variant="gold" class="mb-3">Cuisine Carcérale</Badge>
 
 						<h2 class="text-2xl leading-tight mb-2 text-primary-900-100 capitalize">
-							Karate de Prison de Mimban
+							Karaté de Prison
 						</h2>
 						<p class="text-sm leading-relaxed mb-6 text-surface-700-300 italic">
-							Programme d'entraînement secret des Jedi capturés. En cachette des gardes Sith, maintenez votre forme et votre connexion à la Force pour préparer votre évasion.
+							Le repas idéal pour rester en forme dans une prison de la galaxie. Simple, efficace, et garanti pour te donner la force de tenir le coup.
 						</p>
 
 						<!-- Meta -->
@@ -145,7 +145,7 @@
 								<svg class="w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: var(--color-gold)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
 								<div>
 									<span class="text-surface-500 block text-[0.7rem] uppercase tracking-wide">Préparation</span>
-									<span class="text-sm font-semibold">Aussi longtemps qu'il faut</span>
+									<span class="text-sm font-semibold">5 min (faut pas trainer, les gardes tournent)</span>
 								</div>
 							</div>
 							<div class="gap-2 p-2 bg-surface-100-900 flex items-start rounded-[10px]">
@@ -159,14 +159,14 @@
 								<svg class="w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: var(--color-gold)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
 								<div>
 									<span class="text-surface-500 block text-[0.7rem] uppercase tracking-wide">Portions</span>
-									<span class="text-sm font-semibold">1 Jedi résistant</span>
+									<span class="text-sm font-semibold">1 détenu motivé</span>
 								</div>
 							</div>
 							<div class="gap-2 p-2 bg-surface-100-900 flex items-start rounded-[10px]">
 								<svg class="w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: var(--color-gold)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
 								<div>
 									<span class="text-surface-500 block text-[0.7rem] uppercase tracking-wide">Difficulté</span>
-									<span class="text-sm font-semibold">Maître Jedi</span>
+									<span class="text-sm font-semibold">Ceinture noire</span>
 								</div>
 							</div>
 						</div>
@@ -178,11 +178,11 @@
 								Ingrédients
 							</h3>
 							{#each [
-								'1 tunique de détenu (servira de kimono)',
-								'2 baguettes de la cantine pour remplacer les sabots',
-								'1 serviette pour les yeux (entraînement à l\'aveugle)',
-								'Patience et sérénité',
-								'La Force (du côté lumineux, toujours)'
+								'Protéine de bantha en poudre',
+								'Nouilles de cantine réchauffées 3 fois',
+								'2 cuillères de sauce épicée de Tatooine',
+								'1 poignée de riz de contrebande',
+								'Sel de Kessel'
 							] as ingredient}
 								<div class="py-1.5 border-surface-200-800 hover:pl-2 flex items-start border-b transition-all duration-300 last:border-b-0">
 									<span class="mr-3 font-bold text-lg shrink-0" style="color: var(--color-gold)">•</span>
@@ -195,14 +195,14 @@
 						<section class="pl-5 my-6 border-l-3" style="border-color: var(--color-gold)">
 							<h3 class="gap-2 text-lg font-semibold mb-3 text-primary-700-300 flex items-center">
 								<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: var(--color-gold)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
-								Entraînement
+								Préparation
 							</h3>
 							<ol class="easter-steps">
-								<li>Salut Jedi : s'incliner dans la cellule, remercier la Force d'être en vie</li>
-								<li>Katas de base : les 12 formes traditionnelles adaptées à l'espace réduit du cachot</li>
-								<li>Travail des coups de pied : viser les angles de la cellule avec précision et fluidité</li>
-								<li>Combat à l'aveugle : yeux bandés, ressentir les mouvements dans la Force comme Maître Yoda l'enseignait</li>
-								<li>Méditation Jedi : visualiser l'évasion, trouver la paix intérieure et la clarté</li>
+							<li>Mélanger la protéine de bantha avec l'eau chaude du robinet de la cellule</li>
+							<li>Réchauffer les nouilles sur le radiateur pendant la ronde du garde</li>
+							<li>Ajouter la sauce épicée — la douleur renforce l'esprit</li>
+							<li>Incorporer le riz de contrebande et le sel de Kessel</li>
+							<li>Manger debout, en position de combat. On ne s'assoit jamais en prison.</li>
 							</ol>
 						</section>
 
@@ -213,7 +213,7 @@
 								<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" style="color: var(--color-gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
 								<span>Notes de Moumy</span>
 							</div>
-							<p class="pl-4">Moumy te l'dit : même dans les moments les plus sombres, garde la foi. Un bon karatéka ne baisse jamais les bras. Et n'oublie pas : la patience est l'arme la plus puissante d'un Jedi en prison.</p>
+							<p class="pl-4">Moumy te l'dit : un bon karatéka mange debout, dort peu, et ne laisse jamais une nouille dans son assiette. Surtout en prison.</p>
 							<span class="bottom-1 right-2 text-4xl absolute leading-none opacity-30" style="color: var(--color-gold); font-family: var(--font-title)" aria-hidden="true">{'\u201D'}</span>
 						</div>
 					</div>
