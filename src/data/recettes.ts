@@ -50,14 +50,19 @@ function capitalize(s: string | undefined): string {
 export function getAllRecipes(): Recipe[] {
 	return Object.entries(recipeFiles)
 		.map(([path, module]) => {
-			const meta = module.metadata;
+		const meta = module?.metadata;
+		if (!meta) return null; // skip files without valid frontmatter
+		const raw = meta.category?.trim();
+			if (!raw) return null; // skip recipes without a category
+			const normalized = singularize(raw.toLowerCase());
 			return {
 				...meta,
-				category: meta.category ?? 'Autre',
+				category: normalized,
 				slug: path.match(/\/([^/]+)\.md$/)?.[1] || '',
-				categoryDisplay: capitalize(meta.category)
+				categoryDisplay: capitalize(normalized)
 			};
 		})
+		.filter((r): r is Recipe => r !== null)
 		.sort((a, b) => a.title.localeCompare(b.title, 'fr'));
 }
 
@@ -316,4 +321,13 @@ export function getCategories(): Category[] {
 	return [...map.entries()]
 		.sort((a, b) => a[0].localeCompare(b[0], 'fr'))
 		.map(([key, count]) => ({ key, label: capitalize(key), count }));
+}
+
+/**
+ * Normalize a category string: lowercase + singularize.
+ * Reused for search/filter matching.
+ */
+export function normalizeCategory(cat: string): string {
+	if (!cat) return '';
+	return singularize(cat.trim().toLowerCase());
 }
