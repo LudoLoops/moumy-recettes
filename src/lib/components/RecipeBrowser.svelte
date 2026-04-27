@@ -2,6 +2,7 @@
 	import { getCategories } from '$data/recettes';
 	import type { Recipe } from '$data/recettes';
 	import { Button, Badge, Card, SearchInput, EmptyState, LetterNav } from '$lib/components';
+	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import content from '$lib/data/content.json';
@@ -15,8 +16,8 @@
 	let categories = $derived(getCategories());
 
 	// Read initial state from URL search params
-	let searchQuery = $state($page.url.searchParams.get('q') ?? '');
-	let currentCategory = $state($page.url.searchParams.get('cat') ?? 'all');
+	let searchQuery = $state(browser ? ($page.url.searchParams.get('q') ?? '') : '');
+	let currentCategory = $state(browser ? ($page.url.searchParams.get('cat') ?? 'all') : 'all');
 
 	// Sync filter state → URL search params
 	$effect(() => {
