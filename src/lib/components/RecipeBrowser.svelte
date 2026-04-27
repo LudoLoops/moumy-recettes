@@ -130,13 +130,13 @@
 				<Card variant="elevated" noPadding>
 					<div class="p-6 md:p-8">
 						<!-- Header -->
-						<Badge variant="gold" class="mb-3">Régime Carcéral</Badge>
+						<Badge variant="gold" class="mb-3">Ordre Jedi</Badge>
 
 						<h2 class="text-2xl leading-tight mb-2 text-primary-900-100 capitalize">
 							Karate de Prison de Mimban
 						</h2>
 						<p class="text-sm leading-relaxed mb-6 text-surface-700-300 italic">
-							Tu viens d'être transféré dans la prison de haute sécurité de Mimban. La cantine est infecte et les gardes te surveillent. Mais tu es un Sith. Et un Sith ne meurt jamais de faim — il nourrit sa rage.
+							Programme d'entraînement secret des Jedi capturés. En cachette des gardes Sith, maintenez votre forme et votre connexion à la Force pour préparer votre évasion.
 						</p>
 
 						<!-- Meta -->
@@ -145,7 +145,7 @@
 								<svg class="w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: var(--color-gold)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
 								<div>
 									<span class="text-surface-500 block text-[0.7rem] uppercase tracking-wide">Préparation</span>
-									<span class="text-sm font-semibold">3 ans de peine</span>
+									<span class="text-sm font-semibold">Aussi longtemps qu'il faut</span>
 								</div>
 							</div>
 							<div class="gap-2 p-2 bg-surface-100-900 flex items-start rounded-[10px]">
@@ -159,14 +159,14 @@
 								<svg class="w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: var(--color-gold)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
 								<div>
 									<span class="text-surface-500 block text-[0.7rem] uppercase tracking-wide">Portions</span>
-									<span class="text-sm font-semibold">1 prisonnier ambitieux</span>
+									<span class="text-sm font-semibold">1 Jedi résistant</span>
 								</div>
 							</div>
 							<div class="gap-2 p-2 bg-surface-100-900 flex items-start rounded-[10px]">
 								<svg class="w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: var(--color-gold)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
 								<div>
 									<span class="text-surface-500 block text-[0.7rem] uppercase tracking-wide">Difficulté</span>
-									<span class="text-sm font-semibold">Évasion imminente</span>
+									<span class="text-sm font-semibold">Maître Jedi</span>
 								</div>
 							</div>
 						</div>
@@ -178,12 +178,11 @@
 								Ingrédients
 							</h3>
 							{#each [
-								'200g de protéine de cantine (goût douteux mais la rage compense)',
-								'1 bol de riz compact servi par le droïde nourricier',
-								'3 cuillères de graisse de gammorean récupérée sous la table',
-								'Sel extrait des larmes de tes codétenus',
-								'1 pincée de poudre noire volée dans l\'infirmerie',
-								'Eau tiède du robinet de la cellule 1138'
+								'1 tunique de détenu (servira de kimono)',
+								'2 baguettes de la cantine pour remplacer les sabots',
+								'1 serviette pour les yeux (entraînement à l\'aveugle)',
+								'Patience et sérénité',
+								'La Force (du côté lumineux, toujours)'
 							] as ingredient}
 								<div class="py-1.5 border-surface-200-800 hover:pl-2 flex items-start border-b transition-all duration-300 last:border-b-0">
 									<span class="mr-3 font-bold text-lg shrink-0" style="color: var(--color-gold)">•</span>
@@ -199,11 +198,11 @@
 								Entraînement
 							</h3>
 							<ol class="easter-steps">
-								<li>Petit-déjeuner : avaler la bouillie sans vomir. C'est déjà un exploit.</li>
-								<li>Pompes sur les dalles glacées de la cellule — 100 reps, un bras, yeux fermés</li>
-								<li>Kata du Wookiee dans la cour de promenade : enchaîner 12 coups sans que les gardes ne remarquent</li>
-								<li>Midi : récupérer les protéines en douce pendant la bagarre à la cantine</li>
-								<li>Méditation Sith aux toilettes : visualiser ta mutinerie pendant que les autres dorment</li>
+								<li>Salut Jedi : s'incliner dans la cellule, remercier la Force d'être en vie</li>
+								<li>Katas de base : les 12 formes traditionnelles adaptées à l'espace réduit du cachot</li>
+								<li>Travail des coups de pied : viser les angles de la cellule avec précision et fluidité</li>
+								<li>Combat à l'aveugle : yeux bandés, ressentir les mouvements dans la Force comme Maître Yoda l'enseignait</li>
+								<li>Méditation Jedi : visualiser l'évasion, trouver la paix intérieure et la clarté</li>
 							</ol>
 						</section>
 
@@ -214,7 +213,7 @@
 								<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" style="color: var(--color-gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
 								<span>Notes de Moumy</span>
 							</div>
-							<p class="pl-4">Regarde, Moumy te l'dit : mange bien, entraîne-toi, et un jour tu seras le patron de cette prison. Comme dans toutes les bonnes recettes, la patience est le secret. Mais la rage, c'est l'épice.</p>
+							<p class="pl-4">Moumy te l'dit : même dans les moments les plus sombres, garde la foi. Un bon karatéka ne baisse jamais les bras. Et n'oublie pas : la patience est l'arme la plus puissante d'un Jedi en prison.</p>
 							<span class="bottom-1 right-2 text-4xl absolute leading-none opacity-30" style="color: var(--color-gold); font-family: var(--font-title)" aria-hidden="true">{'\u201D'}</span>
 						</div>
 					</div>
