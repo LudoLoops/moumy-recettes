@@ -48,6 +48,9 @@
 		return result;
 	});
 
+	// Easter egg: Star Wars prison recipe
+	let easterEgg = $derived(/karat[eé]\s*de\s*prison/i.test(searchQuery));
+
 	// Whether to show grouped (letter) view or flat grid
 	let isGrouped = $derived(!searchQuery && currentCategory === 'all');
 
@@ -120,8 +123,51 @@
 		</div>
 	{/if}
 
+	<!-- Easter egg card -->
+	{#if easterEgg}
+		<div class="mb-10 fade-in">
+			<article class="recipe-card easter-egg-card">
+				<Card variant="elevated" noPadding>
+					<div class="p-6">
+						<Badge variant="gold" class="mb-3">Sith</Badge>
+
+						<h2 class="text-xl font-semibold leading-tight mb-2 text-primary-900-100">
+							Karate de Prison Sith
+						</h2>
+						<p class="text-sm leading-relaxed mb-3 text-primary-600-400">
+							La recette secrète des gardes de la prison de Mimban. Transmise de génération en génération par les détenus les plus redoutables.
+						</p>
+						<div class="gap-4 text-xs text-primary-400-600 flex items-center">
+							<span class="gap-1 flex items-center">
+								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+								Prép 666min
+							</span>
+							<span class="gap-1 flex items-center">
+								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+								Cuisson 19min
+							</span>
+							<span class="gap-1 flex items-center">
+								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+								1 prisonnier
+							</span>
+							<span class="gap-1 flex items-center">
+								<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+								Côté Obscur
+							</span>
+						</div>
+						<div class="mt-4 pt-3 border-t border-secondary-300-700">
+							<p class="text-xs italic text-secondary-600-400">
+								✨ Que la Force soit avec ta cuisine.
+							</p>
+						</div>
+					</div>
+				</Card>
+			</article>
+		</div>
+	{/if}
+
 	<!-- Content -->
-	{#if filteredRecipes.length === 0}
+	{#if filteredRecipes.length === 0 && !easterEgg}
 		<EmptyState
 			icon="search"
 			title={content.browser.emptyTitle}
@@ -301,6 +347,31 @@
 
 	.recipe-card:hover :global(.card)::before {
 		opacity: 1;
+	}
+
+	/* Easter egg glow */
+	.easter-egg-card :global(.card) {
+		border: 1px solid var(--color-gold);
+		box-shadow:
+			var(--shadow-card),
+			0 0 20px oklch(0.8 0.1 85 / 0.3),
+			0 0 60px oklch(0.8 0.1 85 / 0.1);
+		animation: fadeIn 0.6s ease forwards, easterGlow 2s ease-in-out infinite alternate;
+	}
+
+	@keyframes easterGlow {
+		from {
+			box-shadow:
+				var(--shadow-card),
+				0 0 20px oklch(0.8 0.1 85 / 0.3),
+				0 0 60px oklch(0.8 0.1 85 / 0.1);
+		}
+		to {
+			box-shadow:
+				var(--shadow-card),
+				0 0 30px oklch(0.8 0.1 85 / 0.5),
+				0 0 80px oklch(0.8 0.1 85 / 0.2);
+		}
 	}
 
 	/* Animations */
