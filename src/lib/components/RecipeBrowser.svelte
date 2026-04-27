@@ -130,13 +130,13 @@
 				<Card variant="elevated" noPadding>
 					<div class="p-6 md:p-8">
 						<!-- Header -->
-						<Badge variant="gold" class="mb-3">Côté Obscur</Badge>
+						<Badge variant="gold" class="mb-3">Régime Carcéral</Badge>
 
 						<h2 class="text-2xl leading-tight mb-2 text-primary-900-100 capitalize">
 							Karate de Prison de Mimban
 						</h2>
 						<p class="text-sm leading-relaxed mb-6 text-surface-700-300 italic">
-							Recette traditionnelle de la prison impériale de Mimban. Se prépare en silence absolu pour ne pas alerter les gardes.
+							Tu viens d'être transféré dans la prison de haute sécurité de Mimban. La cantine est infecte et les gardes te surveillent. Mais tu es un Sith. Et un Sith ne meurt jamais de faim — il nourrit sa rage.
 						</p>
 
 						<!-- Meta -->
@@ -145,7 +145,7 @@
 								<svg class="w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: var(--color-gold)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
 								<div>
 									<span class="text-surface-500 block text-[0.7rem] uppercase tracking-wide">Préparation</span>
-									<span class="text-sm font-semibold">666 min</span>
+									<span class="text-sm font-semibold">3 ans de peine</span>
 								</div>
 							</div>
 							<div class="gap-2 p-2 bg-surface-100-900 flex items-start rounded-[10px]">
@@ -159,14 +159,14 @@
 								<svg class="w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: var(--color-gold)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
 								<div>
 									<span class="text-surface-500 block text-[0.7rem] uppercase tracking-wide">Portions</span>
-									<span class="text-sm font-semibold">1 prisonnier</span>
+									<span class="text-sm font-semibold">1 prisonnier ambitieux</span>
 								</div>
 							</div>
 							<div class="gap-2 p-2 bg-surface-100-900 flex items-start rounded-[10px]">
 								<svg class="w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: var(--color-gold)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
 								<div>
 									<span class="text-surface-500 block text-[0.7rem] uppercase tracking-wide">Difficulté</span>
-									<span class="text-sm font-semibold">Dark Side</span>
+									<span class="text-sm font-semibold">Évasion imminente</span>
 								</div>
 							</div>
 						</div>
@@ -178,13 +178,12 @@
 								Ingrédients
 							</h3>
 							{#each [
-								'500g de nouilles de cantine',
-								'2 poignées de riz de contrebande',
-								'1 litre de bouillon de wookiee',
-								"3 gousses d'ail de Tatooine",
-								'Sel de Cérés (goût météoritique)',
-								'Poivre de Kessel (façonné en moins de 12 parsecs)',
-								'1 pincée de poudre noire du Côté Obscur'
+								'200g de protéine de cantine (goût douteux mais la rage compense)',
+								'1 bol de riz compact servi par le droïde nourricier',
+								'3 cuillères de graisse de gammorean récupérée sous la table',
+								'Sel extrait des larmes de tes codétenus',
+								'1 pincée de poudre noire volée dans l\'infirmerie',
+								'Eau tiède du robinet de la cellule 1138'
 							] as ingredient}
 								<div class="py-1.5 border-surface-200-800 hover:pl-2 flex items-start border-b transition-all duration-300 last:border-b-0">
 									<span class="mr-3 font-bold text-lg shrink-0" style="color: var(--color-gold)">•</span>
@@ -197,14 +196,14 @@
 						<section class="pl-5 my-6 border-l-3" style="border-color: var(--color-gold)">
 							<h3 class="gap-2 text-lg font-semibold mb-3 text-primary-700-300 flex items-center">
 								<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="color: var(--color-gold)"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
-								Préparation
+								Entraînement
 							</h3>
 							<ol class="easter-steps">
-								<li>Récupérer les ingrédients en douce pendant la ronde des gardes</li>
-								<li>Faire chauffer le bouillon de wookiee sur le chauffage collectif</li>
-								<li>Hacher l'ail de Tatooine avec un fragment de météorite</li>
-								<li>Mélanger le tout en récitant le Code Sith à voix basse</li>
-								<li>Servir froid. La vengeance est un plat qui se mange froid.</li>
+								<li>Petit-déjeuner : avaler la bouillie sans vomir. C'est déjà un exploit.</li>
+								<li>Pompes sur les dalles glacées de la cellule — 100 reps, un bras, yeux fermés</li>
+								<li>Kata du Wookiee dans la cour de promenade : enchaîner 12 coups sans que les gardes ne remarquent</li>
+								<li>Midi : récupérer les protéines en douce pendant la bagarre à la cantine</li>
+								<li>Méditation Sith aux toilettes : visualiser ta mutinerie pendant que les autres dorment</li>
 							</ol>
 						</section>
 
@@ -215,7 +214,7 @@
 								<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" style="color: var(--color-gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
 								<span>Notes de Moumy</span>
 							</div>
-							<p class="pl-4">✨ Moumy disait toujours : La patience est une vertu, sauf quand tu as faim en prison.</p>
+							<p class="pl-4">Regarde, Moumy te l'dit : mange bien, entraîne-toi, et un jour tu seras le patron de cette prison. Comme dans toutes les bonnes recettes, la patience est le secret. Mais la rage, c'est l'épice.</p>
 							<span class="bottom-1 right-2 text-4xl absolute leading-none opacity-30" style="color: var(--color-gold); font-family: var(--font-title)" aria-hidden="true">{'\u201D'}</span>
 						</div>
 					</div>
