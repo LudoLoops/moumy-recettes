@@ -3,6 +3,7 @@
 	import { themeStore } from '$lib/utils/theme.svelte';
 	import ThemeToggle from '$lib/components/ui/ThemeToggle.svelte';
 	import { onMount, onDestroy } from 'svelte';
+	import content from '$lib/data/content.json';
 
 	onMount(() => {
 		themeStore.init();
@@ -21,7 +22,7 @@
 				class="text-primary-700-300 hover:text-primary-900-100 transition-colors"
 				style="font-size: var(--text-logo); font-weight: var(--weight-title); font-family: var(--font-handwriting)"
 			>
-				Les recettes de Moumy
+				{content.nav.brand}
 			</a>
 		</AppBar.Lead>
 
@@ -32,14 +33,14 @@
 					class="text-primary-700-300 hover:text-primary-900-100 text-sm transition-colors"
 					style="font-family: var(--font-body)"
 				>
-					Recettes
+					{content.nav.recipes}
 				</a>
 				<a
 					href="/ingredients"
 					class="text-primary-700-300 hover:text-primary-900-100 text-sm transition-colors"
 					style="font-family: var(--font-body)"
 				>
-					Ingrédients
+					{content.nav.ingredients}
 				</a>
 			</nav>
 		</AppBar.Headline>

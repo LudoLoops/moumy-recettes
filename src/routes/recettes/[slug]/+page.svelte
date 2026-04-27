@@ -4,6 +4,7 @@
 	import { getRecipeBody } from '$data/recettes';
 	import ManuscriptImage from '$lib/components/ManuscriptImage.svelte';
 	import { goto } from '$app/navigation';
+	import content from '$lib/data/content.json';
 
 	let { data }: { data: PageData } = $props();
 	const recipe = $derived(data.recipe);
@@ -75,7 +76,7 @@
 			<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
 			</svg>
-			Retour
+			{content.recipeDetail.back}
 		</span>
 	</Button>
 
@@ -119,7 +120,7 @@
 					</svg>
 					<div>
 						<span class="tracking-wide mb-0.5 text-surface-500 block text-[0.7rem] uppercase"
-							>Préparation</span
+							>{content.recipeDetail.meta.prepTime}</span
 						>
 						<span class="text-sm font-semibold block">{recipe.prepTime}</span>
 					</div>
@@ -150,7 +151,7 @@
 					</svg>
 					<div>
 						<span class="tracking-wide mb-0.5 text-surface-500 block text-[0.7rem] uppercase"
-							>Cuisson</span
+							>{content.recipeDetail.meta.cookTime}</span
 						>
 						<span class="text-sm font-semibold block">{recipe.cookTime}</span>
 					</div>
@@ -175,7 +176,7 @@
 					</svg>
 					<div>
 						<span class="tracking-wide mb-0.5 text-surface-500 block text-[0.7rem] uppercase"
-							>Portions</span
+							>{content.recipeDetail.meta.servings}</span
 						>
 						<span class="text-sm font-semibold block">{recipe.servings}</span>
 					</div>
@@ -200,7 +201,7 @@
 					</svg>
 					<div>
 						<span class="tracking-wide mb-0.5 text-surface-500 block text-[0.7rem] uppercase"
-							>Difficulté</span
+							>{content.recipeDetail.meta.difficulty}</span
 						>
 						<span class="text-sm font-semibold block">{recipe.difficulty}</span>
 					</div>
@@ -227,7 +228,7 @@
 							d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
 						/>
 					</svg>
-					Ingrédients
+					{content.recipeDetail.sections.ingredients}
 				</h2>
 				{#each recipe.ingredients as ingredient}
 					<div
@@ -259,7 +260,7 @@
 							d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
 						/>
 					</svg>
-					Préparation
+					{content.recipeDetail.sections.preparation}
 				</h2>
 				<div class="recipe-body leading-loose" style="font-family: var(--font-body)">
 					{#if bodyComponent}
@@ -293,7 +294,7 @@
 								d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
 							/>
 						</svg>
-						<span>Notes de Moumy</span>
+						<span>{content.recipeDetail.sections.notes}</span>
 					</div>
 					<p class="pl-4">{recipe.notes}</p>
 					<span
@@ -318,7 +319,7 @@
 								d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"
 							/>
 						</svg>
-						Imprimer
+						{content.recipeDetail.actions.print}
 					</span>
 				</Button>
 				<Button variant="outline" onclick={handleShare}>
@@ -331,7 +332,7 @@
 								d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
 							/>
 						</svg>
-						Partager
+						{content.recipeDetail.actions.share}
 					</span>
 				</Button>
 			</div>

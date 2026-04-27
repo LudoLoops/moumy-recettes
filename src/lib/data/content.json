@@ -1,0 +1,58 @@
+{
+	"landing": {
+		"hero": {
+			"subtitle": "avec amour et souvenirs",
+			"title": "Les recettes de Moumy",
+			"description": "En mémoire de Moumy, qui nous a transmis l'amour de la cuisine et ses secrets de famille précieux",
+			"badge": "Un héritage culinaire qui traverse les générations"
+		},
+		"quote": {
+			"text": "La cuisine, c'est de l'amour qui se partage. Chaque plat raconte une histoire, chaque recette porte en elle des souvenirs précieux.",
+			"attribution": "— Moumy"
+		},
+		"familyMemories": {
+			"title": "Souvenirs de famille",
+			"text": "Chaque dimanche, Moumy préparait son célèbre poulet rôti. L'odeur remplissait la maison, attirant petits et grands vers la cuisine. Ces recettes ne sont pas seulement des instructions, ce sont des morceaux de notre histoire familiale, transmises avec amour de génération en génération.",
+			"stats": {
+				"recipes": "Recettes préservées",
+				"memories": "Souvenirs chéris",
+				"hearts": "Toujours dans nos cœurs"
+			}
+		}
+	},
+	"recipeDetail": {
+		"back": "Retour",
+		"sections": {
+			"ingredients": "Ingrédients",
+			"preparation": "Préparation",
+			"notes": "Notes de Moumy"
+		},
+		"meta": {
+			"prepTime": "Préparation",
+			"cookTime": "Cuisson",
+			"servings": "Portions",
+			"difficulty": "Difficulté"
+		},
+		"actions": {
+			"print": "Imprimer",
+			"share": "Partager"
+		}
+	},
+	"browser": {
+		"searchPlaceholder": "Rechercher une recette ou un ingrédient...",
+		"emptyTitle": "Aucune recette trouvée",
+		"emptyDescription": "Essayez une autre recherche ou catégorie",
+		"ingredientIndex": "Index des ingrédients"
+	},
+	"footer": {
+		"brand": "Les recettes de Moumy",
+		"description": "Un hommage à Moumy, sa cuisine et tout l'amour qu'elle a mis dans chaque recette.",
+		"closing": "Avec tout notre amour",
+		"copyright": "Les recettes de Moumy — Un hommage familial"
+	},
+	"nav": {
+		"brand": "Les recettes de Moumy",
+		"recipes": "Recettes",
+		"ingredients": "Ingrédients"
+	}
+}
