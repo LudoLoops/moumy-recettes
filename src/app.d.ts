@@ -1,11 +1,3 @@
-import type pino from 'pino';
-
-declare global {
-	namespace App {
-		interface Locals {
-			logger: pino.Logger;
-		}
-	}
-}
+/// <reference types="@sveltejs/kit" />
 
 export {};

@@ -1,7 +1,25 @@
 @echo off
+chcp 65001 > nul
+title Moumy Recettes - Serveur de dev
 
-start "bun Server" cmd /k "bun dev"
+echo.
+echo  ╔═══════════════════════════════════╗
+echo  ║   Les recettes de Moumy - Dev     ║
+echo  ╚═══════════════════════════════════╝
+echo.
 
-timeout /t 2 /nobreak > nul
+:: Check si bun est installé
+where bun > nul 2>&1
+if %errorlevel% neq 0 (
+    echo  [!] Bun n'est pas installé.
+    echo  [.] Installe-le ici : https://bun.sh
+    echo.
+    pause
+    exit /b 1
+)
 
-start http://localhost:5173
+echo  [*] Lancement du serveur...
+echo.
+
+start "" http://localhost:5173
+bun dev

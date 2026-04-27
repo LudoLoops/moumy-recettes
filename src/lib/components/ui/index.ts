@@ -1,5 +1,4 @@
 export { default as Accordion } from './Accordion.svelte';
-export { default as AuthCard } from './AuthCard.svelte';
 export { default as Avatar } from './Avatar.svelte';
 export { default as Badge } from './Badge.svelte';
 export { default as Breadcrumb } from './Breadcrumb.svelte';
@@ -30,5 +29,3 @@ export { default as ThemeToggle } from './ThemeToggle.svelte';
 export { default as Toast } from './Toast.svelte';
 export { addToast, removeToast } from './toast-state.svelte';
 export { default as Tooltip } from './Tooltip.svelte';
-
-export * from './form';
