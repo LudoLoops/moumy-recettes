@@ -10,7 +10,7 @@ cookTime: 35
 servings: 8
 difficulty: Facile
 ingredients:
-  - 2 citrons
+  - 2 ½ citrons
   - 250g de sucre en poudre
   - 150g de beurre
   - 150g de farine
