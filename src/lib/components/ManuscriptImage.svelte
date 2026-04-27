@@ -104,14 +104,16 @@
 		class="inset-0 bg-black/80 backdrop-blur-sm fixed z-50 flex animate-[fadeIn_0.2s_ease_forwards] items-center justify-center print:hidden"
 		onclick={closeModal}
 		role="dialog"
+		tabindex="-1"
 		aria-label="Manuscrit agrandi"
 	>
-		<img
-			src={manuscriptSrc!}
-			alt={`Manuscrit de ${recipe.title}`}
-			class="rounded-lg shadow-2xl max-h-[90vh] max-w-[90vw]"
-			onclick={(e) => e.stopPropagation()}
-		/>
+		<div onclick={(e) => e.stopPropagation()}>
+			<img
+				src={manuscriptSrc!}
+				alt={`Manuscrit de ${recipe.title}`}
+				class="rounded-lg shadow-2xl max-h-[90vh] max-w-[90vw]"
+			/>
+		</div>
 		<button
 			type="button"
 			onclick={closeModal}

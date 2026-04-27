@@ -38,8 +38,8 @@ const recipeBodies = import.meta.glob<{ default: any }>('./recettes/**/*.md', {
 });
 
 /** Capitalize first letter of a category for display */
-function capitalize(s: string): string {
-	if (!s) return s;
+function capitalize(s: string | undefined): string {
+	if (!s) return '';
 	return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
@@ -53,6 +53,7 @@ export function getAllRecipes(): Recipe[] {
 			const meta = module.metadata;
 			return {
 				...meta,
+				category: meta.category ?? 'Autre',
 				slug: path.match(/\/([^/]+)\.md$/)?.[1] || '',
 				categoryDisplay: capitalize(meta.category)
 			};
