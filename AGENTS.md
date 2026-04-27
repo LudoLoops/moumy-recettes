@@ -1,29 +1,31 @@
 # AGENTS.md — Les recettes de Moumy
 
-> Recipe tribute website for a grandmother — handwritten family recipes, archived forever.
+> Static recipe tribute website for a grandmother — handwritten family recipes, archived forever. No server, no database, no auth. Just markdown → static HTML.
 
 ## Quick Reference
 
 | Category         | Convention                                                                 |
 | ---------------- | -------------------------------------------------------------------------- |
 | Package Manager  | `bun`                                                                      |
-| Framework        | SvelteKit + Svelte 5 (runes mode)                                          |
+| Framework        | SvelteKit 2 + Svelte 5 (runes mode)                                       |
+| Adapter          | `@sveltejs/adapter-static` (Cloudflare Pages)                              |
 | UI Library       | Skeleton UI v4 (`@skeletonlabs/skeleton`)                                  |
 | CSS              | Tailwind v4 + Skeleton theme tokens                                        |
-| Markdown         | mdsvex (`.md` recipe files)                                                |
+| Content          | mdsvex (`.md` recipe files) compiled at build time                         |
 | Fonts            | Crimson Pro (body), Playfair Display (headings), Great Vibes (handwriting) |
-| Content Language | French (recipes) / English (UI code comments)                              |
+| Content Language | French (recipes & UI copy) / English (code comments)                       |
+| Deployment       | Cloudflare Pages (`bun run build` → `build/` directory)                    |
 
 ## Commands
 
 ```bash
 bun dev              # Start dev server (with --host)
-bun build            # Production build
-bun check            # TypeScript type check
-bun lint             # ESLint + Prettier check
-bun format           # Format code
-bun test:unit        # Run Vitest tests
-
+bun run build        # Production build → static files in build/
+bun run preview      # Preview production build locally
+bun run check        # TypeScript type check
+bun run lint         # ESLint + Prettier check
+bun run format       # Format code
+bun run test:unit    # Run Vitest tests
 ```
 
 ## Project Structure
@@ -31,43 +33,142 @@ bun test:unit        # Run Vitest tests
 ```
 src/
 ├── app.css                          ← Global CSS (imports: fonts, tailwind, skeleton, theme, tokens)
-├── hooks.server.ts                  ← BetterAuth server hooks
+├── app.html                         ← HTML shell
+├── app.d.ts                         ← Type declarations
+├── data/
+│   ├── recettes.ts                  ← mdsvex loader (getAllRecipes, getRecipeBySlug, etc.)
+│   ├── recettes/                    ← 15 .md recipe files (growing)
+│   └── img/                         ← Manuscript scan images (11 JPGs)
 ├── lib/
-│   ├── auth.ts / auth-client.ts     ← BetterAuth config
+│   ├── assets/                      ← Favicon
 │   ├── components/
-│   │   ├── layout/                  ← Navbar, Footer, MobileMenu, NavLinks, AuthButtons
-│   │   ├── ui/                      ← Card, Badge, Button, Modal, Tabs, Toast, etc.
-│   │   └── icons/                   ← Lucide icon wrappers
+│   │   ├── layout/                  ← Navbar, Footer
+│   │   ├── ui/                      ← Skeleton-style UI components (Card, Badge, Button, Modal, etc.)
+│   │   ├── RecipeBrowser.svelte     ← Search + filter + recipe grid
+│   │   ├── ManuscriptImage.svelte   ← Recipe manuscript scan viewer
+│   │   └── LetterNav.svelte         ← Alphabetical letter navigation
 │   ├── data/
-│   │   ├── recipes.ts               ← mdsvex loader (getAllRecipes, getRecipeBySlug, etc.)
-│   │   └── recipes/                 ← 8 .md recipe files (→ 200+ eventually)
-│   ├── db/                          ← Drizzle ORM schema + migrations
+│   │   └── content.json             ← All UI copywriting (French text for every page)
 │   ├── styles/
 │   │   ├── svelteForge.css          ← Skeleton theme (palette, pill buttons, whisper borders)
 │   │   ├── tokens.css               ← Design tokens (shadows, spacing, Moumy colors)
 │   │   └── fonts.css                ← Fontsource imports
-│   ├── schemas/                     ← Zod validation schemas
-│   ├── services/                    ← Business logic services
-│   ├── middleware/                   ← Auth middleware
-│   └── utils/                       ← Utility functions
+│   ├── types.ts                     ← Shared TypeScript types
+│   └── utils/                       ← Utility functions (slugify, formatters, theme, focus-trap)
 ├── routes/
-│   ├── +layout.svelte               ← Root layout (Navbar conditionally hidden, Footer)
-│   ├── +page.svelte                 ← Homepage (hero, search, recipe cards)
+│   ├── +layout.svelte               ← Root layout (Navbar/Footer conditionals)
+│   ├── +layout.ts                   ← prerender = true
+│   ├── +page.svelte                 ← Homepage (hero, quote, recipe grid, souvenirs)
 │   ├── +page.server.ts              ← Homepage data loader
-│   ├── recettes/                      ← Recipe pages
-│   │   ├── +page.svelte               ← Recipe listing (search + filters + grid)
-│   │   ├── +page.server.ts            ← Recipe data loader
-│   │   └── [slug]/                    ← Individual recipe pages
-│   │   ├── +page.server.ts          ← Load recipe by slug
-│   │   ├── +page.ts                 ← prerender = true
-│   │   └── +page.svelte             ← Full recipe (2-col: manuscript + content)
-│   ├── ingredients/                 ← Ingredients index (alphabetical groups)
-│   ├── (public)/                    ← Auth pages (login, signup, forgot/reset password)
-│   ├── (protected)/                 ← Admin/authenticated pages
-│   ├── (legal)/                     ← Legal pages
-│   ├── api/                         ← API routes
-│   └── layout.css                   ← Layout-specific styles
+│   ├── layout.css                   ← Layout-specific styles
+│   ├── recettes/
+│   │   ├── +page.svelte             ← Recipe listing (RecipeBrowser component)
+│   │   ├── +page.server.ts          ← Recipe data loader
+│   │   └── [slug]/
+│   │       ├── +page.svelte         ← Full recipe (2-col: manuscript + content)
+│   │       ├── +page.server.ts      ← Load recipe by slug
+│   │       └── +page.ts             ← prerender = true
+│   ├── ingredients/
+│   │   ├── +page.svelte             ← Ingredients index (alphabetical letter groups)
+│   │   ├── +page.server.ts          ← Ingredients data loader
+│   │   └── +page.ts                 ← prerender = true
+│   ├── (legal)/                     ← Legal pages (legal, privacy)
+│   │   ├── +layout.svelte
+│   │   ├── legal/+page.svelte
+│   │   └── privacy/+page.svelte
+│   └── +error.svelte                ← Error page
+├── lib/components/ui/               ← Skeleton UI components
+└── lib/components/ui/utils/cn.ts    ← Tailwind class merge utility (clsx + tailwind-merge)
 ```
+
+## Static Site Architecture
+
+This is a **fully static site** — no server runtime, no API routes, no database, no authentication.
+
+- **Adapter**: `@sveltejs/adapter-static` with `prerender: { handleHttpError: 'warn' }`
+- **Build**: `bun run build` → static HTML/CSS/JS in `build/`
+- **Deploy**: Cloudflare Pages picks up the `build/` directory
+- **Data loading**: `+page.server.ts` files exist only for SvelteKit's load API — they run at **build time** during prerendering, not at runtime
+- **Content pipeline**: `.md` files → mdsvex → Svelte components → static HTML
+
+## Copywriting — `src/lib/data/content.json`
+
+All user-facing French text lives in `content.json` (no hardcoded strings in components):
+
+| Section           | Contains                                          |
+| ----------------- | ------------------------------------------------- |
+| `landing.hero`    | Homepage hero title, subtitle, description, badge |
+| `landing.quote`   | Moumy quote + attribution                         |
+| `landing.familyMemories` | Souvenirs section text + stats labels    |
+| `recipeDetail`    | Labels: back, ingredients, preparation, notes, meta, actions |
+| `browser`         | Search placeholder, empty states, ingredient index title |
+| `footer`          | Brand, description, closing, copyright            |
+| `nav`             | Brand name, nav links                             |
+
+**Rule**: If you need to add or change any visible French text, edit `content.json` — not the `.svelte` files.
+
+## Recipe Content
+
+### Recipe Files
+
+Recipes live in `src/data/recettes/` as `.md` files. Filenames become slugs (e.g. `BrA147_A.md` → slug `BrA147_A`).
+
+Manuscript scan images live in `src/data/img/` (referenced in frontmatter).
+
+### Obsidian Template
+
+`ObsTemplate/recette.md` is the Obsidian template for creating new recipes from Moumy's handwritten notebooks. It has the complete frontmatter skeleton with numbered step placeholders.
+
+### Recipe Frontmatter Schema
+
+```yaml
+---
+title: 'Gâteau à l\'orange'       # Required — displayed as H1
+slug: 'BrA147'                     # Optional — derived from filename if absent
+manuscript: ''                     # Path to scan image (empty = placeholder shown)
+category: 'desserts'               # Machine key for filtering
+categoryLabel: 'Desserts'          # Display label (capitalized)
+excerpt: 'Un moelleux...'          # Short summary for cards
+prepTime: 15                       # Preparation time (minutes, number)
+cookTime: 35                       # Cooking time (minutes, number)
+servings: 8                        # Yield (number)
+difficulty: 'Facile'               # Facile / Moyen / Difficile
+ingredients:                       # List of ingredient strings
+  - '250g de farine'
+  - '125g de beurre mou'
+notes: "Remplacer les oranges par des citrons."  # Moumy's personal tips
+---
+```
+
+### Body Format
+
+Numbered steps as plain text (NOT markdown list). mdsvex renders them as paragraphs:
+
+```
+1. Mélanger en crème le beurre et le sucre.
+2. Ajouter les œufs entiers en battant la pâte.
+3. Verser dans un moule beurré et cuire à four modéré.
+```
+
+### Adding New Recipes
+
+1. Copy `ObsTemplate/recette.md` or create a new `.md` file in `src/data/recettes/`
+2. Fill in the frontmatter (follow schema above)
+3. Write numbered preparation steps as the body
+4. Add manuscript scan image to `src/data/img/` if available, set `manuscript` field
+5. **No code changes needed** — recipes auto-load via `import.meta.glob({ eager: true })`
+
+### Data Loader API (`src/data/recettes.ts`)
+
+| Function                   | Returns                                             |
+| -------------------------- | --------------------------------------------------- |
+| `getAllRecipes()`          | All recipes sorted by title (French locale)         |
+| `getRecipeBySlug(slug)`    | Single recipe or undefined                          |
+| `getRecipeBody(slug)`      | mdsvex component for recipe body rendering          |
+| `getAllIngredients()`      | All unique ingredients grouped alphabetically       |
+| `getCategories()`          | All unique categories with counts                   |
+| `searchRecipes(query)`     | Recipes matching query in title/excerpt/ingredients |
+| `searchIngredients(query)` | Ingredients matching query                          |
 
 ## Design System Rules (MANDATORY)
 
@@ -151,11 +252,11 @@ Use Skeleton semantic tokens, NOT raw Tailwind colors:
 <!-- ✅ CORRECT — Skeleton color pairing -->
 <div class="bg-surface-100-900">
 	<span class="text-primary-700-300">Nav link</span>
+</div>
 
-	<!-- ❌ WRONG — raw Tailwind colors -->
-	<div class="bg-gray-100 dark:bg-gray-900">
-		<span class="text-white">Nav link</span>
-	</div>
+<!-- ❌ WRONG — raw Tailwind colors -->
+<div class="bg-gray-100 dark:bg-gray-900">
+	<span class="text-white">Nav link</span>
 </div>
 ```
 
@@ -168,7 +269,7 @@ Use Skeleton semantic tokens, NOT raw Tailwind colors:
 - Use `{@render children()}` — NOT `<slot />`
 - Use `onclick` — NOT `on:click`
 - Use runes: `$state`, `$derived`, `$effect`, `$props()`
-- Module context (`<script context="module">`) is deprecated in Svelte 5 — mdsvex generates warnings, these are cosmetic only
+- Module context (`<script context="module">`) is deprecated in Svelte 5 — mdsvex generates warnings, these are cosmetic only (suppressed via `onwarn` in `svelte.config.js`)
 
 ### Design Tokens (`tokens.css`) — For Special Cases Only
 
@@ -218,8 +319,8 @@ Keep `<style>` blocks minimal. Only use custom CSS for:
 
 - **Only ONE image per recipe**: the manuscript scan (handwritten recipe)
 - No Unsplash photos. No stock images. No images on homepage cards.
-- Manuscript path in frontmatter: `manuscript: "/images/manuscripts/filename.jpg"`
-- If `manuscript` is empty, show a placeholder
+- Manuscript path in frontmatter: `manuscript: "/images/manuscripts/filename.jpg"` (or empty for placeholder)
+- Manuscript scans stored in `src/data/img/`
 
 ### Layout
 
@@ -228,79 +329,42 @@ Keep `<style>` blocks minimal. Only use custom CSS for:
 - **Landing page (`/`)**: hero + citation + recipe grid + souvenirs — no navbar
 - **Recipe listing (`/recettes`)**: search + filters + recipe grid — navbar visible
 - **Recipe detail (`/recettes/[slug]`)**: full recipe (2-col: manuscript + content) — navbar visible, no footer
+- **Ingredients (`/ingredients`)**: alphabetical ingredient index — navbar visible
 
-## Recipe Data Architecture
+## Dev Tools
 
-### Recipe Frontmatter Schema
+### Windows Launcher — `moumy start.bat`
 
-```yaml
----
-title: 'Recipe Title' # Required — displayed as H1
-slug: 'recipe-slug' # Required — URL identifier
-manuscript: '' # Path to scanned image (empty = placeholder)
-category: 'desserts' # Machine key for filtering
-categoryLabel: 'Desserts' # Display label
-excerpt: 'Description...' # Short summary for cards
-prepTime: '30 min' # Preparation time
-cookTime: '40 min' # Cooking time
-servings: '8 personnes' # Yield
-difficulty: 'Facile' # Facile / Moyen / Difficile
-ingredients: # List of ingredient strings
-  - '250g de farine'
-  - '125g de beurre mou'
-notes: "Moumy's personal tips" # Handwritten-style note at bottom
----
-```
+A convenience batch file for Ludo's dad to start the dev server on Windows. It:
+1. Checks if `bun` is installed
+2. Opens `http://localhost:5173` in the browser
+3. Runs `bun dev`
 
-### Body Format
+### Obsidian Template — `ObsTemplate/recette.md`
 
-Numbered steps as plain text (NOT markdown list). mdsvex renders them as paragraphs:
-
-```
-1. First step instruction.
-
-2. Second step instruction.
-
-3. Third step instruction.
-```
-
-### Adding New Recipes
-
-1. Create `src/lib/data/recipes/slug-du-nom.md`
-2. Fill frontmatter (follow schema above)
-3. Write numbered steps as body
-4. Optionally add manuscript scan to `static/images/manuscripts/` and update `manuscript` field
-5. Recipe auto-loads via `import.meta.glob({ eager: true })` — no code changes needed
-
-### Data Loader API (`src/lib/data/recipes.ts`)
-
-| Function                   | Returns                                             |
-| -------------------------- | --------------------------------------------------- |
-| `getAllRecipes()`          | All recipes sorted by title (French locale)         |
-| `getRecipeBySlug(slug)`    | Single recipe or undefined                          |
-| `getAllIngredients()`      | All unique ingredients grouped alphabetically       |
-| `searchRecipes(query)`     | Recipes matching query in title/excerpt/ingredients |
-| `searchIngredients(query)` | Ingredients matching query                          |
-
-### Prerendering
-
-All recipe pages are prerendered (`export const prerender = true` in `+page.ts`).
+Template for creating new recipes from Moumy's handwritten notebooks in Obsidian. Contains the complete frontmatter skeleton and numbered step placeholders.
 
 ## Known Issues
 
 - **mdsvex + Svelte 5**: Generates `context="module"` deprecation warnings — suppressed via `onwarn` in `svelte.config.js`
-- **Build 404 on `/favicon.ico`**: Prerender fails looking for favicon — either add one or configure `handleHttpError` in `svelte.config.js`
+- **Build 404 on `/favicon.ico`**: Prerender may warn on missing favicon — handled via `handleHttpError: 'warn'`
 
 ## Key Files
 
 | File                                      | Purpose                                                         |
 | ----------------------------------------- | --------------------------------------------------------------- |
+| `svelte.config.js`                        | SvelteKit config (static adapter, mdsvex, runes, prerender)     |
 | `src/lib/styles/svelteForge.css`          | Skeleton theme configuration                                    |
 | `src/lib/styles/tokens.css`               | Design tokens (shadows, spacing, colors)                        |
 | `src/lib/styles/fonts.css`                | Fontsource imports (Crimson Pro, Playfair Display, Great Vibes) |
-| `src/lib/data/recipes.ts`                 | Recipe data loader (mdsvex + import.meta.glob)                  |
-| `src/lib/data/recipes/*.md`               | Recipe content files (8 recipes, → 200+)                        |
+| `src/data/recettes.ts`                    | Recipe data loader (mdsvex + import.meta.glob)                  |
+| `src/data/recettes/*.md`                  | Recipe content files (15 recipes, growing)                      |
+| `src/data/img/*.jpg`                      | Manuscript scan images                                          |
+| `src/lib/data/content.json`               | All UI copywriting text (French)                                |
 | `src/routes/+layout.svelte`               | Root layout (Navbar/Footer conditionals)                        |
-| `src/routes/+page.svelte`                 | Homepage                                                        |
-| `src/routes/recettes/+page.svelte`        | Recipe listing page                                             |
+| `src/routes/+page.svelte`                 | Homepage (hero, quote, grid, souvenirs)                         |
+| `src/routes/recettes/+page.svelte`        | Recipe listing (RecipeBrowser component)                        |
 | `src/routes/recettes/[slug]/+page.svelte` | Individual recipe page                                          |
+| `src/routes/ingredients/+page.svelte`     | Ingredients index (alphabetical)                                |
+| `ObsTemplate/recette.md`                  | Obsidian template for new recipes                               |
+| `moumy start.bat`                         | Windows dev launcher for Ludo's dad                             |
