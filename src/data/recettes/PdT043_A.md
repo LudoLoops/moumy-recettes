@@ -1,5 +1,5 @@
 ---
-title: Parmenteir au confit de canard
+title: Parmentier au confit de canard
 category: plat
 excerpt:
 prepTime: 20
