@@ -1,5 +1,5 @@
 ---
-title: tarte aux abricots
+title: tarte aux abricots (2)
 category: desserts
 categoryLabel: Desserts
 excerpt:
