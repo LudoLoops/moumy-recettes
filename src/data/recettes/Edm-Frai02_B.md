@@ -1,5 +1,5 @@
 ---
-title: Tarte Aux Fraises
+title: Tarte Aux Fraises (2)
 category: Dessert
 excerpt:
 prepTime:
@@ -10,7 +10,7 @@ ingredients:
   - Pâte Sablée
   - 200g de fraises
   - gelée de groseille
-notes: 
+notes:
 ---
 
 1. Faire cuire seulement la pâte.
