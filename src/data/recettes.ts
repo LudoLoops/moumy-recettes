@@ -234,11 +234,52 @@ function singularize(word: string): string {
 	return word;
 }
 
+/**
+ * Compound ingredient terms that must be treated as a single unit.
+ * Key = normalized (singular) form used for grouping.
+ * Value = array of regex patterns that match the compound after normalization.
+ */
+const COMPOUND_TERMS: [string, RegExp][] = [
+	// Pâtes
+	['pâte feuilletée', /\bpâte\s+feuillet/i],
+	['pâte sablée', /\bpâte\s+sabl/i],
+	['pâte brisée', /\bpâte\s+bris/i],
+	['pâte à choux', /\bpâte\s+à\s+choux/i],
+	// Crèmes
+	['crème fraîche', /\bcrème\s+fraîch/i],
+	['crème pâtissière', /\bcrème\s+pâtiss/i],
+	['crème anglaise', /\bcrème\s+anglais/i],
+	// Beurres
+	['beurre demi-sel', /\bbeurre\s+demi\s*[-]?sel/i],
+	['beurre salé', /\bbeurre\s+sal/i],
+	['beurre doux', /\bbeurre\s+doux/i],
+	// Laits
+	['lait concentré', /\blait\s+concentr/i],
+	['lait entier', /\blait\s+entier/i],
+	['lait demi-écrémé', /\blait\s+demi\s*[-]?écrém/i],
+	// Divers
+	['marmelade d\'abricots', /\bmarmelade\s+d\s*[\'']?abricot/i],
+	['gelée de groseille', /\bgelée\s+de\s+groseille/i],
+	['sauce tomate', /\bsauce\s+tomate/i],
+	['pomme de terre', /\bpomme\s+de\s+terre/i],
+	['bouillon de volaille', /\bbouillon\s+de\s+volaille/i],
+	['levure chimique', /\blevure\s+chimique/i],
+	['sucre vanillé', /\bsucre\s+vanill/i],
+	['sucre en poudre', /\bsucre\s+en\s+poudre/i]
+];
+
 /** Compound patterns where first word alone is NOT the ingredient */
 const COMPOUND_PREFIXES = ['de'];
 
 function getIngredientKey(ing: string): string {
 	const normalized = normalizeIngredient(ing);
+	if (!normalized) return '';
+
+	// Check compound terms first — they take priority over single-word extraction
+	for (const [key, pattern] of COMPOUND_TERMS) {
+		if (pattern.test(normalized)) return key;
+	}
+
 	const words = normalized.split(/\s+/);
 	if (words.length === 0 || !words[0]) return '';
 
