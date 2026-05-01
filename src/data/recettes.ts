@@ -167,8 +167,7 @@ const WORD_UNITS = [
 	'sachet',
 	'sachets',
 	'verre',
-	'verres',
-	'jus'
+	'verres'
 ];
 
 /** Connectors that follow a unit (e.g. "de farine", "d'ail") */
@@ -213,6 +212,11 @@ function normalizeIngredient(ing: string): string {
 	s = s.replace(bareNumRe, '');
 	s = s.replace(sizeAdjRe, '');
 	s = s.replace(wordUnitsBareRe, '');
+
+	// Normalize d'un/d'une contractions to 'de' to avoid article artifacts
+	s = s.replace(/\bd'un(?:e)?\b/gi, 'de');
+	// Strip any remaining standalone articles embedded in the middle
+	s = s.replace(/\s+(?:un|une|le|la|les)\b/gi, '');
 
 	return s.trim();
 }
@@ -265,7 +269,10 @@ const COMPOUND_TERMS: [string, RegExp][] = [
 	['bouillon de volaille', /\bbouillon\s+de\s+volaille/i],
 	['levure chimique', /\blevure\s+chimique/i],
 	['sucre vanillé', /\bsucre\s+vanill/i],
-	['sucre en poudre', /\bsucre\s+en\s+poudre/i]
+	['sucre en poudre', /\bsucre\s+en\s+poudre/i],
+	// Jus
+	['jus de citron', /\bjus\b.*\bcitron/i],
+	['jus d\'orange', /\bjus\b.*\borange/i]
 ];
 
 /** Compound patterns where first word alone is NOT the ingredient */
