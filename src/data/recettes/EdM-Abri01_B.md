@@ -1,5 +1,5 @@
 ---
-title: Tarte Aux Abricots (2)
+title: Tarte Aux Abricots 2️⃣
 category: desserts
 categoryLabel: Desserts
 excerpt:
