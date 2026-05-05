@@ -1,7 +1,6 @@
 ---
 title: tarte aux abricots
-category: desserts
-categoryLabel: Desserts
+category: dessert
 excerpt:
 prepTime: 15
 cookTime: 30
