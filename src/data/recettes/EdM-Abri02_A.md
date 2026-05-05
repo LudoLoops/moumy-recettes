@@ -1,5 +1,5 @@
 ---
-title: Abricots à l'Anglaise (1)
+title: Abricots à l'Anglaise 1️⃣
 category: dessert
 excerpt:
 prepTime:

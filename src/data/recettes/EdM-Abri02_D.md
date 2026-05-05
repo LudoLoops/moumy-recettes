@@ -1,5 +1,5 @@
 ---
-title: Glace Aux Abricots (4)
+title: Glace Aux Abricots 4️⃣
 category: dessert
 excerpt:
 prepTime:

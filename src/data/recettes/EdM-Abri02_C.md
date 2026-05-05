@@ -1,5 +1,5 @@
 ---
-title: Salade Gratinée d'Abricots (3)
+title: Salade Gratinée d'Abricots 3️⃣
 category: dessert
 excerpt:
 prepTime:
