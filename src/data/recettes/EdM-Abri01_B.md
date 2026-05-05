@@ -1,19 +1,19 @@
 ---
-title: tarte aux abricots (2)
+title: Tarte Aux Abricots (2)
 category: desserts
 categoryLabel: Desserts
 excerpt:
 prepTime: 10
 cookTime: 30
-servings: 
-difficulty: 
+servings:
+difficulty:
 ingredients:
   - pâte brisée
   - 500g d'abricots
   - 2 cuière à soupe de sucre
   - 1 demi pot de marmelade d'abricots
   - 1 verre à liqueur de Kirsch
-notes: 
+notes:
 ---
 
 1. Abaisser la pâte au rouleau sur 3mm.

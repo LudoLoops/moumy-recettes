@@ -1,5 +1,5 @@
 ---
-title: Chausson aux abricots (2)
+title: Chausson Aux Abricots (2)
 category: dessert
 excerpt:
 prepTime:

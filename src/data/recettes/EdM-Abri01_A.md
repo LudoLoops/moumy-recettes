@@ -1,18 +1,18 @@
 ---
-title: tarte aux abricots (1)
+title: Tarte Aux Abricots (1)
 category: desserts
 categoryLabel: Desserts
 excerpt:
 prepTime: 10
 cookTime: 30
-servings: 
-difficulty: 
+servings:
+difficulty:
 ingredients:
   - pâte brisée
   - 500g d'abricots
   - sucre
   - marmelade d'abricots
-notes: 
+notes:
 ---
 
 1. Etendre la pâte brisée

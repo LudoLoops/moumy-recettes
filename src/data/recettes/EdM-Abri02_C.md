@@ -1,5 +1,5 @@
 ---
-title: Salade gratinée d'abricots (3)
+title: Salade Gratinée d'Abricots (3)
 category: dessert
 excerpt:
 prepTime:
@@ -10,7 +10,7 @@ ingredients:
   - 250g d'abricots
   - 250g de riz
   - 1l de lait sucré vanillé
-notes: 
+notes:
 ---
 
 1. faites cuire dans un litre de lait sucré et vanillé 250g de riz.

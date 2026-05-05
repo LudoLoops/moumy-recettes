@@ -1,7 +1,7 @@
 ---
-title: Gâteau à l'orange
+title: Gâteau à l'Orange
 slug: BrA147
-manuscript: ''
+manuscript: ""
 category: desserts
 categoryLabel: Desserts
 excerpt:

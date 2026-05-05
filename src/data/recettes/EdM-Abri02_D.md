@@ -1,5 +1,5 @@
 ---
-title: Glace aux abricots (4)
+title: Glace Aux Abricots (4)
 category: dessert
 excerpt:
 prepTime:
@@ -9,7 +9,7 @@ difficulty:
 ingredients:
   - 500g d'abricots
   - lait concentré sucré
-notes: 
+notes:
 ---
 
 1. mixez 500g d'abricots dénoyautés, et du lait concentré sucré.
