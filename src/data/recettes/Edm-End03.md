@@ -1,7 +1,7 @@
 ---
-title: Chicorée à la flamande
+title: Chicorée à La Flamande
 slug: Edm-End03
-manuscript: ''
+manuscript: ""
 category: gratin
 categoryLabel: Gratin
 excerpt:

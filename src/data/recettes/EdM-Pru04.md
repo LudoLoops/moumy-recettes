@@ -1,5 +1,5 @@
 ---
-title: Tarte fine aux prunes
+title: Tarte Fine Aux Prunes
 category: desserts
 excerpt:
 prepTime:

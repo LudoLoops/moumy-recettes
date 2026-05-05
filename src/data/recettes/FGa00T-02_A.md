@@ -1,5 +1,5 @@
 ---
-title: tarte aux abricots
+title: Tarte Aux Abricots
 category: dessert
 excerpt:
 prepTime: 15

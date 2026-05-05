@@ -1,5 +1,5 @@
 ---
-title: Parmentier au confit de canard
+title: Parmentier Au Confit De Canard
 category: plat
 excerpt:
 prepTime: 20
@@ -7,13 +7,13 @@ cookTime: 40
 servings: 6
 difficulty: facile
 ingredients:
- - 800g de pommes de terre
- - 80g de beurre
- - 30cl de lait
- - 1 pincée de muscade
- - 4 cuisses de canard
- - 6 brins de persil plat
- - sel, poivre
+  - 800g de pommes de terre
+  - 80g de beurre
+  - 30cl de lait
+  - 1 pincée de muscade
+  - 4 cuisses de canard
+  - 6 brins de persil plat
+  - sel, poivre
 notes: Vous pouvez servir avec une salade accompagnée d'une vinaigrette bien relevée et aillée.
 ---
 

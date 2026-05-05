@@ -1,5 +1,5 @@
 ---
-title: Tarte Aux Fraises (2)
+title: Tarte Aux Fraises 2️⃣
 category: Dessert
 excerpt:
 prepTime:
