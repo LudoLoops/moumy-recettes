@@ -6,16 +6,16 @@ prepTime: 15
 cookTime: 30
 servings: 6
 difficulty: 
-ingredients:
-  - 400g de pâte feuilletée
-  - 700g d'abricots
-  - 2 jaunes d'œufs
-  - 100g de crème
-  - 100g de sucre
-  - 1 cuillère à café de fécule
-  - 1 cuillère à soupe de semoule
-  - 1 cuillère à soupe de lait
-  - 1 tôle de diamètre 26
+ingredients: 
+ - 400g de pâte feuilletée
+ - 700g d'abricots
+ - 2 jaunes d'œufs
+ - 100g de crème
+ - 100g de sucre
+ - 1 cuillère à café de fécule
+ - 1 cuillère à soupe de semoule
+ - 1 cuillère à soupe de lait
+ - 1 tôle de diamètre 26
 notes: 
 En hiver, vous ferez la même tarte avec des abricots secs (gonflés à l'eau tiède et épongés), ou avec des abricots au sirop.
 ---
