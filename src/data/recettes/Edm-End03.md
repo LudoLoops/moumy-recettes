@@ -11,7 +11,7 @@ servings: 6
 difficulty: facile
 ingredients:
   - 6 belles endives
-  - 6 fines tranches de janbon blanc
+  - 6 fines tranches de jambon blanc
   - 33cl de béchamel au gruyère
   - 75g de beurre
   - 50g de gruyère rapé
