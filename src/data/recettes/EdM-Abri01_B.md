@@ -10,7 +10,7 @@ difficulty:
 ingredients:
   - pâte brisée
   - 500g d'abricots
-  - 2 cuière à soupe de sucre
+  - 2 cuillères à soupe de sucre
   - 1 demi pot de marmelade d'abricots
   - 1 verre à liqueur de Kirsch
 notes:
