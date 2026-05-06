@@ -96,6 +96,7 @@ export function getAllIngredients(): Map<string, Recipe[]> {
 
 	for (const recipe of getAllRecipes()) {
 		for (const ing of recipe.ingredients) {
+			if (typeof ing !== 'string') continue;
 			const cleaned = ing.replace(/\s*\([^)]*\)/g, '');
 			const parts = cleaned.split(INGREDIENT_SEPARATORS);
 			for (const part of parts) {
@@ -310,7 +311,7 @@ export function searchRecipes(query: string): Recipe[] {
 		(r) =>
 			r.title.toLowerCase().includes(q) ||
 			r.excerpt.toLowerCase().includes(q) ||
-			r.ingredients.some((i) => i.toLowerCase().includes(q))
+			r.ingredients.some((i) => typeof i === 'string' && i.toLowerCase().includes(q))
 	);
 }
 
@@ -326,6 +327,7 @@ export function searchIngredients(query: string): { original: string; recipes: R
 
 	for (const recipe of getAllRecipes()) {
 		for (const ing of recipe.ingredients) {
+			if (typeof ing !== 'string') continue;
 			if (ing.toLowerCase().includes(q)) {
 				const key = ing.toLowerCase();
 				if (!seen.has(key)) {
