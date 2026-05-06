@@ -11,7 +11,7 @@ ingredients:
   - 100g de sucre en poudre
   - 1,3l de lait
   - 1 gousse de vanille
-notes: Variante: Ajouter 30g de beurre, 1 pincée de sel. Après cuisson ajouter 3 jaune d'œufs et 2 cuillérée de crème fraiche.
+notes: Variante Ajouter 30g de beurre, 1 pincée de sel. Après cuisson ajouter 3 jaune d'œufs et 2 cuillérée de crème fraiche.
 ---
 
 1. Pendant 3 minutes mettre son riz dans l'eau bouillante.
