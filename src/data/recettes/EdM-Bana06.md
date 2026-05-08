@@ -1,6 +1,6 @@
 ---
 title: Salade Bananes Et Oranges
-category: Desssert
+category: Dessert
 excerpt:
 prepTime:
 cookTime:
@@ -10,7 +10,7 @@ ingredients:
   - 2 bananes
   - 2 oranges
   - 1 cuillère à soupe de raisins secs
-notes: 
+notes:
 ---
 
 1. Eplucher et couper en rondelles les bananes et les oranges.

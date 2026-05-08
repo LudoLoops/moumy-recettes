@@ -2,7 +2,7 @@
 title: Gâteau Au Citron
 slug: BrA147-B
 manuscript: ""
-category: desserts
+category: Dessert
 categoryLabel: Desserts
 excerpt:
 prepTime: 15

@@ -1,6 +1,6 @@
 ---
 title: Glace Aux Abricots 4️⃣
-category: dessert
+category: Dessert
 excerpt:
 prepTime:
 cookTime:

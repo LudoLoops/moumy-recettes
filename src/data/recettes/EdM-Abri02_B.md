@@ -1,6 +1,6 @@
 ---
 title: Chausson Aux Abricots 2️⃣
-category: dessert
+category: Dessert
 excerpt:
 prepTime:
 cookTime:

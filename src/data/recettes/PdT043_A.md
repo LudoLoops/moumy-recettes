@@ -1,6 +1,6 @@
 ---
 title: Parmentier Au Confit De Canard
-category: plat
+category: Plat
 excerpt:
 prepTime: 20
 cookTime: 40

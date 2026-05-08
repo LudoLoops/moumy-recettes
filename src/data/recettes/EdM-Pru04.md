@@ -1,6 +1,6 @@
 ---
 title: Tarte Fine Aux Prunes
-category: desserts
+category: Dessert
 excerpt:
 prepTime:
 cookTime: 25

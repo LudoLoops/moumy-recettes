@@ -1,7 +1,7 @@
 ---
 title: Tarte Aux Abricots 1️⃣
-category: desserts
-categoryLabel: Desserts
+category: Dessert
+categoryLabel: Dessert
 excerpt:
 prepTime: 10
 cookTime: 30

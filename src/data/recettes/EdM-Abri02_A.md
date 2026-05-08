@@ -1,6 +1,6 @@
 ---
 title: Abricots à l'Anglaise 1️⃣
-category: dessert
+category: Dessert
 excerpt:
 prepTime:
 cookTime:

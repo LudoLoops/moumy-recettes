@@ -1,6 +1,6 @@
 ---
 title: Foies De Volaille Sautés Aux Girolles 2️⃣
-category: plat
+category: Plat
 excerpt:
 prepTime: 20
 cookTime: 10

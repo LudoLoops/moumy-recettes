@@ -1,6 +1,6 @@
 ---
 title: Délice Aux Quetsches
-category: dessert
+category: Dessert
 excerpt:
 prepTime: 10
 cookTime:
@@ -15,7 +15,7 @@ ingredients:
   - 10cl de lait
   - 2 sachets de sucre vanillé
   - 1 pincée de sel
-notes: 
+notes:
 ---
 
 1. Laver les quetsches, égoutter les et les fendre en deux.

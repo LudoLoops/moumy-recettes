@@ -1,6 +1,6 @@
 ---
 title: Gâteau Express Aux Abricots 5️⃣
-category: dessert
+category: Dessert
 excerpt:
 prepTime:
 cookTime:

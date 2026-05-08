@@ -1,6 +1,6 @@
 ---
 title: Salade Gratinée d'Abricots 3️⃣
-category: dessert
+category: Dessert
 excerpt:
 prepTime:
 cookTime:

@@ -1,6 +1,6 @@
 ---
 title: Girolles À La Crème 1️⃣
-category: plat
+category: Plat
 excerpt:
 prepTime: 15
 cookTime: 35

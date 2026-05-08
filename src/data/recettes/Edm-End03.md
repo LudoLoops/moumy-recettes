@@ -2,7 +2,7 @@
 title: Chicorée à La Flamande
 slug: Edm-End03
 manuscript: ""
-category: gratin
+category: Gratin
 categoryLabel: Gratin
 excerpt:
 prepTime: 15
