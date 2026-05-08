@@ -3,7 +3,6 @@ title: Risotto Aux Petites Courgettes De Printemps
 slug: Edm-Riz08
 manuscript: ""
 category: Plat
-categoryLabel: Plats principaux
 excerpt:
 prepTime: 20
 cookTime: 40

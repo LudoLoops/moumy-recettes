@@ -3,7 +3,6 @@ title: Chicorée à La Flamande
 slug: Edm-End03
 manuscript: ""
 category: Gratin
-categoryLabel: Gratin
 excerpt:
 prepTime: 15
 cookTime: 20

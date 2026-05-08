@@ -3,7 +3,6 @@ title: Gâteau à l'Orange
 slug: BrA147
 manuscript: ""
 category: Dessert
-categoryLabel: Desserts
 excerpt:
 prepTime: 15
 cookTime: 35
