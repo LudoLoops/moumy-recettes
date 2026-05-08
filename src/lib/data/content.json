@@ -24,6 +24,7 @@
 		"back": "Retour",
 		"sections": {
 			"ingredients": "Ingrédients",
+			"ingredients2Fallback": "Ingrédients (suite)",
 			"preparation": "Préparation",
 			"notes": "Notes de Moumy"
 		},
