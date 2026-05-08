@@ -1,19 +1,19 @@
 ---
 title: Enveloppe De Moumy Abricots
 slug: EdM-Abri
-manuscript: ''
-category: Apéro
+manuscript: ""
+category: Document
 excerpt: Différentes recettes recueillies par Moumy
-prepTime: null
-cookTime: null
-servings: null
-difficulty: null
+prepTime:
+cookTime:
+servings:
+difficulty:
 ingredients:
-- Abricot
-ingredients2Title: null
-ingredients2: null
-notes: null
-sourceImage: null
+  - Abricot
+ingredients2Title:
+ingredients2:
+notes:
+sourceImage:
 ---
 
 

@@ -1,19 +1,19 @@
 ---
 title: Enveloppe De Moumy Endives
 slug: EdM-End
-manuscript: ''
-category: Apéro
-excerpt: null
-prepTime: null
-cookTime: null
-servings: null
-difficulty: null
+manuscript: ""
+category: Document
+excerpt: Différentes recettes recueillies par Moumy
+prepTime:
+cookTime:
+servings:
+difficulty:
 ingredients:
-- Endives
-ingredients2Title: null
-ingredients2: null
-notes: null
-sourceImage: null
+  - Endives
+ingredients2Title:
+ingredients2:
+notes:
+sourceImage:
 ---
 
 

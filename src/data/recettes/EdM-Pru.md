@@ -1,19 +1,19 @@
 ---
 title: Enveloppe De Moumy Prunes, Pruneaux
 slug: EdM-Pru
-manuscript: ''
-category: Apéro
-excerpt: null
-prepTime: null
-cookTime: null
-servings: null
-difficulty: null
+manuscript: ""
+category: Document
+excerpt: Différentes recettes recueillies par Moumy
+prepTime:
+cookTime:
+servings:
+difficulty:
 ingredients:
-- Prune
-ingredients2Title: null
-ingredients2: null
-notes: null
-sourceImage: null
+  - Prune
+ingredients2Title:
+ingredients2:
+notes:
+sourceImage:
 ---
 
 

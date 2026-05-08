@@ -1,19 +1,19 @@
 ---
 title: Enveloppe De Moumy Desserts Aux Poires
 slug: Edm-Poir
-manuscript: ''
-category: Apéro
-excerpt: null
-prepTime: null
-cookTime: null
-servings: null
-difficulty: null
+manuscript: ""
+category: Document
+excerpt: Différentes recettes recueillies par Moumy
+prepTime:
+cookTime:
+servings:
+difficulty:
 ingredients:
-- Poire
-ingredients2Title: null
-ingredients2: null
-notes: null
-sourceImage: null
+  - Poire
+ingredients2Title:
+ingredients2:
+notes:
+sourceImage:
 ---
 
 
