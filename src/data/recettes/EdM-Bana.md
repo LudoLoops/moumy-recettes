@@ -1,5 +1,5 @@
 ---
-title: Enveloppe De Moumy Bananes
+title: "Document: Enveloppe De Moumy Bananes"
 slug: EdM-Bana
 manuscript: ""
 category: Document

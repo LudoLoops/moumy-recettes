@@ -1,5 +1,5 @@
 ---
-title: Enveloppe De Moumy Riz
+title: "Document: Enveloppe De Moumy Riz"
 slug: Edm-Riz
 manuscript: ""
 category: Document

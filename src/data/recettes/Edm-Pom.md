@@ -1,5 +1,5 @@
 ---
-title: Enveloppe De Moumy Desserts Aux Pommes
+title: "Document: Enveloppe De Moumy Desserts Aux Pommes"
 slug: Edm-Pom
 manuscript: ""
 category: Document

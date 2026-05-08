@@ -1,5 +1,5 @@
 ---
-title: Enveloppe De Moumy Prunes, Pruneaux
+title: "Document: Enveloppe De Moumy Prunes, Pruneaux"
 slug: EdM-Pru
 manuscript: ""
 category: Document

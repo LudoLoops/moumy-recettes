@@ -1,5 +1,5 @@
 ---
-title: Enveloppe De Moumy Abricots
+title: "Document: Enveloppe De Moumy Abricots"
 slug: EdM-Abri
 manuscript: ""
 category: Document

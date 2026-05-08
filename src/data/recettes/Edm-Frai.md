@@ -1,5 +1,5 @@
 ---
-title: Enveloppe De Moumy Dessert Aux Fraises
+title: "Document: Enveloppe De Moumy Dessert Aux Fraises"
 slug: Edm-Frai
 manuscript: ""
 category: Document

@@ -1,5 +1,5 @@
 ---
-title: Enveloppe De Moumy Desserts Aux Poires
+title: "Document: Enveloppe De Moumy Desserts Aux Poires"
 slug: Edm-Poir
 manuscript: ""
 category: Document

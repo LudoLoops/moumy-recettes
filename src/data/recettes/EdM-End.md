@@ -1,5 +1,5 @@
 ---
-title: Enveloppe De Moumy Endives
+title: "Document: Enveloppe De Moumy Endives"
 slug: EdM-End
 manuscript: ""
 category: Document

@@ -1,5 +1,5 @@
 ---
-title: Enveloppe De Moumy Mandarines Pamplemousses Oranges Citrons Ananas
+title: "Document: Enveloppe De Moumy Mandarines Pamplemousses Oranges Citrons Ananas"
 slug: Edm-Oran
 manuscript: ""
 category: Document
