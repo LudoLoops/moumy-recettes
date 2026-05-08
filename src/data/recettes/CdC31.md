@@ -5,7 +5,7 @@ excerpt:
 prepTime: 20
 cookTime: 10
 servings: 6
-difficulty:
+difficulty: Difficile
 ingredients:
   - 500g de girolles de petite taille
   - 500g de foies de volaille
@@ -13,7 +13,7 @@ ingredients:
   - 1 échalotte
   - 75g de beurre
   - sel, poivre
-notes: 
+notes:
 ---
 
 1. Nettoyer les foies de volaille et les couper en petits morceaux, les essuyer dans du papier absorbant. Peler et hacher l'échalotte.

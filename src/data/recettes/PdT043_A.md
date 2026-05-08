@@ -5,7 +5,7 @@ excerpt:
 prepTime: 20
 cookTime: 40
 servings: 6
-difficulty: facile
+difficulty: Facile
 ingredients:
   - 800g de pommes de terre
   - 80g de beurre

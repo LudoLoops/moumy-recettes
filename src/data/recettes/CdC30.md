@@ -5,7 +5,7 @@ excerpt:
 prepTime: 15
 cookTime: 35
 servings: 4
-difficulty:
+difficulty: Facile
 ingredients:
   - 500g de girolles
   - 100g de crème fraiche épaisse
@@ -15,7 +15,7 @@ ingredients:
   - 1 petit bouquet de persil plat
   - 25g de beurre
   - sel, poivre
-notes: 
+notes:
 ---
 
 1. Peler et hacher les échalotes, laver le persil et ôter les tiges, égoutter et ciseler les feuilles. Ôter la couenne du lard et couper le en fins batônnets.

@@ -8,7 +8,7 @@ excerpt:
 prepTime: 15
 cookTime: 20
 servings: 6
-difficulty: facile
+difficulty: Facile
 ingredients:
   - 6 belles endives
   - 6 fines tranches de jambon blanc
