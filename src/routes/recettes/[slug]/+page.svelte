@@ -11,16 +11,12 @@
 
 	const bodyComponent = $derived(getRecipeBody(recipe.slug));
 
-	// Second ingredients list: first item = title, rest = ingredients
+	// Second ingredients list: title + items (both optional)
 	const hasIngredients2 = $derived(
 		Array.isArray(recipe.ingredients2) && recipe.ingredients2.length > 0
 	);
-	const ingredients2Title = $derived(
-		hasIngredients2 ? (recipe.ingredients2?.[0] ?? '') : ''
-	);
-	const ingredients2List = $derived(
-		hasIngredients2 ? (recipe.ingredients2?.slice(1) ?? []) : []
-	);
+	const ingredients2Title = $derived(recipe.ingredients2Title || '');
+	const ingredients2List = $derived(recipe.ingredients2 ?? []);
 
 	function handlePrint() {
 		window.print();

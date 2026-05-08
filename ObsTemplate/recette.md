@@ -8,8 +8,8 @@ servings:
 difficulty:
 ingredients:
   - 
+ingredients2Title: # ex: Pour la pâte
 ingredients2:
-  # - Titre de la seconde partie (ex: Pour la pâte)
   # - 
 notes: 
 ---
