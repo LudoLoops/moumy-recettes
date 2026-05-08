@@ -14,6 +14,8 @@ export interface RecipeMeta {
 	servings: string;
 	difficulty: string;
 	ingredients: string[];
+	/** Optional second ingredient list. First item = section title, rest = ingredients. */
+	ingredients2?: string[];
 	notes: string;
 }
 

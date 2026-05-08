@@ -11,6 +11,17 @@
 
 	const bodyComponent = $derived(getRecipeBody(recipe.slug));
 
+	// Second ingredients list: first item = title, rest = ingredients
+	const hasIngredients2 = $derived(
+		Array.isArray(recipe.ingredients2) && recipe.ingredients2.length > 0
+	);
+	const ingredients2Title = $derived(
+		hasIngredients2 ? (recipe.ingredients2?.[0] ?? '') : ''
+	);
+	const ingredients2List = $derived(
+		hasIngredients2 ? (recipe.ingredients2?.slice(1) ?? []) : []
+	);
+
 	function handlePrint() {
 		window.print();
 	}
@@ -209,36 +220,99 @@
 			</div>
 
 			<!-- Ingredients -->
-			<section
-				class="pl-5 my-8 border-l-3"
-				style="border-color: var(--color-gold); break-inside: avoid"
-			>
-				<h2 class="gap-2 text-xl font-semibold mb-4 text-primary-700-300 flex items-center">
-					<svg
-						class="w-5 h-5"
-						fill="none"
-						stroke="currentColor"
-						viewBox="0 0 24 24"
-						style="color: var(--color-gold)"
-					>
-						<path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
-						/>
-					</svg>
-					{content.recipeDetail.sections.ingredients}
-				</h2>
-				{#each recipe.ingredients as ingredient}
-					<div
-						class="py-2 border-surface-200-800 leading-normal hover:pl-2 flex items-start border-b transition-all duration-300 last:border-b-0"
-					>
-						<span class="mr-3 font-bold text-xl shrink-0" style="color: var(--color-gold)">•</span>
-						{ingredient}
+			<div class="my-8" style="break-inside: avoid">
+				{#if hasIngredients2}
+					<!-- Two-column layout: ingredients side by side on desktop -->
+					<div class="md:grid-cols-2 gap-6 grid grid-cols-1">
+						<!-- Main ingredients list -->
+						<section class="pl-5 border-l-3" style="border-color: var(--color-gold)">
+							<h2 class="gap-2 text-xl font-semibold mb-4 text-primary-700-300 flex items-center">
+								<svg
+									class="w-5 h-5"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+									style="color: var(--color-gold)"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+									/>
+								</svg>
+								{content.recipeDetail.sections.ingredients}
+							</h2>
+							{#each recipe.ingredients as ingredient}
+								<div
+									class="py-2 border-surface-200-800 leading-normal hover:pl-2 flex items-start border-b transition-all duration-300 last:border-b-0"
+								>
+									<span class="mr-3 font-bold text-xl shrink-0" style="color: var(--color-gold)">•</span>
+									{ingredient}
+								</div>
+							{/each}
+						</section>
+
+						<!-- Second ingredients list (title + items) -->
+						<section class="pl-5 border-l-3" style="border-color: var(--color-gold)">
+							<h2 class="gap-2 text-xl font-semibold mb-4 text-primary-700-300 flex items-center">
+								<svg
+									class="w-5 h-5"
+									fill="none"
+									stroke="currentColor"
+									viewBox="0 0 24 24"
+									style="color: var(--color-gold)"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+									/>
+								</svg>
+								{ingredients2Title || content.recipeDetail.sections.ingredients2Fallback}
+							</h2>
+							{#each ingredients2List as ingredient}
+								<div
+									class="py-2 border-surface-200-800 leading-normal hover:pl-2 flex items-start border-b transition-all duration-300 last:border-b-0"
+								>
+									<span class="mr-3 font-bold text-xl shrink-0" style="color: var(--color-gold)">•</span>
+									{ingredient}
+								</div>
+							{/each}
+						</section>
 					</div>
-				{/each}
-			</section>
+				{:else}
+					<!-- Single ingredients list (no ingredients2) -->
+					<section class="pl-5 border-l-3" style="border-color: var(--color-gold)">
+						<h2 class="gap-2 text-xl font-semibold mb-4 text-primary-700-300 flex items-center">
+							<svg
+								class="w-5 h-5"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+								style="color: var(--color-gold)"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+								/>
+							</svg>
+							{content.recipeDetail.sections.ingredients}
+						</h2>
+						{#each recipe.ingredients as ingredient}
+							<div
+								class="py-2 border-surface-200-800 leading-normal hover:pl-2 flex items-start border-b transition-all duration-300 last:border-b-0"
+							>
+								<span class="mr-3 font-bold text-xl shrink-0" style="color: var(--color-gold)">•</span>
+								{ingredient}
+							</div>
+						{/each}
+					</section>
+				{/if}
+			</div>
 
 			<!-- Preparation steps (body from mdsvex) -->
 			<section
