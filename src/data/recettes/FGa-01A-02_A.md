@@ -1,6 +1,6 @@
 ---
 title: Agneau Au Citron
-slug: FGa01A-02
+slug: FGa-01A-02
 manuscript: ''
 category: Plat
 excerpt: null
@@ -11,7 +11,7 @@ difficulty: Moyen
 ingredients:
 - 1 kg d'épaule d'agneau désossée
 - 4 cuillerées à soupe d'huile d'olive
-- '2 oignons moyens '
+- 2 oignons moyens
 - 1 gousse d'ail
 - 2 cuillerées à soupe de paprika
 - 2 cuillerées à soupe de persil haché

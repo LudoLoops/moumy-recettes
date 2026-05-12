@@ -1,6 +1,6 @@
 ---
 title: Abattis De Dinde En Daube
-slug: FGa01A-01
+slug: FGa-01A-01
 manuscript: ''
 category: Plat
 excerpt: null
