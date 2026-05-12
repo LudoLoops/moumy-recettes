@@ -11,7 +11,7 @@ ingredients:
   - 100g de crème fraiche épaisse
   - 1 tranche de lard fumé (150g)
   - 4 petites échalottes
-  - 1dl de vin blanc sec
+  - 10cl de vin blanc sec
   - 1 petit bouquet de persil plat
   - 25g de beurre
   - sel, poivre

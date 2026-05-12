@@ -24,7 +24,7 @@ ingredients2: null
 notes: null
 ---
 
-1. Séparez les cuisses des entrecuisses. Les dénerver à fond en tirant les ligaments blancs, raccourcir les os, séparer les entrecuisses en 2 ou 3 morceaux.
+1. Séparer les cuisses des entrecuisses. Les dénerver à fond en tirant les ligaments blancs, raccourcir les os, séparer les entrecuisses en 2 ou 3 morceaux.
 
 2. Les mettre dans une terrine avec sel, poivre. Laisser macérer 1 heure ou plus.
 
