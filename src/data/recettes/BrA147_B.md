@@ -1,6 +1,6 @@
 ---
 title: Gâteau Au Citron
-slug: BrA147-B
+slug: BrA147_B
 manuscript: ""
 category: Dessert
 excerpt:
