@@ -1,35 +1,35 @@
 ---
 title: Agneau Au Citron
 slug: FGa-01A-02
-manuscript: ''
+manuscript: ""
 category: Plat
-excerpt: null
-prepTime: '15'
-cookTime: '60'
-servings: '6'
+excerpt:
+prepTime: 15
+cookTime: "60"
+servings: 6
 difficulty: Moyen
 ingredients:
-- 1 kg d'épaule d'agneau désossée
-- 4 cuillerées à soupe d'huile d'olive
-- 2 oignons moyens
-- 1 gousse d'ail
-- 2 cuillerées à soupe de paprika
-- 2 cuillerées à soupe de persil haché
-- 3 cuillerées à soupe de jus de citron
-- sel, poivre
-ingredients2Title: null
-ingredients2: null
-notes: '**Notre conseil :** la sauce doit être très courte et napper les morceaux de viande. Si elle est trop liquide, retirez la viande à la fin de la cuisson et faites réduire la sauce à feu vif.'
-sourceImage: null
+  - 1 kg d'épaule d'agneau désossée
+  - 4 cuillerées à soupe d'huile d'olive
+  - 2 oignons moyens
+  - 1 gousse d'ail
+  - 2 cuillerées à soupe de paprika
+  - 2 cuillerées à soupe de persil haché
+  - 3 cuillerées à soupe de jus de citron
+  - sel, poivre
+ingredients2Title:
+ingredients2:
+notes: "Notre conseil : la sauce doit être très courte et napper les morceaux de viande. Si elle est trop liquide, retirez la viande à la fin de la cuisson et faites réduire la sauce à feu vif."
+sourceImage:
 ---
 
-1. Découpez l'épaule en cubes de 2,5 cm de côté environ.
+1. Découper l'épaule en cubes de 2,5 cm de côté environ.
 
-2. Dans une cocotte, faites chauffer l'huile sur feu vif, quand elle commence à fumer, mettez les morceaux d'agneau à rissoler.
+2. Dans une cocotte, faire chauffer l'huile sur feu vif, quand elle commence à fumer, mettre les morceaux d'agneau à rissoler.
 
-3. Quand ils sont bien dorés, retirez-les et réservez-les sur une assiette.
+3. Quand ils sont bien dorés, les retirer et les réserver sur une assiette.
 
-4. Hachez finement les oignons et l'ail, faites-les cuire doucement dans la cuisson de la viande jusqu'à ce qu'ils deviennent transparents, mais non dorés.
+4. Hachez finement les oignons et l'ail, les faire cuire doucement dans la cuisson de la viande jusqu'à ce qu'ils deviennent transparents, mais non dorés.
 
 5. Ajoutez le paprika, puis la viande, le persil haché et le jus de citron, salez, poivrez.
 
