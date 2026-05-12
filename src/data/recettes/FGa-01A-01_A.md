@@ -14,7 +14,7 @@ ingredients:
 - 200 g d'oignons
 - '1 couenne fraîche bien dégraissée (150 g env.) '
 - 300 g de lard fumé (ou de lard demi-sel)
-- 3 cuilleres à soupe de cognac
+- 3 cuillères à soupe de cognac
 - 1 bouquet garni
 - 0,5l de bouillon de volaille
 - 2 clous de girofle
@@ -24,16 +24,16 @@ ingredients2: null
 notes: null
 ---
 
-1. Séparez les cuisses des entrecuisses. Dénervez-les à fond en tirant les ligaments blancs. raccourcissez les os, séparez les entrecuisses en 2 ou 3 morceaux.
+1. Séparez les cuisses des entrecuisses. Les dénerver à fond en tirant les ligaments blancs, raccourcir les os, séparer les entrecuisses en 2 ou 3 morceaux.
 
-2. Mettez-les dans une terrine avec sel, poivre. Laissez macérer 1 heure ou plus.
+2. Les mettre dans une terrine avec sel, poivre. Laisser macérer 1 heure ou plus.
 
-3. Faites revenir le lard coupé en gros lardons, à la poêle sèche. Lorsqu'ils ont blondi et sué leur gras, retirez-les.
+3. Faire revenir le lard coupé en gros lardons, à la poêle sèche. Lorsqu'ils ont blondi et sué leur gras, les retirer.
 
-4. A leur place, mettez les oignons avec les carottes coupées en rondelles. A feu doux, faites-les à peine dorer en remuant souvent.
+4. A leur place, mettre les oignons avec les carottes coupées en rondelles. A feu doux, les faire dorer à peine en remuant souvent.
 
-5. Garnissez le fond de la cocotte avec le morceau de couenne, côté gras dessous. Posez dessus les morceaux de viande, les légumes revenus, le lard, mouillez avec le cognac.
+5. Garnir le fond de la cocotte avec le morceau de couenne, côté gras dessous. Poser dessus les morceaux de viande, les légumes revenus, le lard, mouiller avec le cognac.
 
-6. Chauffez doucement sous convercle pendant quelques minutes, puis ajoutez le bouquet, 2 clous de girofle, le bouillon.
+6. Chauffer doucement sous couvercle pendant quelques minutes, puis ajouter le bouquet, 2 clous de girofle, le bouillon.
 
-7. Couvrez. Cuisez à petit feu pendant 1 h 45 à 2 heures. Le temps de cuisson dépendant de la taille des abattis. Servez avec des pâtes ou des pommes sautées. Ces abattis de dinde, d'un prix abordable, font de délicieuses préparations.
+7. Couvrir. Cuire à petit feu pendant 1 h 45 à 2 heures. Le temps de cuisson dépendant de la taille des abattis. Servir avec des pâtes ou des pommes sautées. Ces abattis de dinde, d'un prix abordable, font de délicieuses préparations.

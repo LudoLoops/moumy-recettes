@@ -10,12 +10,12 @@ servings: 6
 difficulty: Moyen
 ingredients:
   - 1 kg d'épaule d'agneau désossée
-  - 4 cuillerées à soupe d'huile d'olive
+  - 4 cuillères à soupe d'huile d'olive
   - 2 oignons moyens
   - 1 gousse d'ail
-  - 2 cuillerées à soupe de paprika
-  - 2 cuillerées à soupe de persil haché
-  - 3 cuillerées à soupe de jus de citron
+  - 2 cuillères à soupe de paprika
+  - 2 cuillères à soupe de persil haché
+  - 3 cuillères à soupe de jus de citron
   - sel, poivre
 ingredients2Title:
 ingredients2:
