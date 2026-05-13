@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { Card, Badge } from '$lib/components';
-	import { scrollReveal } from '$lib/utils/scroll-reveal';
 	import type { Recipe } from '$data/recettes';
 
 	let { data } = $props();
@@ -34,8 +33,7 @@
 	{:else}
 		<div class="md:grid-cols-2 lg:grid-cols-3 gap-6 grid grid-cols-1">
 			{#each documents as doc, i}
-				{@const delay = (i * 0.08).toFixed(2)}
-				<article class="document-card scroll-reveal" use:scrollReveal style="--reveal-delay: {delay}s">
+				<article class="document-card fade-in" style="animation-delay: {(i * 0.05).toFixed(2)}s">
 					<a href="/recettes/{doc.slug}" class="block no-underline">
 						<Card variant="elevated" noPadding>
 							<div class="p-6">
@@ -101,15 +99,19 @@
 		opacity: 1;
 	}
 
-	.scroll-reveal {
+	.fade-in {
+		animation: fadeIn 0.6s ease forwards;
 		opacity: 0;
-		transform: translateY(20px);
-		transition: opacity 0.5s ease, transform 0.5s ease;
-		transition-delay: var(--reveal-delay, 0s);
 	}
 
-	.scroll-reveal.revealed {
-		opacity: 1;
-		transform: translateY(0);
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
 	}
 </style>
