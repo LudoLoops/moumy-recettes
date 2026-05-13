@@ -1,33 +1,33 @@
 ---
 title: Quiche Aux Endives
 slug: Edm-End01
-manuscript: ''
+manuscript: ""
 category: Gratin
-excerpt: null
-prepTime: null
-cookTime: '35'
-servings: '6'
+excerpt:
+prepTime:
+cookTime: "35"
+servings: 6
 difficulty: Moyen
 ingredients:
-- 1 pâte à tarte
-- 150 g de farine
-- 75 g de beurre ramolli
-- 1 pincée de sel
-- 1 œuf
-- 1cl d'eau
-- 400 g d'endives
-- 250 g de jambon blanc
-- 2 œufs entiers
-- 2 jaunes d'œuf
-- 25cl de lait
-- 25cl de crème épaisse
-- sel, poivre
-- muscade
-- 1 moule à tarte en porcelaine à feu de 25 cm de diamètre.
-ingredients2Title: null
-ingredients2: null
-notes: null
-sourceImage: null
+  - 1 pâte à tarte
+  - 150 g de farine
+  - 75 g de beurre ramolli
+  - 1 pincée de sel
+  - 1 œuf
+  - 1cl d'eau
+  - 400 g d'endives
+  - 250 g de jambon blanc
+  - 2 œufs entiers
+  - 2 jaunes d'œuf
+  - 25cl de lait
+  - 25cl de crème épaisse
+  - sel, poivre
+  - muscade
+  - 1 moule à tarte en porcelaine à feu de 25 cm de diamètre.
+ingredients2Title:
+ingredients2:
+notes:
+sourceImage:
 ---
 
 1. Préparer la pâte et la laisser reposer une heure. 
