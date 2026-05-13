@@ -106,6 +106,15 @@
 				{recipe.excerpt}
 			</p>
 
+			{#if recipe.legende}
+				<p
+					class="mb-6 text-sm leading-relaxed text-primary-500-400"
+					style="font-family: var(--font-handwriting)"
+				>
+					{recipe.legende}
+				</p>
+			{/if}
+
 			<!-- Meta info grid -->
 			<div class="sm:grid-cols-4 gap-4 mb-8 grid grid-cols-2">
 				<div

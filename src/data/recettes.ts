@@ -9,6 +9,7 @@ export interface RecipeMeta {
 	title: string;
 	category: string;
 	excerpt: string;
+	legende?: string;
 	prepTime: string;
 	cookTime: string;
 	servings: string;
