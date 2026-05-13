@@ -51,9 +51,10 @@
 		"closing": "Avec tout notre amour",
 		"copyright": "Les recettes de Moumy — Un hommage familial"
 	},
-	"nav": {
-		"brand": "Les recettes de Moumy",
-		"recipes": "Recettes",
-		"ingredients": "Ingrédients"
-	}
+    "nav": {
+        "brand": "Les recettes de Moumy",
+        "recipes": "Recettes",
+        "ingredients": "Ingrédients",
+        "documents": "Documents"
+    }
 }

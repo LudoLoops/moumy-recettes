@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { getAllRecipes } from '$data/recettes';
+	import { getVisibleRecipes } from '$data/recettes';
 	import { RecipeBrowser } from '$lib/components';
 	import { page } from '$app/stores';
 	import content from '$lib/data/content.json';
 
 	let data = $derived($page.data);
-	let allRecipes = $derived(data.recipes ?? getAllRecipes());
+	let allRecipes = $derived(data.recipes ?? getVisibleRecipes());
 </script>
 
 <svelte:head>

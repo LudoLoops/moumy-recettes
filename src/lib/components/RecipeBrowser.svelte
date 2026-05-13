@@ -2,6 +2,7 @@
 	import { getCategories } from '$data/recettes';
 	import type { Recipe } from '$data/recettes';
 	import { Button, Badge, Card, SearchInput, EmptyState, LetterNav } from '$lib/components';
+	import { scrollReveal } from '$lib/utils/scroll-reveal';
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
@@ -255,8 +256,8 @@
 
 				<div class="md:grid-cols-2 lg:grid-cols-3 gap-6 grid grid-cols-1">
 					{#each grouped.get(letter) ?? [] as recipe, j}
-						{@const delay = (i * 0.05 + j * 0.05).toFixed(2)}
-						<article class="recipe-card fade-in" style="animation-delay: {delay}s">
+						{@const delay = (j * 0.08).toFixed(2)}
+						<article class="recipe-card scroll-reveal" use:scrollReveal style="--reveal-delay: {delay}s">
 							<a href="/recettes/{recipe.slug}" class="block no-underline">
 								<Card variant="elevated" noPadding>
 									<div class="p-6">
@@ -317,7 +318,7 @@
 		<!-- Flat grid (when searching or filtering by category) -->
 		<div class="md:grid-cols-2 lg:grid-cols-3 gap-6 grid grid-cols-1">
 			{#each filteredRecipes as recipe, i}
-				<article class="recipe-card fade-in" style="animation-delay: {i * 0.05}s">
+				<article class="recipe-card scroll-reveal" use:scrollReveal style="--reveal-delay: {(i * 0.08).toFixed(2)}s">
 					<a href="/recettes/{recipe.slug}" class="block no-underline">
 						<Card variant="elevated" noPadding>
 							<div class="p-6">
@@ -466,6 +467,19 @@
 				0 0 30px oklch(0.8 0.1 85 / 0.5),
 				0 0 80px oklch(0.8 0.1 85 / 0.2);
 		}
+	}
+
+	/* Scroll reveal — cards appear as they enter viewport */
+	.scroll-reveal {
+		opacity: 0;
+		transform: translateY(20px);
+		transition: opacity 0.5s ease, transform 0.5s ease;
+		transition-delay: var(--reveal-delay, 0s);
+	}
+
+	.scroll-reveal.revealed {
+		opacity: 1;
+		transform: translateY(0);
 	}
 
 	/* Animations */

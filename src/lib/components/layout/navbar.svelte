@@ -42,6 +42,13 @@
 				>
 					{content.nav.ingredients}
 				</a>
+				<a
+					href="/documents"
+					class="text-primary-700-300 hover:text-primary-900-100 text-sm transition-colors"
+					style="font-family: var(--font-body)"
+				>
+					{content.nav.documents}
+				</a>
 			</nav>
 		</AppBar.Headline>
 

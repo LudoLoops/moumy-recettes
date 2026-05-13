@@ -98,7 +98,7 @@ export function getRecipeBody(slug: string): any {
 export function getAllIngredients(): Map<string, Recipe[]> {
 	const map = new Map<string, Recipe[]>();
 
-	for (const recipe of getAllRecipes()) {
+	for (const recipe of getVisibleRecipes()) {
 		for (const ing of recipe.ingredients) {
 			if (typeof ing !== 'string') continue;
 			const cleaned = ing.replace(/\s*\([^)]*\)/g, '');
@@ -309,9 +309,9 @@ function getIngredientKey(ing: string): string {
  * Matches against title, excerpt, and ingredients.
  */
 export function searchRecipes(query: string): Recipe[] {
-	if (!query) return getAllRecipes();
+	if (!query) return getVisibleRecipes();
 	const q = query.toLowerCase();
-	return getAllRecipes().filter(
+	return getVisibleRecipes().filter(
 		(r) =>
 			r.title.toLowerCase().includes(q) ||
 			r.excerpt.toLowerCase().includes(q) ||
@@ -329,7 +329,7 @@ export function searchIngredients(query: string): { original: string; recipes: R
 	const results: { original: string; recipes: Recipe[] }[] = [];
 	const seen = new Set<string>();
 
-	for (const recipe of getAllRecipes()) {
+	for (const recipe of getVisibleRecipes()) {
 		for (const ing of recipe.ingredients) {
 			if (typeof ing !== 'string') continue;
 			if (ing.toLowerCase().includes(q)) {
@@ -360,14 +360,32 @@ export interface Category {
 	count: number;
 }
 
+/** Category keys that represent non-recipe items (e.g. notebook covers) */
+const HIDDEN_CATEGORIES = new Set(['document']);
+
 /**
- * Get all unique categories from recipes, sorted alphabetically (French locale).
+ * Get all recipes that are actual recipes — excludes hidden categories like "document".
+ */
+export function getVisibleRecipes(): Recipe[] {
+	return getAllRecipes().filter((r) => !HIDDEN_CATEGORIES.has(r.category));
+}
+
+/**
+ * Get all document items (notebook covers, pages de garde, etc.).
+ */
+export function getDocuments(): Recipe[] {
+	return getAllRecipes().filter((r) => HIDDEN_CATEGORIES.has(r.category));
+}
+
+/**
+ * Get all unique categories from visible recipes, sorted alphabetically (French locale).
  * Label is the capitalized category value.
+ * Excludes hidden categories (document, etc.).
  */
 export function getCategories(): Category[] {
 	const map = new Map<string, number>();
 
-	for (const recipe of getAllRecipes()) {
+	for (const recipe of getVisibleRecipes()) {
 		const key = recipe.category;
 		map.set(key, (map.get(key) ?? 0) + 1);
 	}

@@ -1,9 +1,9 @@
-import { getAllRecipes } from '$data/recettes';
+import { getVisibleRecipes } from '$data/recettes';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {
 	return {
 		siteName: 'Moumy',
-		recipes: getAllRecipes()
+		recipes: getVisibleRecipes()
 	};
 };
