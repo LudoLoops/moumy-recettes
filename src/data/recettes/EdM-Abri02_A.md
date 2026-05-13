@@ -3,7 +3,7 @@ title: Abricots à l'Anglaise
 slug: EdM-Abri02_A
 manuscript: ''
 category: Dessert
-excerpt: image 1️⃣
+excerpt: ( image 1️⃣)
 prepTime: null
 cookTime: null
 servings: '6'

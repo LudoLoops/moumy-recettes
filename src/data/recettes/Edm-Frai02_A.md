@@ -3,7 +3,7 @@ title: Salade De Fraises
 slug: Edm-Frai02_A
 manuscript: ''
 category: Dessert
-excerpt: image 1️⃣
+excerpt: ( image 1️⃣)
 prepTime: null
 cookTime: null
 servings: '2'

@@ -3,7 +3,7 @@ title: Tarte Aux Fraises
 slug: Edm-Frai02_B
 manuscript: ''
 category: Dessert
-excerpt: image 2️⃣
+excerpt: ( image 2️⃣)
 prepTime: null
 cookTime: null
 servings: null

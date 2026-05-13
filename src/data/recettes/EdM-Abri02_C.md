@@ -3,7 +3,7 @@ title: Salade Gratinée d'Abricots
 slug: EdM-Abri02_C
 manuscript: ''
 category: Dessert
-excerpt: image 3️⃣
+excerpt: ( image 3️⃣)
 prepTime: null
 cookTime: null
 servings: '6'

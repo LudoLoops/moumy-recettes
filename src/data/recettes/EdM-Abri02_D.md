@@ -3,7 +3,7 @@ title: Glace Aux Abricots
 slug: EdM-Abri02_D
 manuscript: ''
 category: Dessert
-excerpt: image 4️⃣
+excerpt: ( image 4️⃣)
 prepTime: null
 cookTime: null
 servings: '6'

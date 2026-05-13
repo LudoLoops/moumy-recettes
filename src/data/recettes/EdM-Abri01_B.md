@@ -3,7 +3,7 @@ title: Tarte Aux Abricots
 slug: EdM-Abri01_B
 manuscript: ''
 category: Dessert
-excerpt: image 2️⃣
+excerpt: ( image 2️⃣)
 prepTime: '10'
 cookTime: '30'
 servings: null

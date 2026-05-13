@@ -3,7 +3,7 @@ title: Gâteau Express Aux Abricots
 slug: EdM-Abri02_E
 manuscript: ''
 category: Dessert
-excerpt: image 5️⃣
+excerpt: ( image 5️⃣)
 prepTime: null
 cookTime: null
 servings: '6'
