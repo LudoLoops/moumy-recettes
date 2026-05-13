@@ -3,7 +3,7 @@ title: Girolles À La Crème
 slug: CdC30
 manuscript: ''
 category: Plat
-excerpt: image 1️⃣ sur "Foies De Volaille Sautés Aux Girolles"
+excerpt: ( image 1️⃣) sur "Foies De Volaille Sautés Aux Girolles"
 prepTime: '15'
 cookTime: '35'
 servings: '4'

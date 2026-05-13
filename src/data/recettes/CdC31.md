@@ -3,7 +3,7 @@ title: Foies De Volaille Sautés Aux Girolles
 slug: CdC31
 manuscript: ''
 category: Plat
-excerpt: image 2️⃣
+excerpt: ( image 2️⃣)
 prepTime: '20'
 cookTime: '10'
 servings: '6'
