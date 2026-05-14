@@ -108,7 +108,7 @@
 
 			{#if recipe.legende}
 				<p
-					class="mb-6 text-sm leading-relaxed text-primary-500-400"
+					class="mb-6 text-lg leading-relaxed text-primary-500-400"
 					style="font-family: var(--font-handwriting)"
 				>
 					{recipe.legende}
