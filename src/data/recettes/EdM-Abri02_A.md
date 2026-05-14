@@ -1,20 +1,21 @@
 ---
-title: Abricots à l'Anglaise
+title: "Abricots à l'Anglaise"
 slug: EdM-Abri02_A
-manuscript: ''
+manuscript: ""
 category: Dessert
-excerpt: ( image 1️⃣)
-prepTime: null
-cookTime: null
-servings: '6'
-difficulty: null
+excerpt:
+prepTime: 
+cookTime: 
+servings: 6
+difficulty:
 ingredients:
-- 500g d'abricots
-- Sucre
-ingredients2Title: null
-ingredients2: null
-notes: null
-sourceImage: null
+  - "500g d'abricots"
+  - Sucre
+ingredients2Title:
+ingredients2:
+notes:
+legende: image 1️⃣
+sourceImage:
 ---
 
 1. faire bouillir de l'eau dans une casserole.
