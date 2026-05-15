@@ -3,7 +3,7 @@ title: Chausson Aux Abricots
 slug: EdM-Abri02_B
 manuscript: ""
 category: Dessert
-excerpt: ( image 2️⃣)
+excerpt: "Recette reprise d'un magazine"
 prepTime: 
 cookTime: 
 servings: 4

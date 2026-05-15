@@ -3,18 +3,18 @@ title: "Abricots à l'Anglaise"
 slug: EdM-Abri02_A
 manuscript: ""
 category: Dessert
-excerpt: <<< image 1️⃣
-prepTime: 
-cookTime: 
+excerpt:
+prepTime: 5
+cookTime: 15
 servings: 6
-difficulty:
+difficulty: Facile
 ingredients:
   - "500g d'abricots"
   - Sucre
 ingredients2Title:
 ingredients2:
 notes:
-legende: ⬅️ 🖼️ image 1️⃣
+legende: <<< image 1️⃣
 sourceImage:
 ---
 
