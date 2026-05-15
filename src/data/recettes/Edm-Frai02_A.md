@@ -1,22 +1,23 @@
 ---
 title: Salade De Fraises
 slug: Edm-Frai02_A
-manuscript: ''
+manuscript: ""
 category: Dessert
-excerpt: ( image 1️⃣)
-prepTime: null
-cookTime: null
-servings: '2'
+excerpt:
+prepTime: 15
+cookTime: 
+servings: 2
 difficulty: Facile
 ingredients:
-- 200g de fraises
-- jus d'une Orange
-- jus de la moitié d'un citron
-- 3 cuillières à soupe de sucre en poudre
-ingredients2Title: null
-ingredients2: null
+  - 200g de fraises
+  - "jus d'une Orange"
+  - "jus de la moitié d'un citron"
+  - 3 cuillières à soupe de sucre en poudre
+ingredients2Title:
+ingredients2:
 notes: Rapide et efficace
-sourceImage: null
+legende: <<< image 1️⃣
+sourceImage:
 ---
 
 1. Mélanger le tout

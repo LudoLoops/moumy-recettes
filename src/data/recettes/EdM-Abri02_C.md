@@ -3,9 +3,9 @@ title: "Salade Gratinée d'Abricots"
 slug: EdM-Abri02_C
 manuscript: ""
 category: Dessert
-excerpt: ( image 3️⃣)
+excerpt: Recette reprise du journal Le Dauphiné Libéré
 prepTime: 
-cookTime: 
+cookTime: 20
 servings: 6
 difficulty:
 ingredients:
