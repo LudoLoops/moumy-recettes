@@ -1,23 +1,24 @@
 ---
 title: Gâteau Express Aux Abricots
 slug: EdM-Abri02_E
-manuscript: ''
+manuscript: ""
 category: Dessert
-excerpt: ( image 5️⃣)
-prepTime: null
-cookTime: null
-servings: '6'
-difficulty: null
+excerpt: "Recette reprise d'un magazine"
+prepTime: 10
+cookTime: 5
+servings: 6
+difficulty:
 ingredients:
-- 750g d'abricots
-- 250g de Sucre en poudre
-- 30 biscuits à la cuillère
-- 1 cuillère à soupe de rhum
-- 10cl d'eau
-ingredients2Title: null
-ingredients2: null
-notes: il vaut mieux préparer ce dessert la veille
-sourceImage: null
+  - "750g d'abricots"
+  - 250g de Sucre en poudre
+  - 30 biscuits à la cuillère
+  - 1 cuillère à soupe de rhum
+  - "10cl d'eau"
+ingredients2Title:
+ingredients2:
+notes: Il vaut mieux préparer ce dessert la veille
+legende: <<< image 5️⃣
+sourceImage:
 ---
 
 1. dénoyautez et coupez en 2 les 750g d'abricots, écrasez les en purée avec 250g de sucre.

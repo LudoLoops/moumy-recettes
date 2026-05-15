@@ -1,20 +1,21 @@
 ---
 title: Glace Aux Abricots
 slug: EdM-Abri02_D
-manuscript: ''
+manuscript: ""
 category: Dessert
-excerpt: ( image 4️⃣)
-prepTime: null
-cookTime: null
-servings: '6'
-difficulty: null
+excerpt: "Recette reprise d'un magazine"
+prepTime: 10
+cookTime: 
+servings: 6
+difficulty:
 ingredients:
-- 500g d'abricots
-- lait concentré sucré
-ingredients2Title: null
-ingredients2: null
-notes: null
-sourceImage: null
+  - "500g d'abricots"
+  - lait concentré sucré
+ingredients2Title:
+ingredients2:
+notes: Compter une heure au congélateur
+legende: <<< image 4️⃣
+sourceImage:
 ---
 
 1. mixez 500g d'abricots dénoyautés, et du lait concentré sucré.
