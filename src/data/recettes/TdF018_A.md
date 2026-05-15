@@ -3,11 +3,11 @@ title: "Marmelade d'ananas"
 slug: TdF018_A
 manuscript: ""
 category: Dessert
-excerpt: <<< image 1️⃣
+excerpt:
 prepTime: 4
 cookTime: 10
 servings: 5
-difficulty:
+difficulty: Facile
 ingredients:
   - "850g d'ananas (ou 1 grande boîte)"
   - "25cl d'eau"
