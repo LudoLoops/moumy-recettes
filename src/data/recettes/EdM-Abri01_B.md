@@ -1,23 +1,24 @@
 ---
 title: Tarte Aux Abricots
 slug: EdM-Abri01_B
-manuscript: ''
-category: Dessert
-excerpt: ( image 2️⃣)
-prepTime: '10'
-cookTime: '30'
-servings: null
-difficulty: null
+manuscript: ""
+category: dessert---tarte
+excerpt: "Recette reprise d'un magazine"
+prepTime: 10
+cookTime: 30
+servings: 
+difficulty:
 ingredients:
-- pâte brisée
-- 500g d'abricots
-- 2 cuillères à soupe de sucre
-- 1 demi pot de marmelade d'abricots
-- 1 verre à liqueur de Kirsch
-ingredients2Title: null
-ingredients2: null
-notes: null
-sourceImage: null
+  - pâte brisée
+  - "500g d'abricots"
+  - 2 cuillères à soupe de sucre
+  - "1 demi pot de marmelade d'abricots"
+  - 1 verre à liqueur de Kirsch
+ingredients2Title:
+ingredients2:
+notes:
+legende: <<< image 2️⃣
+sourceImage:
 ---
 
 1. Abaisser la pâte au rouleau sur 3mm.

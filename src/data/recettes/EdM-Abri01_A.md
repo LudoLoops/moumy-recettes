@@ -1,22 +1,23 @@
 ---
 title: Tarte Aux Abricots
 slug: EdM-Abri01_A
-manuscript: ''
-category: Dessert
-excerpt: ( image 1️⃣)
-prepTime: '10'
-cookTime: '30'
-servings: null
-difficulty: null
+manuscript: ""
+category: dessert---tarte
+excerpt: La recette de Moumy
+prepTime: 10
+cookTime: 30
+servings: 4
+difficulty: Moyen
 ingredients:
-- pâte brisée
-- 500g d'abricots
-- sucre
-- marmelade d'abricots
-ingredients2Title: null
-ingredients2: null
-notes: null
-sourceImage: null
+  - pâte brisée
+  - "500g d'abricots"
+  - sucre
+  - "marmelade d'abricots"
+ingredients2Title:
+ingredients2:
+notes:
+legende: <<< image 1️⃣
+sourceImage:
 ---
 
 1. Etendre la pâte brisée
