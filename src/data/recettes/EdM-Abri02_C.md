@@ -1,21 +1,22 @@
 ---
-title: Salade Gratinée d'Abricots
+title: "Salade Gratinée d'Abricots"
 slug: EdM-Abri02_C
-manuscript: ''
+manuscript: ""
 category: Dessert
 excerpt: ( image 3️⃣)
-prepTime: null
-cookTime: null
-servings: '6'
-difficulty: null
+prepTime: 
+cookTime: 
+servings: 6
+difficulty:
 ingredients:
-- 250g d'abricots
-- 250g de riz
-- 1l de lait sucré vanillé
-ingredients2Title: null
-ingredients2: null
-notes: null
-sourceImage: null
+  - "250g d'abricots"
+  - 250g de riz
+  - 1l de lait sucré vanillé
+ingredients2Title:
+ingredients2:
+notes:
+legende: <<< image 3️⃣
+sourceImage:
 ---
 
 1. faites cuire dans un litre de lait sucré et vanillé 250g de riz.
