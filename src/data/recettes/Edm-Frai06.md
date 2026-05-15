@@ -1,21 +1,21 @@
 ---
 title: Tarte Aux Fraises
 slug: Edm-Frai06
-manuscript: ''
-category: Dessert
-excerpt: null
-prepTime: '45'
-cookTime: null
-servings: '4'
-difficulty: null
+manuscript: ""
+category: dessert-tarte
+excerpt: Ancienne recette avec pâte brisée
+prepTime: 10
+cookTime: 35
+servings: 6
+difficulty:
 ingredients:
-- Pâte Brisée
-- 500g de fraises
-- 20g de sucre glace
-ingredients2Title: null
-ingredients2: null
-notes: null
-sourceImage: null
+  - Pâte Brisée
+  - 500g de fraises
+  - 20g de sucre glace
+ingredients2Title:
+ingredients2:
+notes:
+sourceImage:
 ---
 
 1. Faire cuire La pâte brisée à blanc pendant 35 minutes
