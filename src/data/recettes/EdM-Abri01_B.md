@@ -2,14 +2,14 @@
 title: Tarte Aux Abricots
 slug: EdM-Abri01_B
 manuscript: ""
-category: dessert---tarte
+category: dessert-tarte
 excerpt: "Recette reprise d'un magazine"
 prepTime: 10
 cookTime: 30
-servings: 
-difficulty:
+servings: 4
+difficulty: Moyen
 ingredients:
-  - pâte brisée
+  - 1 pâte brisée
   - "500g d'abricots"
   - 2 cuillères à soupe de sucre
   - "1 demi pot de marmelade d'abricots"
@@ -21,14 +21,14 @@ legende: <<< image 2️⃣
 sourceImage:
 ---
 
-1. Abaisser la pâte au rouleau sur 3mm.
+1. Abaisser la pâte au rouleau sur 3 millimètres
 
 2. Piquer le fond avec une fourchette
 
 3. saupoudrer de sucre
 
-4. Disposer des abricots dénoyautés coupés en 2.
+4. Disposer des abricots dénoyautés coupés en 2
 
-5. Faire cuire 25 à 30 minutes.
+5. Faire cuire 25 à 30 minutes
 
-6. Démouler sur grille et badigeonner avec la marmelade d'abricots coupée d'eau et parfumée.
+6. Démouler sur grille et badigeonner avec la marmelade d'abricots coupée d'eau et parfumée
