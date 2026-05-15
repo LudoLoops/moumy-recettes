@@ -1,22 +1,23 @@
 ---
 title: Chausson Aux Abricots
 slug: EdM-Abri02_B
-manuscript: ''
+manuscript: ""
 category: Dessert
 excerpt: ( image 2️⃣)
-prepTime: null
-cookTime: null
-servings: '4'
-difficulty: null
+prepTime: 
+cookTime: 
+servings: 4
+difficulty:
 ingredients:
-- 8 Abricots
-- 8 Sucres
-- 250g de Pâte brisee
-- 1 jaune d'œuf
-ingredients2Title: null
-ingredients2: null
-notes: null
-sourceImage: null
+  - 8 Abricots
+  - 8 Sucres
+  - 250g de Pâte brisee
+  - "1 jaune d'œuf"
+ingredients2Title:
+ingredients2:
+notes:
+legende: <<<  image 2️⃣
+sourceImage:
 ---
 
 1. Etalez et découpez la pâte en 8 triangles.

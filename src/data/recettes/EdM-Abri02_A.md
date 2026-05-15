@@ -3,7 +3,7 @@ title: "Abricots à l'Anglaise"
 slug: EdM-Abri02_A
 manuscript: ""
 category: Dessert
-excerpt:
+excerpt: <<< image 1️⃣
 prepTime: 
 cookTime: 
 servings: 6
@@ -14,7 +14,7 @@ ingredients:
 ingredients2Title:
 ingredients2:
 notes:
-legende: image 1️⃣
+legende: ⬅️ 🖼️ image 1️⃣
 sourceImage:
 ---
 
