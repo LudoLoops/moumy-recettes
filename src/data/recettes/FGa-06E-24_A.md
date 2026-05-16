@@ -1,35 +1,35 @@
 ---
 title: Rissoles
 slug: FGa-06E-24_A
-manuscript: ''
-category: Plat
+manuscript: ""
+category: entrée
 excerpt: (12 à 15 rissoles)
-prepTime: '30'
-cookTime: '30'
-servings: '6'
-difficulty: null
+prepTime: 30
+cookTime: 30
+servings: 6
+difficulty:
 ingredients:
-- 2 paquets de pâte brisée (ou pâte brisée)
-- 1 petit verre d'eau
-- 1 cuillère à café de sel
-- 200g de veau (collet)
-- 200g de porc (collet)
-- 80g de jambon cuit
-- 1 cuillère à soupe de persil haché
-- 1 échalote
-- sel, poivre
-- muscade
-- 1 cuillère à café de farine
-- 2 cuillères à café de beurre
-- 1 pointe de cayenne (f facultatif)
-- 1 bassine de friture
+  - 2 paquets de pâte brisée (ou pâte brisée)
+  - "1 petit verre d'eau"
+  - 1 cuillère à café de sel
+  - 200g de veau (collet)
+  - 200g de porc (collet)
+  - 80g de jambon cuit
+  - 1 cuillère à soupe de persil haché
+  - 1 échalote
+  - "sel, poivre"
+  - muscade
+  - 1 cuillère à café de farine
+  - 2 cuillères à café de beurre
+  - 1 pointe de cayenne (f facultatif)
+  - 1 bassine de friture
 ingredients2Title: Pâte faite à la maison
 ingredients2:
-- 400g de farine
-- 100g de beurre
-- 1 œuf entier
-notes: Pour une pâte faite maison prévoir, pétrissage de la pâte 5 minute et la laisser reposer 60 minutes
-sourceImage: null
+  - 400g de farine
+  - 100g de beurre
+  - 1 œuf entier
+notes: "Pour une pâte faite maison prévoir, pétrissage de la pâte 5 minute et la laisser reposer 60 minutes"
+sourceImage:
 ---
 
 1. Hacher finement les viandes (ou des restes de rôti, daube, bœuf mode), le persil, l'échalote. Dans une poêle, les faire revenir doucement dans du beurre
