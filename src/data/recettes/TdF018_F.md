@@ -2,7 +2,7 @@
 title: Marmelade de Bananes « India »
 slug: TdF018_F
 manuscript: ""
-category: Dessert
+category: confiture-marmelade
 excerpt:
 prepTime: 4
 cookTime: 10

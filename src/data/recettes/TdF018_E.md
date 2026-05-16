@@ -2,7 +2,7 @@
 title: Marmelade de Bananes et de Rhubarbe
 slug: TdF018_E
 manuscript: ""
-category: Dessert
+category: confiture-marmelade
 excerpt:
 prepTime: 4
 cookTime: 10

@@ -2,7 +2,7 @@
 title: "Marmelade d'ananas"
 slug: TdF018_A
 manuscript: ""
-category: Dessert
+category: confiture-marmelade
 excerpt:
 prepTime: 4
 cookTime: 10

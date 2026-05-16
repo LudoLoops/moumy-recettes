@@ -2,7 +2,7 @@
 title: Marmelade de Bananes
 slug: TdF018_D
 manuscript: ""
-category: Dessert
+category: confiture-marmelade
 excerpt:
 prepTime: 4
 cookTime: 10
@@ -24,4 +24,4 @@ sourceImage:
 
 2. Mélanger avec l'ensemble
 
-3. Porter à ébullition, la maintenir pendant 4 minutes et verser encore chaud dans les pots. 
+3. Porter à ébullition, la maintenir pendant 4 minutes et verser encore chaud dans les pots.

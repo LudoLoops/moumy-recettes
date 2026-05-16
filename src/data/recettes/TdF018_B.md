@@ -2,7 +2,7 @@
 title: "Marmelade d'ananas et de Pêches"
 slug: TdF018_B
 manuscript: ""
-category: Dessert
+category: confiture-marmelade
 excerpt:
 prepTime: 4
 cookTime: 10

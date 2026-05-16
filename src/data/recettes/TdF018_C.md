@@ -2,7 +2,7 @@
 title: "Marmelade d'ananas aux oranges (ou pamplemousses)"
 slug: TdF018_C
 manuscript: ""
-category: Dessert
+category: confiture-marmelade
 excerpt:
 prepTime: 4
 cookTime: 10
