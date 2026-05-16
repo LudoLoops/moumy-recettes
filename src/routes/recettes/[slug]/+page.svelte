@@ -60,6 +60,25 @@
 	}
 </script>
 
+{#snippet title()}
+	<Badge variant="gold">{recipe.categoryDisplay}</Badge>
+
+	<h1 class="text-4xl md:text-[2.75rem] leading-tight mt-4 mb-2 capitalize">
+		{recipe.title}
+	</h1>
+
+	<p class="text-lg leading-relaxed mb-6 text-surface-700-300 italic">
+		{recipe.excerpt}
+	</p>
+
+	{#if recipe.legende}
+		<p class="mb-6 text-xl leading-relaxed text-primary-500-400 italic">
+			{recipe.legende}
+		</p>
+	{/if}
+	<!-- Snippet here -->
+{/snippet}
+
 <svelte:head>
 	<title>{recipe.title} — Les recettes de Moumy</title>
 	<meta name="description" content={recipe.excerpt} />
@@ -74,7 +93,7 @@
 ></div>
 
 <div
-	class="max-w-6xl px-4 md:px-6 relative z-10 mx-auto pt-4"
+	class="max-w-6xl px-4 md:px-6 pt-4 relative z-10 mx-auto"
 	style="padding-bottom: var(--space-section-lg)"
 >
 	<!-- Back link -->
@@ -89,6 +108,9 @@
 
 	<!-- Two-column grid -->
 	<div class="md:grid-cols-[1fr_2fr] gap-8 md:gap-12 mt-6 md:mt-8 grid grid-cols-1">
+		<div class="md:hidden">
+			{@render title()}
+		</div>
 		<!-- Left: Manuscript image (sticky on desktop) -->
 		<div>
 			<ManuscriptImage {recipe} />
@@ -96,29 +118,13 @@
 
 		<!-- Right: Recipe content -->
 		<div>
-			<Badge variant="gold">{recipe.categoryDisplay}</Badge>
-
-			<h1 class="text-4xl md:text-[2.75rem] leading-tight mt-4 mb-2 capitalize">
-				{recipe.title}
-			</h1>
-
-			<p class="text-lg leading-relaxed mb-6 text-surface-700-300 italic">
-				{recipe.excerpt}
-			</p>
-
-			{#if recipe.legende}
-				<p
-					class="mb-6 text-xl leading-relaxed text-primary-500-400 italic"
-					
-				>
-					{recipe.legende}
-				</p>
-			{/if}
-
+			<div class="md:block hidden">
+				{@render title()}
+			</div>
 			<!-- Meta info grid -->
 			<div class="sm:grid-cols-4 gap-4 mb-8 grid grid-cols-2">
 				<div
-					class="gap-2.5 p-3 hover:border-gold sm:p-2 bg-surface-100-900 border-surface-200-800 flex items-start rounded-[10px] border  transition-all duration-300 hover:-translate-y-px"
+					class="gap-2.5 p-3 hover:border-gold sm:p-2 bg-surface-100-900 border-surface-200-800 flex items-start rounded-[10px] border transition-all duration-300 hover:-translate-y-px"
 				>
 					<svg
 						class="w-5 h-5 mt-0.5 shrink-0"
@@ -143,7 +149,7 @@
 				</div>
 
 				<div
-					class="gap-2.5 p-3 hover:border-gold sm:p-2 bg-surface-100-900 border-surface-200-800 flex items-start rounded-[10px] border  transition-all duration-300 hover:-translate-y-px"
+					class="gap-2.5 p-3 hover:border-gold sm:p-2 bg-surface-100-900 border-surface-200-800 flex items-start rounded-[10px] border transition-all duration-300 hover:-translate-y-px"
 				>
 					<svg
 						class="w-5 h-5 mt-0.5 shrink-0"
@@ -174,7 +180,7 @@
 				</div>
 
 				<div
-					class="gap-2.5 p-3 hover:border-gold sm:p-2 bg-surface-100-900 border-surface-200-800 flex items-start rounded-[10px] border  transition-all duration-300 hover:-translate-y-px"
+					class="gap-2.5 p-3 hover:border-gold sm:p-2 bg-surface-100-900 border-surface-200-800 flex items-start rounded-[10px] border transition-all duration-300 hover:-translate-y-px"
 				>
 					<svg
 						class="w-5 h-5 mt-0.5 shrink-0"
@@ -252,7 +258,9 @@
 								<div
 									class="py-2 border-surface-200-800 leading-normal hover:pl-2 flex items-start border-b transition-all duration-300 last:border-b-0"
 								>
-									<span class="mr-3 font-bold text-xl shrink-0" style="color: var(--color-gold)">•</span>
+									<span class="mr-3 font-bold text-xl shrink-0" style="color: var(--color-gold)"
+										>•</span
+									>
 									{ingredient}
 								</div>
 							{/each}
@@ -281,7 +289,9 @@
 								<div
 									class="py-2 border-surface-200-800 leading-normal hover:pl-2 flex items-start border-b transition-all duration-300 last:border-b-0"
 								>
-									<span class="mr-3 font-bold text-xl shrink-0" style="color: var(--color-gold)">•</span>
+									<span class="mr-3 font-bold text-xl shrink-0" style="color: var(--color-gold)"
+										>•</span
+									>
 									{ingredient}
 								</div>
 							{/each}
@@ -311,7 +321,9 @@
 							<div
 								class="py-2 border-surface-200-800 leading-normal hover:pl-2 flex items-start border-b transition-all duration-300 last:border-b-0"
 							>
-								<span class="mr-3 font-bold text-xl shrink-0" style="color: var(--color-gold)">•</span>
+								<span class="mr-3 font-bold text-xl shrink-0" style="color: var(--color-gold)"
+									>•</span
+								>
 								{ingredient}
 							</div>
 						{/each}
