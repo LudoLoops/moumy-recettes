@@ -11,11 +11,11 @@ difficulty: Facile
 ingredients:
   - "850g d'ananas (ou 1 grande boîte)"
   - "25cl d'eau"
-  - "1000g de "
+  - 1000g de Confisuc
   - 1 jus de 2 citrons
 ingredients2Title:
 ingredients2:
-notes: "Truc : On peut ajouter 2 à 3 cuillerées de rhum ou 2 à 3 cuillerées de Maracuja"
+notes: "Truc : On peut ajouter 2 à 3 cuillerées de rhum ou de Maracuja"
 legende: <<< image 1️⃣
 sourceImage:
 ---
