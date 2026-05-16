@@ -3,7 +3,7 @@ title: Tarte Aux Abricots
 slug: EdM-Abri01_B
 manuscript: ""
 category: dessert-tarte
-excerpt: "Recette reprise d'un magazine"
+excerpt: Recette revisitée
 prepTime: 10
 cookTime: 30
 servings: 4
