@@ -1,5 +1,5 @@
 ---
-title: "Marmelade d'ananas et de Pêches"
+title: Marmelade de Bananes et de Rhubarbe
 slug: TdF018_E
 manuscript: ""
 category: Dessert
@@ -9,19 +9,18 @@ cookTime: 10
 servings: 5
 difficulty: Facile
 ingredients:
-  - 750g de pêches pelées
-  - "250g d'ananas brisés"
-  - "25cl d'eau"
-  - 1kl de Confisuc
-  - 1 jus de citron (ou orange)
+  - 750g de rhubarbe coupée en morceaux
+  - 250 g de bananes (pesées sans la peau)
+  - " jus d'un citron"
+  - 1 kg de Confisuc
 ingredients2Title:
 ingredients2:
-notes: On peut remplacer les pêches par des abricots
-legende: <<< image 4
+notes: On peut remplacer la rhubarbe par des abricots ou des groseilles à maquereau
+legende: <<< image 5️⃣
 sourceImage:
 ---
 
-1. Mélanger les pêches et les ananas coupés en petits morceaux, avec le Confisuc et le jus de citron
+1. Mélanger les bananes écrasées et la rhubarbe coupées en petits morceaux, avec le Confisuc et le jus de citron
 
 2. Laisser macérer et faire bouillir 4 minutes
 

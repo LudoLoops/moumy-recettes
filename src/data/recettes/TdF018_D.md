@@ -1,5 +1,5 @@
 ---
-title: "Marmelade d'ananas et de Pêches"
+title: Marmelade de Bananes
 slug: TdF018_D
 manuscript: ""
 category: Dessert
@@ -9,20 +9,19 @@ cookTime: 10
 servings: 5
 difficulty: Facile
 ingredients:
-  - 750g de pêches pelées
-  - "250g d'ananas brisés"
-  - "25cl d'eau"
-  - 1kl de Confisuc
-  - 1 jus de citron (ou orange)
+  - 1 kg de bananes (pesées sans la peau)
+  - " jus de 3 citrons et d'un pamplemousse"
+  - " 12,5cl d'eau (un verre)"
+  - " 1 kg de Confisuc"
 ingredients2Title:
 ingredients2:
-notes: On peut remplacer les pêches par des abricots
-legende: <<< image 4
+notes: "Truc : On peut rehausser le goût de la marmelade en y ajoutant une cuillerée à soupe de rhum ou de fine champagne"
+legende: <<< image 4️⃣​
 sourceImage:
 ---
 
-1. Mélanger les pêches et les ananas coupés en petits morceaux, avec le Confisuc et le jus de citron
+1. Écraser les bananes à la fourchette
 
-2. Laisser macérer et faire bouillir 4 minutes
+2. Mélanger avec l'ensemble
 
-3. Mettre en pots.
+3. Porter à ébullition, la maintenir pendant 4 minutes et verser encore chaud dans les pots. 

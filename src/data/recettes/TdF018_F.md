@@ -1,5 +1,5 @@
 ---
-title: "Marmelade d'ananas et de Pêches"
+title: Marmelade de Bananes « India »
 slug: TdF018_F
 manuscript: ""
 category: Dessert
@@ -9,20 +9,25 @@ cookTime: 10
 servings: 5
 difficulty: Facile
 ingredients:
-  - 750g de pêches pelées
-  - "250g d'ananas brisés"
-  - "25cl d'eau"
-  - 1kl de Confisuc
-  - 1 jus de citron (ou orange)
+  - 2 bananes
+  - 250g de Confisuc
+  - "2 cuillères d'eau"
+  - 2 cuillères de vin blanc
+  - " le jus d'un citron"
+  - 1 pincée de gingembre
+  - 1 pincée de sel et de poivre
+  - "1 jaune d'œuf"
 ingredients2Title:
 ingredients2:
-notes: On peut remplacer les pêches par des abricots
-legende: <<< image 4
+notes: "Cette marmelade est parfaite pour glacer les volailles, pour farcir le jambon, ou comme sauce de fondue bourguignonne"
+legende: <<< image 6️⃣
 sourceImage:
 ---
 
-1. Mélanger les pêches et les ananas coupés en petits morceaux, avec le Confisuc et le jus de citron
+1. Écraser les bananes à la fourchette. Mélanger avec le Confisuc, l'eau et le vin
 
-2. Laisser macérer et faire bouillir 4 minutes
+2. Porter à ébullition, la maintenir pendant 4 minutes
 
-3. Mettre en pots.
+3. Ajouter le sel, le poivre et le gingembre
+
+4. Ajouter le jaune d'œuf battu sur la marmelade encore chaude
