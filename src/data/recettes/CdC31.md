@@ -1,24 +1,25 @@
 ---
 title: Foies De Volaille Sautés Aux Girolles
 slug: CdC31
-manuscript: ''
+manuscript: ""
 category: Plat
-excerpt: ( image 2️⃣)
-prepTime: '20'
-cookTime: '10'
-servings: '6'
+excerpt:
+prepTime: 20
+cookTime: 10
+servings: 6
 difficulty: Difficile
 ingredients:
-- 500g de girolles de petite taille
-- 500g de foies de volaille
-- 10 feuilles de sauge fraiche
-- 1 échalotte
-- 75g de beurre
-- sel, poivre
-ingredients2Title: null
-ingredients2: null
-notes: null
-sourceImage: null
+  - 500g de girolles de petite taille
+  - 500g de foies de volaille
+  - 10 feuilles de sauge fraiche
+  - 1 échalotte
+  - 75g de beurre
+  - "sel, poivre"
+ingredients2Title:
+ingredients2:
+notes:
+legende: <<< image 2️⃣
+sourceImage:
 ---
 
 1. Nettoyer les foies de volaille et les couper en petits morceaux, les essuyer dans du papier absorbant. Peler et hacher l'échalotte.

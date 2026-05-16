@@ -1,26 +1,27 @@
 ---
 title: Girolles À La Crème
 slug: CdC30
-manuscript: ''
+manuscript: ""
 category: Plat
-excerpt: ( image 1️⃣) sur "Foies De Volaille Sautés Aux Girolles"
-prepTime: '15'
-cookTime: '35'
-servings: '4'
+excerpt:
+prepTime: 15
+cookTime: 35
+servings: 4
 difficulty: Facile
 ingredients:
-- 500g de girolles
-- 100g de crème fraiche épaisse
-- 1 tranche de lard fumé (150g)
-- 4 petites échalottes
-- 10cl de vin blanc sec
-- 1 petit bouquet de persil plat
-- 25g de beurre
-- sel, poivre
-ingredients2Title: null
-ingredients2: null
-notes: null
-sourceImage: null
+  - 500g de girolles
+  - 100g de crème fraiche épaisse
+  - 1 tranche de lard fumé (150g)
+  - 4 petites échalottes
+  - 10cl de vin blanc sec
+  - 1 petit bouquet de persil plat
+  - 25g de beurre
+  - "sel, poivre"
+ingredients2Title:
+ingredients2:
+notes:
+legende: "<<< image 1️⃣ sur recette \"Foies De Volaille Sautés Aux Girolles\""
+sourceImage:
 ---
 
 1. Peler et hacher les échalotes, laver le persil et ôter les tiges, égoutter et ciseler les feuilles. Ôter la couenne du lard et couper le en fins batônnets.
