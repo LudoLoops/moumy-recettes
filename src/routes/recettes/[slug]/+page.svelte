@@ -67,7 +67,10 @@
 		{recipe.title}
 	</h1>
 
-	<p class="text-lg leading-relaxed mb-6 text-surface-700-300 italic">
+	<p
+		class="text-lg leading-relaxed mb-6 text-surface-700-300 italic"
+		style="font-family: var(--font-handwriting); "
+	>
 		{recipe.excerpt}
 	</p>
 
