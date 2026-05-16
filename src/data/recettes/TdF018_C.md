@@ -20,12 +20,8 @@ legende: <<< image 3️⃣
 sourceImage:
 ---
 
-1. Couper les ananas en très petits morceaux
+1. Mélanger les oranges et les ananas coupés en petits morceaux, avec le Confisuc et le jus de citron
 
-2. Laisser macérer les ananas avec le Confisuc et l'eau
+2. Laisser macérer et aire bouillir 4 minutes
 
-3. Faire bouillir 4 minutes, puis ajouter le jus de citron
-
-4. Laisser reposer 10 minutes, puis remuer à fond, afin que les ananas se répartissent bien.
-
-5. Mettre en pots.
+3. Mettre en pots.
