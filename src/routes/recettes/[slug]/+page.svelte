@@ -108,8 +108,8 @@
 
 			{#if recipe.legende}
 				<p
-					class="mb-6 text-xl leading-relaxed text-primary-500-400"
-					style="font-family: var(--font-handwriting)"
+					class="mb-6 text-xl leading-relaxed text-primary-500-400 italic"
+					
 				>
 					{recipe.legende}
 				</p>
@@ -118,7 +118,7 @@
 			<!-- Meta info grid -->
 			<div class="sm:grid-cols-4 gap-4 mb-8 grid grid-cols-2">
 				<div
-					class="gap-2.5 p-3 hover:border-gold sm:p-2 bg-surface-100-900 border-surface-200-800 flex items-start rounded-[10px] border border-transparent transition-all duration-300 hover:-translate-y-px"
+					class="gap-2.5 p-3 hover:border-gold sm:p-2 bg-surface-100-900 border-surface-200-800 flex items-start rounded-[10px] border  transition-all duration-300 hover:-translate-y-px"
 				>
 					<svg
 						class="w-5 h-5 mt-0.5 shrink-0"
@@ -143,7 +143,7 @@
 				</div>
 
 				<div
-					class="gap-2.5 p-3 hover:border-gold sm:p-2 bg-surface-100-900 border-surface-200-800 flex items-start rounded-[10px] border border-transparent transition-all duration-300 hover:-translate-y-px"
+					class="gap-2.5 p-3 hover:border-gold sm:p-2 bg-surface-100-900 border-surface-200-800 flex items-start rounded-[10px] border  transition-all duration-300 hover:-translate-y-px"
 				>
 					<svg
 						class="w-5 h-5 mt-0.5 shrink-0"
@@ -174,7 +174,7 @@
 				</div>
 
 				<div
-					class="gap-2.5 p-3 hover:border-gold sm:p-2 bg-surface-100-900 border-surface-200-800 flex items-start rounded-[10px] border border-transparent transition-all duration-300 hover:-translate-y-px"
+					class="gap-2.5 p-3 hover:border-gold sm:p-2 bg-surface-100-900 border-surface-200-800 flex items-start rounded-[10px] border  transition-all duration-300 hover:-translate-y-px"
 				>
 					<svg
 						class="w-5 h-5 mt-0.5 shrink-0"
@@ -199,7 +199,7 @@
 				</div>
 
 				<div
-					class="gap-2.5 p-3 hover:border-gold sm:p-2 bg-surface-100-900 border-surface-200-800 flex items-start rounded-[10px] border border-transparent transition-all duration-300 hover:-translate-y-px"
+					class="gap-2.5 p-3 hover:border-gold sm:p-2 bg-surface-100-900 border-surface-200-800 flex items-start rounded-[10px] border transition-all duration-300 hover:-translate-y-px"
 				>
 					<svg
 						class="w-5 h-5 mt-0.5 shrink-0"
@@ -248,7 +248,7 @@
 								</svg>
 								{content.recipeDetail.sections.ingredients}
 							</h2>
-							{#each recipe.ingredients as ingredient}
+							{#each recipe.ingredients as ingredient (ingredient)}
 								<div
 									class="py-2 border-surface-200-800 leading-normal hover:pl-2 flex items-start border-b transition-all duration-300 last:border-b-0"
 								>
@@ -277,7 +277,7 @@
 								</svg>
 								{ingredients2Title || content.recipeDetail.sections.ingredients2Fallback}
 							</h2>
-							{#each ingredients2List as ingredient}
+							{#each ingredients2List as ingredient (ingredient)}
 								<div
 									class="py-2 border-surface-200-800 leading-normal hover:pl-2 flex items-start border-b transition-all duration-300 last:border-b-0"
 								>
@@ -307,7 +307,7 @@
 							</svg>
 							{content.recipeDetail.sections.ingredients}
 						</h2>
-						{#each recipe.ingredients as ingredient}
+						{#each recipe.ingredients as ingredient (ingredient)}
 							<div
 								class="py-2 border-surface-200-800 leading-normal hover:pl-2 flex items-start border-b transition-all duration-300 last:border-b-0"
 							>
