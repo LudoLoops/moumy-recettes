@@ -55,7 +55,7 @@
 		}
 	}
 
-	const sortedData = $derived(() => {
+	const sortedData = $derived.by(() => {
 		if (!sortKey) return data;
 		const sorted = [...data].sort((a, b) => {
 			const av = a[sortKey];
@@ -113,7 +113,7 @@
 					</td>
 				</tr>
 			{:else}
-				{#each sortedData() as row (String(row[rowKey] ?? ''))}
+				{#each sortedData as row (String(row[rowKey] ?? ''))}
 					<tr
 						class="border-b border-surface-200-800
 							{onRowClick ? 'hover:bg-surface-100-900 cursor-pointer' : ''}"
