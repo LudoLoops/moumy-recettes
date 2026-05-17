@@ -240,7 +240,7 @@
 				<div class="gap-4 mb-6 pb-3 border-secondary-300-700 flex items-center border-b-2">
 					<span
 						class="w-12 h-12 rounded-xl font-bold text-2xl from-secondary-400
-							to-secondary-300 text-surface-950 max-md:w-10
+							to-secondary-300 text-surface-950-50 max-md:w-10
 							max-md:h-10 max-md:text-xl max-md:rounded-lg
 							inline-flex shrink-0
 							items-center justify-center bg-gradient-to-br font-[family-name:var(--font-title)]"

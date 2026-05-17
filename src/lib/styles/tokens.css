@@ -128,7 +128,8 @@
 	--gap-lg: 1.25rem;
 	--gap-xl: 2.5rem;
 
-	--space-section: 3rem;
+	--space-section: 5rem;
+	--space-section-lg: 7.5rem;
 	--space-group: 2rem;
 	--space-element: 1.25rem;
 	--space-inline: 0.625rem;
@@ -243,6 +244,5 @@
 	   Moumy's warmer feel with generous vertical rhythm.
 	   ========================================================================= */
 
-	--space-section: 5rem;
-	--space-section-lg: 7.5rem;
+
 }
