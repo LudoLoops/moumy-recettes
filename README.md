@@ -1,43 +1,40 @@
-# sv
+# Moumy's Recipes
 
+> A digital archive of handwritten family recipes — keeping my grandmother's cooking alive, one page at a time.
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+This project is a tribute to **Moumy**, my grandmother. It preserves her handwritten recipe notebooks as a static website — her looping cursive, her crossed-out corrections, the butter stains on the margins. All of it.
 
-## Creating a project
+## Why this exists
 
-If you're seeing this, you've probably already done this step. Congrats!
+Some recipes are passed down by making them together. Moumy's were written in old notebooks, in her hand, with her own notes in the margins. This site keeps those pages from fading — not by transcribing them into a database, but by letting her handwriting stay front and center.
 
-```sh
-# create a new project
-npx sv create my-app
-```
+Every recipe page shows her original manuscript scan alongside the typed version, so you can read it the way she wrote it.
 
-To recreate this project with the same configuration:
+## What you'll find
 
-```sh
-# recreate this project
-bun x sv@0.15.1 create --template minimal --types ts --add tailwindcss="plugins:typography,forms" prettier eslint --install bun moumy-recettes
-```
+- **15 handwritten recipes** (and growing) — desserts, main courses, preserves
+- **Manuscript scans** — the actual pages from her notebooks
+- **A quiet, warm interface** — designed to feel like flipping through a kitchen drawer
 
-## Developing
+## Tech
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+| Layer        | Stack                              |
+| ------------ | ---------------------------------- |
+| Framework    | SvelteKit 2 + Svelte 5 (runes)    |
+| UI           | Skeleton UI v4 + Tailwind v4      |
+| Content      | mdsvex (Markdown → Svelte)        |
+| Fonts        | Crimson Pro, Playfair, Great Vibes |
+| Build        | Static (`adapter-static`)         |
+| Deploy       | Cloudflare Pages                   |
 
-```sh
-npm run dev
+No server, no database, no auth. Just Markdown files and manuscript images compiled into static HTML.
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+## Adding recipes
 
-## Building
+1. Create a `.md` file in `src/data/recettes/` (see `ObsTemplate/recette.md` for the frontmatter schema)
+2. Drop the manuscript scan in `src/data/img/`
+3. Build — that's it
 
-To create a production version of your app:
+## License
 
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+MIT
