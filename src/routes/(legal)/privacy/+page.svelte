@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-	<title>Privacy Policy - SvelteForge</title>
+	<title>Politique de confidentialité - Les recettes de Moumy</title>
 </svelte:head>
 
 <div class="container mx-auto px-4 max-w-4xl py-12">
