@@ -1,110 +1,86 @@
 /**
- * Content loader — loads editorial content from src/data/content/*.md files.
+ * Content loader — mdsvex compiled, same pattern as recettes.ts
  *
- * Each .md file has YAML frontmatter + body text, loaded via import.meta.glob at build time.
+ * Content .md files in src/data/content/ have YAML frontmatter + body.
+ * mdsvex compiles them at build time:
+ *   - metadata → frontmatter fields
+ *   - default  → Svelte component for the body (supports **bold**, *italic*, etc.)
+ *
  * UI labels come from src/data/content/ui.json.
- * Hot-reloads in dev when files change.
  */
 
 import ui from '../../data/content/ui.json';
 
-// Import raw markdown content (frontmatter + body)
-const rawModules = import.meta.glob<string>('../../data/content/*.md', {
-	eager: true,
-	query: '?raw',
-	import: 'default'
-});
+// ---------------------------------------------------------------------------
+// mdsvex loaders — same as recettes.ts
+// ---------------------------------------------------------------------------
 
-/**
- * Extract YAML frontmatter and body from raw markdown.
- * Returns { metadata, body } where metadata is a simple object.
- */
-function parseMd(raw: string): { metadata: Record<string, any>; body: string } {
-	const parts = raw.split('---');
-	if (parts.length < 3) return { metadata: {}, body: raw.trim() };
-
-	const yaml = parts[1].trim();
-	const body = parts.slice(2).join('---').trim();
-
-	// Simple YAML parser for flat + one-level nested
-	const metadata: Record<string, any> = {};
-	let currentKey = '';
-	const nested: Record<string, string> = {};
-	let inNested = false;
-
-	for (const line of yaml.split('\n')) {
-		// Nested line (2 spaces indent)
-		const nestedMatch = line.match(/^\s{2}(\w+):\s*"?(.+?)"?\s*$/);
-		if (nestedMatch && inNested) {
-			nested[nestedMatch[1]] = nestedMatch[2];
-			continue;
-		}
-
-		// Top-level key: value
-		const match = line.match(/^(\w+):\s*(.*)$/);
-		if (match) {
-			if (inNested && currentKey) {
-				metadata[currentKey] = { ...nested };
-				for (const k of Object.keys(nested)) delete nested[k];
-				inNested = false;
-			}
-
-			currentKey = match[1];
-			let val: string = match[2].trim();
-			// Remove surrounding quotes
-			if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
-				val = val.slice(1, -1);
-			}
-			if (val === '') {
-				inNested = true;
-			} else {
-				metadata[currentKey] = val;
-			}
-		}
-	}
-	// Save last nested
-	if (inNested && currentKey) {
-		metadata[currentKey] = { ...nested };
-	}
-
-	return { metadata, body };
+interface ContentMeta {
+	title?: string;
+	subtitle?: string;
+	badge?: string;
+	description?: string;
+	attribution?: string;
+	brand?: string;
+	closing?: string;
+	copyright?: string;
+	stats?: Record<string, string>;
 }
 
-/**
- * Build key from file path.
- * e.g. "../../data/content/landing/hero.md" → "landing/hero"
- */
+const contentModules = import.meta.glob<{ metadata: ContentMeta; default: any }>(
+	'../../data/content/*.md',
+	{ eager: true }
+);
+
+// ---------------------------------------------------------------------------
+// Helpers
+// ---------------------------------------------------------------------------
+
 function contentKey(path: string): string {
 	return path.replace('../../data/content/', '').replace('.md', '');
 }
 
-// Parse all .md files
-const parsed: Record<string, { metadata: Record<string, any>; body: string }> = {};
-for (const [path, raw] of Object.entries(rawModules)) {
-	parsed[contentKey(path)] = parseMd(raw as string);
+// ---------------------------------------------------------------------------
+// Build content object from mdsvex modules
+// ---------------------------------------------------------------------------
+
+const parsed: Record<string, { metadata: ContentMeta; body: any }> = {};
+for (const [path, mod] of Object.entries(contentModules)) {
+	parsed[contentKey(path)] = {
+		metadata: mod?.metadata ?? {},
+		body: mod?.default ?? null
+	};
 }
 
-// Build the content object matching the old shape
-const hero = parsed['hero'] || { metadata: {}, body: '' };
-const quote = parsed['quote'] || { metadata: {}, body: '' };
-const souvenirs = parsed['souvenirs'] || { metadata: {}, body: '' };
-const footer = parsed['footer'] || { metadata: {}, body: '' };
+const hero = parsed['hero'] ?? { metadata: {}, body: null };
+const quote = parsed['quote'] ?? { metadata: {}, body: null };
+const souvenirs = parsed['souvenirs'] ?? { metadata: {}, body: null };
+const footer = parsed['footer'] ?? { metadata: {}, body: null };
+
+// ---------------------------------------------------------------------------
+// Public API
+// ---------------------------------------------------------------------------
+
+/** Get the mdsvex body component for a content file by key (e.g. "hero", "quote") */
+export function getContentBody(key: string): any {
+	return parsed[key]?.body ?? null;
+}
 
 const content = {
 	landing: {
 		hero: {
 			title: hero.metadata.title || '',
 			subtitle: hero.metadata.subtitle || '',
-			description: hero.body || hero.metadata.description || '',
+			body: hero.body,
 			badge: hero.metadata.badge || ''
 		},
 		quote: {
-			text: quote.body || '',
+			body: quote.body,
 			attribution: quote.metadata.attribution || ''
 		},
 		familyMemories: {
 			title: souvenirs.metadata.title || '',
-			text: souvenirs.body || '',
+			body: souvenirs.body,
 			stats: souvenirs.metadata.stats || {}
 		}
 	},
