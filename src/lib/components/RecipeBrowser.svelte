@@ -207,14 +207,14 @@
 						</section>
 
 						<!-- Moumy's note -->
-						<div class="mt-6 p-5 rounded-xl text-xl sm:text-lg text-primary-700-300 bg-surface-100-900 relative" style="font-family: var(--font-handwriting); border: 2px dashed var(--color-gold)">
-							<span class="top-1 left-2 text-4xl absolute leading-none opacity-30" style="color: var(--color-gold); font-family: var(--font-title)" aria-hidden="true">{'\u201C'}</span>
+						<div class="mt-6 p-5 rounded-xl text-xl sm:text-lg text-primary-700-300 bg-surface-100-900 relative font-handwriting" style="border: 2px dashed var(--color-gold)">
+							<span class="top-1 left-2 text-4xl absolute leading-none opacity-30 font-title" style="color: var(--color-gold)" aria-hidden="true">{'\u201C'}</span>
 							<div class="gap-2 mb-2 text-sm font-semibold text-primary-700-300 flex items-center">
 								<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" style="color: var(--color-gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg>
 								<span>Notes de Moumy</span>
 							</div>
 							<p class="pl-4">Moumy te l'dit : un bon karatéka mange debout, dort peu, et ne laisse jamais une nouille dans son assiette. Surtout en prison.</p>
-							<span class="bottom-1 right-2 text-4xl absolute leading-none opacity-30" style="color: var(--color-gold); font-family: var(--font-title)" aria-hidden="true">{'\u201D'}</span>
+							<span class="bottom-1 right-2 text-4xl absolute leading-none opacity-30 font-title" style="color: var(--color-gold)" aria-hidden="true">{'\u201D'}</span>
 						</div>
 					</div>
 				</Card>

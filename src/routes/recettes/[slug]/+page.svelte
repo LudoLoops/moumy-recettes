@@ -68,8 +68,7 @@
 	</h1>
 
 	<p
-		class="text-lg leading-relaxed mb-6 text-surface-700-300 italic"
-		style="font-family: var(--font-handwriting); "
+		class="text-lg leading-relaxed mb-6 text-surface-700-300 italic font-handwriting"
 	>
 		{recipe.excerpt}
 	</p>
@@ -356,7 +355,7 @@
 					</svg>
 					{content.recipeDetail.sections.preparation}
 				</h2>
-				<div class="recipe-body leading-loose" style="font-family: var(--font-body)">
+				<div class="recipe-body leading-loose font-body">
 					{#if bodyComponent}
 						{@const Body = bodyComponent}
 						<Body />
@@ -367,12 +366,12 @@
 			<!-- Moumy's notes -->
 			{#if recipe.notes}
 				<div
-					class="mt-8 p-6 rounded-xl leading-relaxed text-2xl sm:text-xl text-primary-700-300 bg-surface-100-900 relative"
-					style="font-family: var(--font-handwriting); border: 2px dashed var(--color-gold)"
+					class="mt-8 p-6 rounded-xl leading-relaxed text-2xl sm:text-xl text-primary-700-300 bg-surface-100-900 relative font-handwriting"
+					style="border: 2px dashed var(--color-gold)"
 				>
 					<span
-						class="top-2 left-3 text-5xl absolute leading-none opacity-30"
-						style="color: var(--color-gold); font-family: var(--font-title)"
+						class="top-2 left-3 text-5xl absolute leading-none opacity-30 font-title"
+						style="color: var(--color-gold)"
 						aria-hidden="true"
 					>
 						{'\u201C'}
@@ -392,8 +391,8 @@
 					</div>
 					<p class="pl-4">{recipe.notes}</p>
 					<span
-						class="bottom-2 right-3 text-5xl absolute leading-none opacity-30"
-						style="color: var(--color-gold); font-family: var(--font-title)"
+						class="bottom-2 right-3 text-5xl absolute leading-none opacity-30 font-title"
+						style="color: var(--color-gold)"
 						aria-hidden="true"
 					>
 						{'\u201D'}

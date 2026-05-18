@@ -84,8 +84,7 @@
 					/>
 				</svg>
 				<p
-					class="text-xl leading-normal m-0 text-surface-950-50"
-					style="font-family: var(--font-handwriting)"
+					class="text-xl leading-normal m-0 text-surface-950-50 font-handwriting"
 				>
 					Le manuscrit<br />de Moumy
 				</p>
