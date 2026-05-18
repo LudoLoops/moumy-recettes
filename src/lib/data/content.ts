@@ -1,41 +1,118 @@
 /**
- * Content loader — combines editorial content with UI labels.
+ * Content loader — loads editorial content from src/data/content/*.md files.
  *
- * Editorial content: defined here as typed constants (mirrors src/data/content/*.md files).
- * UI labels: imported from src/data/content/ui.json.
- * Exports the same shape as the old content.json so existing components don't break.
+ * Each .md file has YAML frontmatter + body text, loaded via import.meta.glob at build time.
+ * UI labels come from src/data/content/ui.json.
+ * Hot-reloads in dev when files change.
  */
 
 import ui from '../../data/content/ui.json';
 
+// Import raw markdown content (frontmatter + body)
+const rawModules = import.meta.glob<string>('../../data/content/**/*.md', {
+	eager: true,
+	query: '?raw',
+	import: 'default'
+});
+
+/**
+ * Extract YAML frontmatter and body from raw markdown.
+ * Returns { metadata, body } where metadata is a simple object.
+ */
+function parseMd(raw: string): { metadata: Record<string, any>; body: string } {
+	const parts = raw.split('---');
+	if (parts.length < 3) return { metadata: {}, body: raw.trim() };
+
+	const yaml = parts[1].trim();
+	const body = parts.slice(2).join('---').trim();
+
+	// Simple YAML parser for flat + one-level nested
+	const metadata: Record<string, any> = {};
+	let currentKey = '';
+	const nested: Record<string, string> = {};
+	let inNested = false;
+
+	for (const line of yaml.split('\n')) {
+		// Nested line (2 spaces indent)
+		const nestedMatch = line.match(/^\s{2}(\w+):\s*"?(.+?)"?\s*$/);
+		if (nestedMatch && inNested) {
+			nested[nestedMatch[1]] = nestedMatch[2];
+			continue;
+		}
+
+		// Top-level key: value
+		const match = line.match(/^(\w+):\s*(.*)$/);
+		if (match) {
+			if (inNested && currentKey) {
+				metadata[currentKey] = { ...nested };
+				for (const k of Object.keys(nested)) delete nested[k];
+				inNested = false;
+			}
+
+			currentKey = match[1];
+			let val: string = match[2].trim();
+			// Remove surrounding quotes
+			if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+				val = val.slice(1, -1);
+			}
+			if (val === '') {
+				inNested = true;
+			} else {
+				metadata[currentKey] = val;
+			}
+		}
+	}
+	// Save last nested
+	if (inNested && currentKey) {
+		metadata[currentKey] = { ...nested };
+	}
+
+	return { metadata, body };
+}
+
+/**
+ * Build key from file path.
+ * e.g. "../../data/content/landing/hero.md" → "landing/hero"
+ */
+function contentKey(path: string): string {
+	return path.replace('../../data/content/', '').replace('.md', '');
+}
+
+// Parse all .md files
+const parsed: Record<string, { metadata: Record<string, any>; body: string }> = {};
+for (const [path, raw] of Object.entries(rawModules)) {
+	parsed[contentKey(path)] = parseMd(raw as string);
+}
+
+// Build the content object matching the old shape
+const hero = parsed['landing/hero'] || { metadata: {}, body: '' };
+const quote = parsed['landing/quote'] || { metadata: {}, body: '' };
+const souvenirs = parsed['landing/souvenirs'] || { metadata: {}, body: '' };
+const footer = parsed['footer'] || { metadata: {}, body: '' };
+
 const content = {
 	landing: {
 		hero: {
-			title: 'Les recettes de Moumy',
-			subtitle: 'avec amour et souvenirs',
-			description:
-				"En mémoire de Moumy, qui nous a transmis l'amour de la cuisine et ses secrets de famille précieux.",
-			badge: "Un héritage culinaire qui traverse les générations"
+			title: hero.metadata.title || '',
+			subtitle: hero.metadata.subtitle || '',
+			description: hero.body || hero.metadata.description || '',
+			badge: hero.metadata.badge || ''
 		},
 		quote: {
-			text: "La cuisine, c'est de l'amour qui se partage. Chaque plat raconte une histoire, chaque recette porte en elle des souvenirs précieux.",
-			attribution: '— Moumy'
+			text: quote.body || '',
+			attribution: quote.metadata.attribution || ''
 		},
 		familyMemories: {
-			title: 'Souvenirs de famille',
-			text: "Chaque dimanche, Moumy préparait son célèbre poulet rôti. L'odeur remplissait la maison, attirant petits et grands vers la cuisine. Ces recettes ne sont pas seulement des instructions, ce sont des morceaux de notre histoire familiale, transmises avec amour de génération en génération.",
-			stats: {
-				recipes: 'Recettes préservées',
-				memories: 'Souvenirs chéris',
-				hearts: 'Toujours dans nos cœurs'
-			}
+			title: souvenirs.metadata.title || '',
+			text: souvenirs.body || '',
+			stats: souvenirs.metadata.stats || {}
 		}
 	},
 	footer: {
-		brand: 'Les recettes de Moumy',
-		description: "Un hommage à Moumy, sa cuisine et tout l'amour qu'elle a mis dans chaque recette.",
-		closing: 'Avec tout notre amour',
-		copyright: 'Les recettes de Moumy — Un hommage familial'
+		brand: footer.metadata.brand || '',
+		description: footer.metadata.description || '',
+		closing: footer.metadata.closing || '',
+		copyright: footer.metadata.copyright || ''
 	},
 	nav: ui.nav,
 	browser: ui.browser,
