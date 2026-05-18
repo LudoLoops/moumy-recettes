@@ -9,7 +9,7 @@
 import ui from '../../data/content/ui.json';
 
 // Import raw markdown content (frontmatter + body)
-const rawModules = import.meta.glob<string>('../../data/content/**/*.md', {
+const rawModules = import.meta.glob<string>('../../data/content/*.md', {
 	eager: true,
 	query: '?raw',
 	import: 'default'
@@ -85,9 +85,9 @@ for (const [path, raw] of Object.entries(rawModules)) {
 }
 
 // Build the content object matching the old shape
-const hero = parsed['landing/hero'] || { metadata: {}, body: '' };
-const quote = parsed['landing/quote'] || { metadata: {}, body: '' };
-const souvenirs = parsed['landing/souvenirs'] || { metadata: {}, body: '' };
+const hero = parsed['hero'] || { metadata: {}, body: '' };
+const quote = parsed['quote'] || { metadata: {}, body: '' };
+const souvenirs = parsed['souvenirs'] || { metadata: {}, body: '' };
 const footer = parsed['footer'] || { metadata: {}, body: '' };
 
 const content = {
