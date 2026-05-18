@@ -2,7 +2,7 @@
 	import { getVisibleRecipes } from '$data/recettes';
 	import { RecipeBrowser } from '$lib/components';
 	import { page } from '$app/stores';
-	import content from '$lib/data/content';
+	import content, { getContentBody } from '$lib/data/content';
 	import { SITE_URL } from '$lib/config';
 
 	let data = $derived($page.data);
@@ -60,7 +60,7 @@
 				class="fade-in text-xl md:text-2xl max-w-2xl leading-relaxed text-primary-600-400 mx-auto font-title"
 				style="animation-delay: 0.2s"
 			>
-			{content.landing.hero.description}
+			{#if content.landing.hero.body}{@const HeroBody = content.landing.hero.body}<HeroBody />{/if}
 			</p>
 			<div class="mt-8 fade-in" style="animation-delay: 0.3s">
 				<div class="gap-3 text-primary-400-600 inline-flex items-center">
@@ -88,7 +88,7 @@
 		<p
 			class="text-3xl md:text-4xl leading-relaxed mb-4 text-primary-700-300 font-handwriting"
 		>
-			"{content.landing.quote.text}"
+			{#if content.landing.quote.body}{@const QuoteBody = content.landing.quote.body}<QuoteBody />{/if}
 		</p>
 		<p class="text-lg text-primary-600-400 italic font-title">
 			{content.landing.quote.attribution}
@@ -116,7 +116,7 @@
 			{content.landing.familyMemories.title}
 		</h2>
 		<p class="leading-relaxed mb-8 text-primary-600-400">
-			{content.landing.familyMemories.text}
+			{#if content.landing.familyMemories.body}{@const SouvenirsBody = content.landing.familyMemories.body}<SouvenirsBody />{/if}
 		</p>
 		<div class="gap-8 mt-12 flex justify-center">
 			<div class="text-center">
