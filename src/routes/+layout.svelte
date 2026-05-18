@@ -5,7 +5,6 @@
 	import { Footer, Navbar } from '$lib/components';
 	import { SITE_URL } from '$lib/config';
 	import { themeStore } from '$lib/utils/theme.svelte';
-	import { SITE_URL } from '$lib/config';
 	import '../app.css';
 	let { children } = $props();
 
