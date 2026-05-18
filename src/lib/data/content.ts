@@ -1,12 +1,12 @@
 /**
  * Content loader — combines editorial content with UI labels.
  *
- * Editorial content: defined here as typed constants (mirrors src/content/*.md files).
- * UI labels: imported from src/content/ui.json.
+ * Editorial content: defined here as typed constants (mirrors src/data/content/*.md files).
+ * UI labels: imported from src/data/content/ui.json.
  * Exports the same shape as the old content.json so existing components don't break.
  */
 
-import ui from '../../content/ui.json';
+import ui from '../data/content/ui.json';
 
 const content = {
 	landing: {
