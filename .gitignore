@@ -25,3 +25,5 @@ vite.config.ts.timestamp-*
 /.obsidian
 moumy-editor.exe
 moumy-editor
+
+/moumy-editor.exe
