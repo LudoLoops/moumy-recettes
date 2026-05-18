@@ -4,6 +4,7 @@
 	import { beforeNavigate } from '$app/navigation';
 	import { Footer, Navbar } from '$lib/components';
 	import { themeStore } from '$lib/utils/theme.svelte';
+	import { SITE_URL } from '$lib/config';
 	import '../app.css';
 	let { children } = $props();
 
@@ -25,6 +26,13 @@
 		}
 	});
 </script>
+
+<svelte:head>
+	<meta property="og:site_name" content="Les recettes de Moumy" />
+	<meta property="og:url" content="{SITE_URL}{$page.url.pathname}" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="{SITE_URL}" />
+</svelte:head>
 
 <div class="flex min-h-screen flex-col">
 	{#if !isHomepage}

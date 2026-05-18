@@ -90,6 +90,32 @@ export function getRecipeBody(slug: string): any {
 	return null;
 }
 
+// Raw markdown bodies for JSON-LD step extraction
+const recipeRawBodies = import.meta.glob<string>('./recettes/**/*.md', {
+	eager: true,
+	query: '?raw',
+	import: 'default'
+});
+
+/**
+ * Get the preparation steps from a recipe's markdown body.
+ * Parses numbered lines like "1. Do something." into an array of strings.
+ */
+export function getRecipeSteps(slug: string): string[] {
+	for (const [path, raw] of Object.entries(recipeRawBodies)) {
+		if (path.endsWith(`/${slug}.md`)) {
+			const body = raw.split('---').slice(2).join('---').trim();
+			const steps: string[] = [];
+			for (const line of body.split('\n')) {
+				const match = line.match(/^\d+\.\s+(.+)$/);
+				if (match) steps.push(match[1].trim());
+			}
+			return steps;
+		}
+	}
+	return [];
+}
+
 /**
  * Get all unique ingredients across all recipes, with the recipes that use each.
  * Groups by first word (singular), handles compounds like "pomme de terre".
