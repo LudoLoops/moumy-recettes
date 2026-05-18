@@ -30,6 +30,8 @@
 		name="description"
 		content="Parcourez toutes les recettes de Moumy par ingrédient. Retrouvez vos plats préférés grâce à notre index culinaire."
 	/>
+	<meta property="og:title" content="Index des ingrédients — Les recettes de Moumy" />
+	<meta property="og:description" content="Parcourez toutes les recettes de Moumy par ingrédient. Retrouvez vos plats préférés grâce à notre index culinaire." />
 </svelte:head>
 
 <div class="pattern-overlay"></div>

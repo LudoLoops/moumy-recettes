@@ -13,6 +13,8 @@
 		name="description"
 		content="Découvrez toutes les recettes de Moumy, transmises avec amour de génération en génération."
 	/>
+	<meta property="og:title" content="Nos recettes — Les recettes de Moumy" />
+	<meta property="og:description" content="Découvrez toutes les recettes de Moumy, transmises avec amour de génération en génération." />
 </svelte:head>
 
 <div class="pattern-overlay"></div>

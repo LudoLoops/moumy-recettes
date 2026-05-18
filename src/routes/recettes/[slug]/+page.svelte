@@ -2,14 +2,57 @@
 	import type { PageData } from './$types';
 	import { Badge, Button } from '$lib/components';
 	import { getRecipeBody } from '$data/recettes';
+	import { getRecipeSteps } from '$data/recettes';
 	import ManuscriptImage from '$lib/components/ManuscriptImage.svelte';
 	import { goto } from '$app/navigation';
 	import content from '$lib/data/content';
+	import { SITE_URL } from '$lib/config';
 
 	let { data }: { data: PageData } = $props();
 	const recipe = $derived(data.recipe);
 
 	const bodyComponent = $derived(getRecipeBody(recipe.slug));
+
+	// Build absolute manuscript image URL for OG
+	const manuscriptImageUrl = $derived.by(() => {
+		const imageModules = import.meta.glob<{ default: string }>('$data/img/*.{jpg,jpeg,png,webp}', { eager: true });
+		const baseSlug = recipe.slug.split('_')[0];
+		const candidates = baseSlug !== recipe.slug ? [recipe.slug, baseSlug] : [recipe.slug];
+		for (const slug of candidates) {
+			for (const [path, mod] of Object.entries(imageModules)) {
+				if (path.includes(slug)) {
+					const src = (mod as { default: string }).default;
+					if (src) return `${SITE_URL}${src}`;
+				}
+			}
+		}
+		return `${SITE_URL}/favicon.png`;
+	});
+
+	// Parse prep/cook time to ISO 8601 duration
+	function toIsoDuration(minutes: string | number): string {
+		const mins = typeof minutes === 'string' ? parseInt(minutes, 10) : minutes;
+		if (isNaN(mins) || mins <= 0) return 'PT0M';
+		return `PT${mins}M`;
+	}
+
+	// Build JSON-LD Recipe schema
+	const jsonLd = $derived({
+		"@context": "https://schema.org",
+		"@type": "Recipe",
+		"name": recipe.title,
+		"description": recipe.excerpt || `Recette de ${recipe.title}`,
+		"image": manuscriptImageUrl,
+		"recipeIngredient": recipe.ingredients,
+		"recipeInstructions": getRecipeSteps(recipe.slug).map((text) => ({
+			"@type": "HowToStep",
+			"text": text
+		})),
+		"prepTime": toIsoDuration(recipe.prepTime),
+		"cookTime": toIsoDuration(recipe.cookTime),
+		"recipeYield": recipe.servings,
+		"recipeCategory": recipe.categoryDisplay
+	});
 
 	// Second ingredients list: title + items (both optional)
 	const hasIngredients2 = $derived(
@@ -87,6 +130,9 @@
 	<meta property="og:title" content="{recipe.title} — Les recettes de Moumy" />
 	<meta property="og:description" content={recipe.excerpt} />
 	<meta property="og:type" content="article" />
+	<meta property="og:image" content={manuscriptImageUrl} />
+	<meta name="twitter:image" content={manuscriptImageUrl} />
+	{@html `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`}
 </svelte:head>
 
 <div

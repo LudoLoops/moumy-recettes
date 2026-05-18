@@ -3,6 +3,7 @@
 	import { RecipeBrowser } from '$lib/components';
 	import { page } from '$app/stores';
 	import content from '$lib/data/content';
+	import { SITE_URL } from '$lib/config';
 
 	let data = $derived($page.data);
 	let allRecipes = $derived(data.recipes ?? getVisibleRecipes());
@@ -14,6 +15,16 @@
 		name="description"
 		content="En mémoire de Moumy, qui nous a transmis l'amour de la cuisine et ses secrets de famille précieux"
 	/>
+	<meta property="og:title" content="Les recettes de Moumy" />
+	<meta property="og:description" content="En mémoire de Moumy, qui nous a transmis l'amour de la cuisine et ses secrets de famille précieux" />
+	<meta property="og:type" content="website" />
+	{@html `<script type="application/ld+json">${JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "WebSite",
+			"name": "Les recettes de Moumy",
+			"url": SITE_URL,
+			"description": "En mémoire de Moumy, qui nous a transmis l'amour de la cuisine et ses secrets de famille précieux"
+		})}</script>`}
 </svelte:head>
 
 <div class="pattern-overlay"></div>

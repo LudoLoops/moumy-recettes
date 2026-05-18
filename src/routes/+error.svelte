@@ -27,6 +27,8 @@
 <svelte:head>
 	<title>{errorConfig.code} - {errorConfig.title}</title>
 	<meta name="description" content={errorConfig.description} />
+	<meta property="og:title" content="{errorConfig.code} - {errorConfig.title}" />
+	<meta property="og:description" content={errorConfig.description} />
 </svelte:head>
 
 <div class="min-h-screen flex items-center justify-center bg-surface-50-950 px-4 py-16">

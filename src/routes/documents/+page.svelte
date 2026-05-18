@@ -13,6 +13,8 @@
 		name="description"
 		content="Les carnets et documents manuscrits de Moumy, conservés avec soin."
 	/>
+	<meta property="og:title" content="Documents — Les recettes de Moumy" />
+	<meta property="og:description" content="Les carnets et documents manuscrits de Moumy, conservés avec soin." />
 </svelte:head>
 
 <div class="pattern-overlay"></div>
