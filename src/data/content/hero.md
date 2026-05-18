@@ -1,6 +1,5 @@
 ---
-badge: Un héritage culinaire qui traverse les générations
+badge: "Plus qu'une transmission culinaire, une \\"Madelaine de Proust\\""
 ---
 
-En mémoire de Moumy, qui savait nous recevoir avec ses petits plats bien agréables.
-C'est à travers l'écriture de ses recettes et sa façon de les classer que nous retrouvons sa personnalité.
+En mémoire de Moumy, qui savait toujours nous recevoir, même à l'improviste avec ses petits plats bien agréables.
