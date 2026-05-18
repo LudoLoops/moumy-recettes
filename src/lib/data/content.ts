@@ -6,7 +6,7 @@
  * Exports the same shape as the old content.json so existing components don't break.
  */
 
-import ui from '../data/content/ui.json';
+import ui from '../../data/content/ui.json';
 
 const content = {
 	landing: {

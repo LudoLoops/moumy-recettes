@@ -5,6 +5,7 @@
 
 <svelte:head>
 	<title>Mentions légales - Les recettes de Moumy</title>
+	<meta name="description" content="Mentions légales du site Les recettes de Moumy — éditeur, hébergement, propriété intellectuelle et contact." />
 </svelte:head>
 
 <div class="container mx-auto px-4 max-w-4xl py-12">

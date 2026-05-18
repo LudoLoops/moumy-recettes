@@ -3,9 +3,12 @@
 	import { page } from '$app/stores';
 	import { beforeNavigate } from '$app/navigation';
 	import { Footer, Navbar } from '$lib/components';
+	import { SITE_URL } from '$lib/config';
 	import { themeStore } from '$lib/utils/theme.svelte';
 	import '../app.css';
 	let { children } = $props();
+
+	let canonicalUrl = $derived(`${SITE_URL}${$page.url.pathname}`);
 
 	onMount(() => {
 		themeStore.init();
@@ -25,6 +28,10 @@
 		}
 	});
 </script>
+
+<svelte:head>
+	<link rel="canonical" href={canonicalUrl} />
+</svelte:head>
 
 <div class="flex min-h-screen flex-col">
 	{#if !isHomepage}

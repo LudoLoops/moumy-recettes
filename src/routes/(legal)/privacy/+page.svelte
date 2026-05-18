@@ -5,6 +5,7 @@
 
 <svelte:head>
 	<title>Politique de confidentialité - Les recettes de Moumy</title>
+	<meta name="description" content="Politique de confidentialité — collecte, traitement et protection des données personnelles sur Les recettes de Moumy." />
 </svelte:head>
 
 <div class="container mx-auto px-4 max-w-4xl py-12">
