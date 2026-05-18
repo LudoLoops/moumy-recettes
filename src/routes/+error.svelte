@@ -27,6 +27,8 @@
 <svelte:head>
 	<title>{errorConfig.code} - {errorConfig.title}</title>
 	<meta name="description" content={errorConfig.description} />
+	<meta property="og:title" content="{errorConfig.code} - {errorConfig.title}" />
+	<meta property="og:description" content={errorConfig.description} />
 </svelte:head>
 
 <div class="min-h-screen flex items-center justify-center bg-surface-50-950 px-4 py-16">
@@ -42,7 +44,7 @@
 
 			{#if status !== 404 && message}
 				<div class="mt-6 p-4 bg-surface-50-950/50 border border-surface-300-700 rounded-xl text-left">
-					<p class="text-[10px] uppercase font-bold text-muted-foreground mb-1 tracking-wider">Error Details</p>
+					<p class="text-[10px] uppercase font-bold text-surface-500-400 mb-1 tracking-wider">Error Details</p>
 					<p class="text-xs font-mono text-error-500 break-all leading-relaxed">{message}</p>
 				</div>
 			{/if}

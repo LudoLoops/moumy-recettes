@@ -105,6 +105,12 @@
 	--weight-subtitle: 600;
 	--weight-title: 700;
 
+	/* NOTE: font-bold (700), font-semibold (600), font-black (900) are standard
+	   Tailwind utilities and are acceptable as-is. They align with the weight
+	   tokens above where applicable (e.g. font-bold ≈ --weight-title: 700).
+	   No additional tokens (--weight-heading, --weight-body, --weight-display)
+	   are needed — the existing tokens cover the design system's requirements. */
+
 	/* =========================================================================
 	   MAX WIDTH
 	   ========================================================================= */
@@ -128,7 +134,8 @@
 	--gap-lg: 1.25rem;
 	--gap-xl: 2.5rem;
 
-	--space-section: 3rem;
+	--space-section: 5rem;
+	--space-section-lg: 7.5rem;
 	--space-group: 2rem;
 	--space-element: 1.25rem;
 	--space-inline: 0.625rem;
@@ -242,7 +249,23 @@
 	   Notion uses 64-120px between major sections. We adapt this to
 	   Moumy's warmer feel with generous vertical rhythm.
 	   ========================================================================= */
+}
 
-	--space-section: 5rem;
-	--space-section-lg: 7.5rem;
+/* ==========================================================================
+   FONT UTILITY CLASSES
+
+   Replaces inline style="font-family: var(--font-xxx)" with semantic classes.
+   These use the tokens defined in [data-theme='svelteForge'] above.
+   ========================================================================== */
+
+.font-handwriting {
+	font-family: var(--font-handwriting);
+}
+
+.font-title {
+	font-family: var(--font-title);
+}
+
+.font-body {
+	font-family: var(--font-body);
 }

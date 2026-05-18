@@ -133,12 +133,12 @@
 
 	.step-circle-completed {
 		background-color: var(--color-success-500);
-		color: white;
+		color: var(--color-surface-50);
 	}
 
 	.step-circle-current {
 		background-color: var(--color-primary-500);
-		color: white;
+		color: var(--color-surface-50);
 		box-shadow: 0 0 0 3px var(--color-primary-500 / 20%);
 	}
 
@@ -152,7 +152,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		color: white;
+		color: var(--color-surface-50);
 	}
 
 	/* Connector */

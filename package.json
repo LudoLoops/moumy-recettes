@@ -6,6 +6,7 @@
 	"scripts": {
 		"dev": "bun --bun vite dev --host",
 		"build": "bun --bun vite build",
+		"postbuild": "bun run scripts/generate-sitemap.ts",
 		"preview": "bun --bun vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -48,11 +49,7 @@
 	},
 	"dependencies": {
 		"@fontsource-variable/crimson-pro": "^5.2.8",
-		"@fontsource-variable/fira-code": "^5.2.7",
-		"@fontsource-variable/inter": "^5.2.8",
-		"@fontsource-variable/manrope": "^5.2.8",
 		"@fontsource-variable/playfair-display": "^5.2.8",
-		"@fontsource-variable/space-grotesk": "^5.2.10",
 		"@fontsource/great-vibes": "^5.2.8",
 		"clsx": "^2.1.1",
 		"lucide-svelte": "^1.0.1",

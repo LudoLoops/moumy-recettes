@@ -1,0 +1,33 @@
+{
+	"nav": {
+		"brand": "Les recettes de Moumy",
+		"recipes": "Recettes",
+		"ingredients": "Ingrédients",
+		"documents": "Documents"
+	},
+	"browser": {
+		"searchPlaceholder": "Rechercher une recette ou un ingrédient...",
+		"emptyTitle": "Aucune recette trouvée",
+		"emptyDescription": "Essayez une autre recherche ou catégorie",
+		"ingredientIndex": "Index des ingrédients"
+	},
+	"recipeDetail": {
+		"back": "Retour",
+		"sections": {
+			"ingredients": "Ingrédients",
+			"ingredients2Fallback": "Ingrédients (suite)",
+			"preparation": "Préparation",
+			"notes": "Notes de Moumy"
+		},
+		"meta": {
+			"prepTime": "Préparation",
+			"cookTime": "Cuisson",
+			"servings": "Portions",
+			"difficulty": "Difficulté"
+		},
+		"actions": {
+			"print": "Imprimer",
+			"share": "Partager"
+		}
+	}
+}

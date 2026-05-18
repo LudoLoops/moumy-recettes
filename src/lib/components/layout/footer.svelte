@@ -1,5 +1,5 @@
 <script lang="ts">
-	import content from '$lib/data/content.json';
+	import content from '$lib/data/content';
 	const currentYear = new Date().getFullYear();
 </script>
 
@@ -9,8 +9,7 @@
 			<div class="md:items-start gap-5 flex flex-col items-center">
 				<a
 					href="/"
-					class="text-surface-900-100 hover:text-primary-600-400 text-xl font-bold transition-colors"
-					style="font-family: var(--font-handwriting)"
+					class="text-surface-900-100 hover:text-primary-600-400 text-xl font-bold transition-colors font-handwriting"
 				>
 					{content.footer.brand}
 				</a>
@@ -21,7 +20,7 @@
 
 			<div class="md:items-end gap-5 flex flex-col items-center">
 				<div class="text-surface-500 md:items-end gap-1.5 text-sm flex flex-col items-center">
-					<p class="text-primary-600-400 text-base" style="font-family: var(--font-handwriting)">
+					<p class="text-primary-600-400 text-base font-handwriting">
 						{content.footer.closing}
 					</p>
 					<p>&copy; {currentYear} {content.footer.copyright}</p>

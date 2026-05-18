@@ -3,7 +3,7 @@
 	import { themeStore } from '$lib/utils/theme.svelte';
 	import ThemeToggle from '$lib/components/ui/ThemeToggle.svelte';
 	import { onMount, onDestroy } from 'svelte';
-	import content from '$lib/data/content.json';
+	import content from '$lib/data/content';
 
 	onMount(() => {
 		themeStore.init();
@@ -19,8 +19,8 @@
 		<AppBar.Lead>
 			<a
 				href="/"
-				class="text-primary-700-300 hover:text-primary-900-100 transition-colors"
-				style="font-size: var(--text-logo); font-weight: var(--weight-title); font-family: var(--font-handwriting)"
+				class="text-primary-700-300 hover:text-primary-900-100 transition-colors font-handwriting"
+				style="font-size: var(--text-logo); font-weight: var(--weight-title)"
 			>
 				{content.nav.brand}
 			</a>
@@ -30,22 +30,19 @@
 			<nav class="gap-4 md:gap-6 flex items-center">
 				<a
 					href="/recettes"
-					class="text-primary-700-300 hover:text-primary-900-100 text-sm transition-colors"
-					style="font-family: var(--font-body)"
+					class="text-primary-700-300 hover:text-primary-900-100 text-sm transition-colors font-body"
 				>
 					{content.nav.recipes}
 				</a>
 				<a
 					href="/ingredients"
-					class="text-primary-700-300 hover:text-primary-900-100 text-sm transition-colors"
-					style="font-family: var(--font-body)"
+					class="text-primary-700-300 hover:text-primary-900-100 text-sm transition-colors font-body"
 				>
 					{content.nav.ingredients}
 				</a>
 				<a
 					href="/documents"
-					class="text-primary-700-300 hover:text-primary-900-100 text-sm transition-colors"
-					style="font-family: var(--font-body)"
+					class="text-primary-700-300 hover:text-primary-900-100 text-sm transition-colors font-body"
 				>
 					{content.nav.documents}
 				</a>

@@ -4,7 +4,8 @@
 </script>
 
 <svelte:head>
-	<title>Privacy Policy - SvelteForge</title>
+	<title>Politique de confidentialité - Les recettes de Moumy</title>
+	<meta name="description" content="Politique de confidentialité — collecte, traitement et protection des données personnelles sur Les recettes de Moumy." />
 </svelte:head>
 
 <div class="container mx-auto px-4 max-w-4xl py-12">
@@ -145,7 +146,7 @@
 		</div>
 
 		<div class="mt-12 pt-8 border-t border-surface-200-800">
-			<p class="text-xs text-muted-foreground uppercase font-bold tracking-widest">
+			<p class="text-xs text-surface-500-400 uppercase font-bold tracking-widest">
 				Last updated: {currentYear}
 			</p>
 		</div>

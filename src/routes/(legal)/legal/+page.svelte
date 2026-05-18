@@ -4,7 +4,8 @@
 </script>
 
 <svelte:head>
-	<title>Legal Notice - SvelteForge</title>
+	<title>Mentions légales - Les recettes de Moumy</title>
+	<meta name="description" content="Mentions légales du site Les recettes de Moumy — éditeur, hébergement, propriété intellectuelle et contact." />
 </svelte:head>
 
 <div class="container mx-auto px-4 max-w-4xl py-12">
@@ -95,7 +96,7 @@
 		</div>
 
 		<div class="mt-12 pt-8 border-t border-surface-200-800">
-			<p class="text-xs text-muted-foreground uppercase font-bold tracking-widest">
+			<p class="text-xs text-surface-500-400 uppercase font-bold tracking-widest">
 				Last updated: {currentYear}
 			</p>
 		</div>

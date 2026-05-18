@@ -55,7 +55,7 @@
 		}
 	}
 
-	const sortedData = $derived(() => {
+	const sortedData = $derived.by(() => {
 		if (!sortKey) return data;
 		const sorted = [...data].sort((a, b) => {
 			const av = a[sortKey];
@@ -74,7 +74,7 @@
 			<tr class="border-b border-surface-300-700">
 				{#each columns as col (col.key)}
 					<th
-						class="text-left text-muted-foreground uppercase tracking-wider {col.width ?? ''}"
+						class="text-left text-surface-500-400 uppercase tracking-wider {col.width ?? ''}"
 						style="padding: var(--table-cell-py) var(--table-cell-px); font-size: var(--text-caption); font-weight: var(--weight-subtitle)"
 					>
 						{#if col.sortable}
@@ -108,12 +108,12 @@
 				{/each}
 			{:else if data.length === 0}
 				<tr>
-					<td colspan={columns.length} class="text-center text-muted-foreground" style="padding: var(--table-empty-py) var(--table-cell-px)">
+					<td colspan={columns.length} class="text-center text-surface-500-400" style="padding: var(--table-empty-py) var(--table-cell-px)">
 						{emptyMessage}
 					</td>
 				</tr>
 			{:else}
-				{#each sortedData() as row (String(row[rowKey] ?? ''))}
+				{#each sortedData as row (String(row[rowKey] ?? ''))}
 					<tr
 						class="border-b border-surface-200-800
 							{onRowClick ? 'hover:bg-surface-100-900 cursor-pointer' : ''}"

@@ -84,8 +84,7 @@
 					/>
 				</svg>
 				<p
-					class="text-xl leading-normal m-0 text-surface-950-50"
-					style="font-family: var(--font-handwriting)"
+					class="text-xl leading-normal m-0 text-surface-950-50 font-handwriting"
 				>
 					Le manuscrit<br />de Moumy
 				</p>
@@ -117,7 +116,7 @@
 		<button
 			type="button"
 			onclick={closeModal}
-			class="top-4 right-4 p-2 bg-white/10 hover:bg-white/20 text-white absolute rounded-full transition-colors"
+			class="top-4 right-4 p-2 bg-white/10 hover:bg-white/20 text-surface-50 absolute rounded-full transition-colors"
 			aria-label="Fermer"
 		>
 			<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
