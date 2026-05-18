@@ -4,7 +4,7 @@
 	import { getRecipeBody } from '$data/recettes';
 	import ManuscriptImage from '$lib/components/ManuscriptImage.svelte';
 	import { goto } from '$app/navigation';
-	import content from '$lib/data/content.json';
+	import content from '$lib/data/content';
 
 	let { data }: { data: PageData } = $props();
 	const recipe = $derived(data.recipe);

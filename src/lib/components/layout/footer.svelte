@@ -1,5 +1,5 @@
 <script lang="ts">
-	import content from '$lib/data/content.json';
+	import content from '$lib/data/content';
 	const currentYear = new Date().getFullYear();
 </script>
 

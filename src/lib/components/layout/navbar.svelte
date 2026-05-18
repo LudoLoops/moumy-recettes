@@ -3,7 +3,7 @@
 	import { themeStore } from '$lib/utils/theme.svelte';
 	import ThemeToggle from '$lib/components/ui/ThemeToggle.svelte';
 	import { onMount, onDestroy } from 'svelte';
-	import content from '$lib/data/content.json';
+	import content from '$lib/data/content';
 
 	onMount(() => {
 		themeStore.init();

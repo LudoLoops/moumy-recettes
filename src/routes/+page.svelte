@@ -2,7 +2,7 @@
 	import { getVisibleRecipes } from '$data/recettes';
 	import { RecipeBrowser } from '$lib/components';
 	import { page } from '$app/stores';
-	import content from '$lib/data/content.json';
+	import content from '$lib/data/content';
 
 	let data = $derived($page.data);
 	let allRecipes = $derived(data.recipes ?? getVisibleRecipes());

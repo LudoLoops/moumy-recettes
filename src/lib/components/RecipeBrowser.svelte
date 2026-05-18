@@ -5,7 +5,7 @@
 	import { browser } from '$app/environment';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
-	import content from '$lib/data/content.json';
+	import content from '$lib/data/content';
 
 	interface Props {
 		recipes: Recipe[];
