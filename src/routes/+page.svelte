@@ -34,20 +34,20 @@
 
 		<div class="max-w-6xl px-6 pt-24 pb-20 relative z-10 mx-auto text-center">
 			<p
-				class="fade-in text-2xl md:text-3xl mb-4"
-				style="font-family: var(--font-handwriting); color: var(--color-gold)"
+				class="fade-in text-2xl md:text-3xl mb-4 font-handwriting"
+				style="color: var(--color-gold)"
 			>
 				{content.landing.hero.subtitle}
 			</p>
 			<h1
-				class="hero-title fade-in text-5xl md:text-7xl mb-6 text-primary-700-300"
-				style="font-family: var(--font-handwriting); animation-delay: 0.1s"
+				class="hero-title fade-in text-5xl md:text-7xl mb-6 text-primary-700-300 font-handwriting"
+				style="animation-delay: 0.1s"
 			>
 				{content.landing.hero.title}
 			</h1>
 			<p
-				class="fade-in text-xl md:text-2xl max-w-2xl leading-relaxed text-primary-600-400 mx-auto"
-				style="font-family: var(--font-title); animation-delay: 0.2s"
+				class="fade-in text-xl md:text-2xl max-w-2xl leading-relaxed text-primary-600-400 mx-auto font-title"
+				style="animation-delay: 0.2s"
 			>
 			{content.landing.hero.description}
 			</p>
@@ -58,7 +58,7 @@
 							d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
 						/></svg
 					>
-					<span class="text-lg" style="font-family: var(--font-title)"
+					<span class="text-lg font-title"
 						>{content.landing.hero.badge}</span
 					>
 				</div>
@@ -75,12 +75,11 @@
 >
 	<div class="quote-section slide-in bg-surface-100-900">
 		<p
-			class="text-3xl md:text-4xl leading-relaxed mb-4 text-primary-700-300"
-			style="font-family: var(--font-handwriting)"
+			class="text-3xl md:text-4xl leading-relaxed mb-4 text-primary-700-300 font-handwriting"
 		>
 			"{content.landing.quote.text}"
 		</p>
-		<p class="text-lg text-primary-600-400 italic" style="font-family: var(--font-title)">
+		<p class="text-lg text-primary-600-400 italic font-title">
 			{content.landing.quote.attribution}
 		</p>
 	</div>
@@ -101,8 +100,7 @@
 >
 	<div class="max-w-4xl px-6 mx-auto text-center">
 		<h2
-			class="text-3xl md:text-4xl mb-8 text-primary-700-300"
-			style="font-family: var(--font-title)"
+			class="text-3xl md:text-4xl mb-8 text-primary-700-300 font-title"
 		>
 			{content.landing.familyMemories.title}
 		</h2>
@@ -111,24 +109,24 @@
 		</p>
 		<div class="gap-8 mt-12 flex justify-center">
 			<div class="text-center">
-				<p class="text-5xl" style="font-family: var(--font-handwriting); color: var(--color-gold)">
+				<p class="text-5xl font-handwriting" style="color: var(--color-gold)">
 					{allRecipes.length}
 				</p>
-				<p class="text-primary-600-400" style="font-family: var(--font-title)">
+				<p class="text-primary-600-400 font-title">
 					{content.landing.familyMemories.stats.recipes}
 				</p>
 			</div>
 			<div class="text-center">
-				<p class="text-5xl" style="font-family: var(--font-handwriting); color: var(--color-gold)">
+				<p class="text-5xl font-handwriting" style="color: var(--color-gold)">
 					&infin;
 				</p>
-				<p class="text-primary-600-400" style="font-family: var(--font-title)">{content.landing.familyMemories.stats.memories}</p>
+				<p class="text-primary-600-400 font-title">{content.landing.familyMemories.stats.memories}</p>
 			</div>
 			<div class="text-center">
-				<p class="text-5xl" style="font-family: var(--font-handwriting); color: var(--color-gold)">
+				<p class="text-5xl font-handwriting" style="color: var(--color-gold)">
 					&hearts;
 				</p>
-				<p class="text-primary-600-400" style="font-family: var(--font-title)">
+				<p class="text-primary-600-400 font-title">
 					{content.landing.familyMemories.stats.hearts}
 				</p>
 			</div>

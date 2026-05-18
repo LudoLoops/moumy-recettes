@@ -40,8 +40,7 @@
 								<Badge variant="gold" class="mb-3">Document</Badge>
 
 								<h2
-									class="text-xl font-semibold leading-tight mb-2 text-primary-900-100 capitalize"
-									style="font-family: var(--font-handwriting)"
+									class="text-xl font-semibold leading-tight mb-2 text-primary-900-100 capitalize font-handwriting"
 								>
 									{doc.title.replace(/^Document:\s*/i, '')}
 								</h2>
