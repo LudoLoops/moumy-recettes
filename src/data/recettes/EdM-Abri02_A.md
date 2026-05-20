@@ -3,7 +3,7 @@ title: "Abricots à l'Anglaise"
 slug: EdM-Abri02_A
 manuscript: ""
 category: Dessert
-excerpt:
+excerpt: Un dessert pouvant être préparé par les petits enfants
 prepTime: 5
 cookTime: 15
 servings: 6
