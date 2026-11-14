@@ -6,25 +6,18 @@
 // routes, and writes a sitemap.xml into the build output directory.
 // ============================================================================
 
-import { readdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
-import { join, resolve } from 'node:path';
+import { readdirSync, writeFileSync, existsSync } from 'node:fs';
+import { join } from 'node:path';
 
 const SITE_URL = 'https://lesrecettesdemoumy.fr';
 
 // Static routes that always exist
-const STATIC_ROUTES = [
-	'/',
-	'/recettes',
-	'/ingredients',
-	'/documents',
-	'/legal',
-	'/privacy'
-];
+const STATIC_ROUTES = ['/', '/recettes', '/ingredients', '/documents', '/legal', '/privacy'];
 
 // Resolve paths relative to project root (CWD when run via npm/bun script)
 const ROOT = process.cwd();
 const RECIPES_DIR = join(ROOT, 'src', 'data', 'recettes');
-const BUILD_DIR = join(ROOT, 'build');
+const BUILD_DIR = process.env.MOUMY_PREVIEW_BUILD_DIR ?? join(ROOT, 'build');
 
 /**
  * Extract slug from a recipe markdown filename.

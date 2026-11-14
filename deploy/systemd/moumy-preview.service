@@ -1,0 +1,30 @@
+[Unit]
+Description=Private static preview for Les recettes de Moumy
+After=network.target
+
+[Service]
+Type=simple
+EnvironmentFile=%h/.config/moumy-preview.env
+Environment=PATH=%h/.bun/bin:/usr/local/bin:/usr/bin
+Environment=MOUMY_PREVIEW_HOST=127.0.0.1
+Environment=MOUMY_PREVIEW_PORT=4175
+Environment=MOUMY_PREVIEW_DIR=%h/.local/share/moumy-preview
+ExecStart=/usr/bin/bash -c 'cd -- "$MOUMY_PREVIEW_REPO" && exec bun run preview:serve'
+Restart=on-failure
+RestartSec=2
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=read-only
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+LockPersonality=yes
+RestrictSUIDSGID=yes
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+IPAddressDeny=any
+IPAddressAllow=localhost
+ReadOnlyPaths=%h/.local/share/moumy-preview
+
+[Install]
+WantedBy=default.target

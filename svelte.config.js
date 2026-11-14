@@ -1,6 +1,8 @@
 import { mdsvex } from 'mdsvex';
 import adapter from '@sveltejs/adapter-static';
 
+const outputDirectory = process.env.MOUMY_PREVIEW_BUILD_DIR ?? 'build';
+
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	compilerOptions: {
@@ -8,7 +10,9 @@ const config = {
 		runes: ({ filename }) => (filename.split(/[/\\]/).includes('node_modules') ? undefined : true)
 	},
 	kit: {
-		adapter: adapter(),
+		adapter: process.env.MOUMY_PREVIEW_BUILD_DIR
+			? adapter({ pages: outputDirectory, assets: outputDirectory })
+			: adapter(),
 		alias: {
 			$data: 'src/data'
 		},
