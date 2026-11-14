@@ -90,9 +90,10 @@
 		color?: string;
 		class?: string;
 		title?: string;
+		style?: string;
 	}
 
-	let { name, size = 16, color, class: className, title }: Props = $props();
+	let { name, size = 16, color, class: className, title, style }: Props = $props();
 
 	const iconMap: Record<string, typeof Clock> = {
 		award: Award,
@@ -196,6 +197,6 @@
 	const IconComponent = $derived(iconMap[name] ?? iconMap.circleCheck);
 </script>
 
-<div class="inline-flex items-center justify-center {className}" {title}>
+<div class="inline-flex items-center justify-center {className}" {title} {style}>
 	<IconComponent {size} {color} />
 </div>

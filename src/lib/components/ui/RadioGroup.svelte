@@ -27,8 +27,8 @@
 	<SegmentedControl
 		{value}
 		name={name}
-		onValueChange={(details: { value: string }) => {
-			value = details.value;
+		onValueChange={(details) => {
+			if (details.value !== null) value = details.value;
 		}}
 	>
 		{#if label}

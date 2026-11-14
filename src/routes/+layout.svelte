@@ -20,7 +20,7 @@
 	// View Transitions — smooth fade between pages
 	beforeNavigate(({ type, willUnload }) => {
 		if (type === 'link' && !willUnload && document.startViewTransition) {
-			return new Promise((resolve) => {
+			return new Promise<void>((resolve) => {
 				document.startViewTransition(() => {
 					resolve();
 				});

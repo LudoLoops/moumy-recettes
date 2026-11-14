@@ -35,11 +35,11 @@
 		<span class="sf-progress-label">{label}</span>
 	{/if}
 
-	<Progress.Root {value} {max} aria-label={label ?? 'Progress'}>
+	<Progress {value} {max} aria-label={label ?? 'Progress'}>
 		<Progress.Track class="sf-progress-track">
 			<Progress.Range class="sf-progress-range" />
 		</Progress.Track>
-	</Progress.Root>
+	</Progress>
 
 	<span class="sf-progress-value" aria-hidden="true">{Math.round(percentage)}%</span>
 </div>
@@ -90,6 +90,6 @@
 		color: var(--color-surface-600-400);
 		min-width: 2.5rem;
 		text-align: right;
-		tabular-nums: true;
+		font-variant-numeric: tabular-nums;
 	}
 </style>
