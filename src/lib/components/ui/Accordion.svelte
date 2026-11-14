@@ -23,7 +23,7 @@
 </script>
 
 {#if items.length > 0}
-	<Accordion.Root {multiple} class={rootClass}>
+	<Accordion {multiple} class={rootClass}>
 		{#each items as item (item.value)}
 			<Accordion.Item value={item.value} class="sf-accordion-item">
 				<Accordion.ItemTrigger class="sf-accordion-trigger">
@@ -35,7 +35,7 @@
 				</Accordion.ItemContent>
 			</Accordion.Item>
 		{/each}
-	</Accordion.Root>
+	</Accordion>
 {/if}
 
 <style>
