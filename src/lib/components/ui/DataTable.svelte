@@ -74,13 +74,13 @@
 			<tr class="border-b border-surface-300-700">
 				{#each columns as col (col.key)}
 					<th
-						class="text-left text-surface-500-400 uppercase tracking-wider {col.width ?? ''}"
+						class="text-surface-500-400 text-left tracking-wider uppercase {col.width ?? ''}"
 						style="padding: var(--table-cell-py) var(--table-cell-px); font-size: var(--text-caption); font-weight: var(--weight-subtitle)"
 					>
 						{#if col.sortable}
 							<button
 								type="button"
-								class="inline-flex items-center hover:text-surface-900-100 transition-colors"
+								class="inline-flex items-center transition-colors hover:text-surface-900-100"
 								style="gap: var(--gap-xs)"
 								onclick={() => handleSort(col.key)}
 							>
@@ -99,16 +99,20 @@
 
 		<tbody>
 			{#if loading}
-				{#each columns as _}
+				{#each columns as col (col.key)}
 					<tr class="border-b border-surface-200-800">
 						<td style="padding: var(--table-cell-py) var(--table-cell-px)">
-							<div class="h-4 bg-surface-200-800 rounded animate-pulse"></div>
+							<div class="h-4 animate-pulse rounded bg-surface-200-800"></div>
 						</td>
 					</tr>
 				{/each}
 			{:else if data.length === 0}
 				<tr>
-					<td colspan={columns.length} class="text-center text-surface-500-400" style="padding: var(--table-empty-py) var(--table-cell-px)">
+					<td
+						colspan={columns.length}
+						class="text-surface-500-400 text-center"
+						style="padding: var(--table-empty-py) var(--table-cell-px)"
+					>
 						{emptyMessage}
 					</td>
 				</tr>
@@ -116,9 +120,11 @@
 				{#each sortedData as row (String(row[rowKey] ?? ''))}
 					<tr
 						class="border-b border-surface-200-800
-							{onRowClick ? 'hover:bg-surface-100-900 cursor-pointer' : ''}"
+							{onRowClick ? 'cursor-pointer hover:bg-surface-100-900' : ''}"
 						onclick={() => onRowClick?.(row)}
-						onkeydown={(e) => { if (e.key === 'Enter') onRowClick?.(row); }}
+						onkeydown={(e) => {
+							if (e.key === 'Enter') onRowClick?.(row);
+						}}
 						role={onRowClick ? 'button' : undefined}
 						tabindex={onRowClick ? 0 : undefined}
 					>

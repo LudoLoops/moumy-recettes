@@ -14,7 +14,7 @@
 		footer?: Snippet;
 		action?: Snippet; // Header action
 		title?: string; // Shorthand for simple header
-		icon?: any; // Shorthand icon name
+		icon?: string; // Shorthand icon name
 	}
 
 	let {
@@ -44,8 +44,8 @@
 
 <div class={cardClass} style="border-radius: var(--radius-card); {shadowStyle}">
 	{#if header || title}
-		<div class="card-header border-surface-200-800 flex items-center justify-between border-b">
-			<div class="gap-2 flex items-center">
+		<div class="card-header flex items-center justify-between border-b border-surface-200-800">
+			<div class="flex items-center gap-2">
 				{#if header}
 					{@render header()}
 				{:else if title}
@@ -71,7 +71,7 @@
 	</div>
 
 	{#if footer}
-		<div class="card-footer border-surface-300-700 preset-tonal-surface-500 border-t">
+		<div class="card-footer preset-tonal-surface-500 border-t border-surface-300-700">
 			{@render footer()}
 		</div>
 	{/if}

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { Badge, Card } from '$lib/components';
 	import type { Recipe } from '$data/recettes';
 
@@ -10,20 +11,20 @@
 </script>
 
 <article class="recipe-card fade-in">
-	<a href="/recettes/{recipe.slug}" class="block no-underline">
+	<a href={resolve('/recettes/[slug]', { slug: recipe.slug })} class="block no-underline">
 		<Card variant="elevated" noPadding>
 			<div class="p-6">
 				<Badge variant="gold" class="mb-3">{recipe.categoryDisplay}</Badge>
 
-				<h2 class="text-xl font-semibold leading-tight mb-2 text-primary-900-100 capitalize">
+				<h2 class="mb-2 text-xl leading-tight font-semibold text-primary-900-100 capitalize">
 					{recipe.title}
 				</h2>
-				<p class="text-sm leading-relaxed mb-3 text-primary-600-400">
+				<p class="mb-3 text-sm leading-relaxed text-primary-600-400">
 					{recipe.excerpt}
 				</p>
-				<div class="gap-4 text-xs text-primary-400-600 flex items-center">
-					<span class="gap-1 flex items-center">
-						<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+				<div class="flex items-center gap-4 text-xs text-primary-400-600">
+					<span class="flex items-center gap-1">
+						<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
 							><path
 								stroke-linecap="round"
 								stroke-linejoin="round"
@@ -33,8 +34,8 @@
 						>
 						{recipe.prepTime}
 					</span>
-					<span class="gap-1 flex items-center">
-						<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+					<span class="flex items-center gap-1">
+						<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
 							><path
 								stroke-linecap="round"
 								stroke-linejoin="round"
@@ -44,8 +45,8 @@
 						>
 						{recipe.servings}
 					</span>
-					<span class="gap-1 flex items-center">
-						<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+					<span class="flex items-center gap-1">
+						<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
 							><path
 								stroke-linecap="round"
 								stroke-linejoin="round"

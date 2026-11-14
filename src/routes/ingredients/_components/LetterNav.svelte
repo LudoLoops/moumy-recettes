@@ -7,12 +7,12 @@
 </script>
 
 <nav class="letter-nav" aria-label="Navigation alphabétique">
-	<ul class="gap-2 flex flex-wrap justify-center">
-		{#each letters as letter}
+	<ul class="flex flex-wrap justify-center gap-2">
+		{#each letters as letter (letter)}
 			<li>
 				<a
 					href="#lettre-{letter}"
-					class="letter-link bg-surface-50-950 text-primary-600-400 border-surface-200-800 border"
+					class="letter-link border border-surface-200-800 bg-surface-50-950 text-primary-600-400"
 					aria-label="Aller à la lettre {letter}"
 				>
 					{letter}

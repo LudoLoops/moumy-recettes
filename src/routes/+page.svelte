@@ -2,8 +2,17 @@
 	import { getVisibleRecipes } from '$data/recettes';
 	import { RecipeBrowser } from '$lib/components';
 	import { page } from '$app/stores';
-	import content, { getContentBody } from '$lib/data/content';
+	import content from '$lib/data/content';
 	import { SITE_URL } from '$lib/config';
+
+	const websiteJsonLd = JSON.stringify({
+		'@context': 'https://schema.org',
+		'@type': 'WebSite',
+		name: 'Les recettes de Moumy',
+		url: SITE_URL,
+		description:
+			"En mémoire de Moumy, qui nous a transmis l'amour de la cuisine et ses secrets de famille précieux"
+	}).replace(/</g, '\\u003c');
 
 	let data = $derived($page.data);
 	let allRecipes = $derived(data.recipes ?? getVisibleRecipes());
@@ -16,81 +25,77 @@
 		content="En mémoire de Moumy, qui nous a transmis l'amour de la cuisine et ses secrets de famille précieux"
 	/>
 	<meta property="og:title" content="Les recettes de Moumy" />
-	<meta property="og:description" content="En mémoire de Moumy, qui nous a transmis l'amour de la cuisine et ses secrets de famille précieux" />
+	<meta
+		property="og:description"
+		content="En mémoire de Moumy, qui nous a transmis l'amour de la cuisine et ses secrets de famille précieux"
+	/>
 	<meta property="og:type" content="website" />
-	{@html `<script type="application/ld+json">${JSON.stringify({
-			"@context": "https://schema.org",
-			"@type": "WebSite",
-			"name": "Les recettes de Moumy",
-			"url": SITE_URL,
-			"description": "En mémoire de Moumy, qui nous a transmis l'amour de la cuisine et ses secrets de famille précieux"
-		})}</script>`}
+	<!-- eslint-disable-next-line svelte/no-at-html-tags, @typescript-eslint/no-unused-expressions -- JSON is serialized and '<' escaped before insertion. -->
+	{@html '<script type="application/ld+json">' + websiteJsonLd + '</script>'}
 </svelte:head>
 
 <div class="pattern-overlay"></div>
 
 <!-- Hero -->
 <header>
-	<div class="bg-surface-100-900 relative overflow-hidden">
-		<div class="inset-0 pointer-events-none absolute opacity-10">
+	<div class="relative overflow-hidden bg-surface-100-900">
+		<div class="pointer-events-none absolute inset-0 opacity-10">
 			<div
-				class="top-10 left-10 w-32 h-32 blur-3xl absolute rounded-full"
+				class="absolute top-10 left-10 h-32 w-32 rounded-full blur-3xl"
 				style="background: var(--color-gold)"
 			></div>
 			<div
-				class="bottom-10 right-10 w-48 h-48 blur-3xl absolute rounded-full"
+				class="absolute right-10 bottom-10 h-48 w-48 rounded-full blur-3xl"
 				style="background: var(--color-warm-brown)"
 			></div>
 		</div>
 
-		<div class="max-w-6xl px-6 pt-24 pb-20 relative z-10 mx-auto text-center">
+		<div class="relative z-10 mx-auto max-w-6xl px-6 pt-24 pb-20 text-center">
 			<p
-				class="fade-in text-2xl md:text-3xl mb-4 font-handwriting"
+				class="fade-in font-handwriting mb-4 text-2xl md:text-3xl"
 				style="color: var(--color-gold)"
 			>
 				{content.landing.hero.subtitle}
 			</p>
 			<h1
-				class="hero-title fade-in text-5xl md:text-7xl mb-6 text-primary-700-300 font-handwriting"
+				class="hero-title fade-in font-handwriting mb-6 text-5xl text-primary-700-300 md:text-7xl"
 				style="animation-delay: 0.1s"
 			>
 				{content.landing.hero.title}
 			</h1>
 			<p
-				class="fade-in text-xl md:text-2xl max-w-2xl leading-relaxed text-primary-600-400 mx-auto font-title"
+				class="fade-in font-title mx-auto max-w-2xl text-xl leading-relaxed text-primary-600-400 md:text-2xl"
 				style="animation-delay: 0.2s"
 			>
-			{#if content.landing.hero.body}{@const HeroBody = content.landing.hero.body}<HeroBody />{/if}
+				{#if content.landing.hero.body}{@const HeroBody = content.landing.hero.body}<HeroBody
+					/>{/if}
 			</p>
-			<div class="mt-8 fade-in" style="animation-delay: 0.3s">
-				<div class="gap-3 text-primary-400-600 inline-flex items-center">
-					<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"
+			<div class="fade-in mt-8" style="animation-delay: 0.3s">
+				<div class="inline-flex items-center gap-3 text-primary-400-600">
+					<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"
 						><path
 							d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
 						/></svg
 					>
-					<span class="text-lg font-title"
-						>{content.landing.hero.badge}</span
-					>
+					<span class="font-title text-lg">{content.landing.hero.badge}</span>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="h-16 from-surface-100-900 bg-gradient-to-b to-transparent"></div>
+	<div class="h-16 bg-gradient-to-b from-surface-100-900 to-transparent"></div>
 </header>
 
 <!-- Quote -->
 <section
-	class="max-w-4xl px-6 relative z-10 mx-auto"
+	class="relative z-10 mx-auto max-w-4xl px-6"
 	style="padding-top: var(--space-section); padding-bottom: var(--space-section)"
 >
 	<div class="quote-section slide-in bg-surface-100-900">
-		<p
-			class="text-3xl md:text-4xl leading-relaxed mb-4 text-primary-700-300 font-handwriting"
-		>
-			{#if content.landing.quote.body}{@const QuoteBody = content.landing.quote.body}<QuoteBody />{/if}
+		<p class="font-handwriting mb-4 text-3xl leading-relaxed text-primary-700-300 md:text-4xl">
+			{#if content.landing.quote.body}{@const QuoteBody = content.landing.quote.body}<QuoteBody
+				/>{/if}
 		</p>
-		<p class="text-lg text-primary-600-400 italic font-title">
+		<p class="font-title text-lg text-primary-600-400 italic">
 			{content.landing.quote.attribution}
 		</p>
 	</div>
@@ -98,7 +103,7 @@
 
 <!-- Recipes -->
 <main
-	class="max-w-6xl px-6 relative z-10 mx-auto"
+	class="relative z-10 mx-auto max-w-6xl px-6"
 	style="padding-top: var(--space-section-lg); padding-bottom: var(--space-section-lg)"
 >
 	<RecipeBrowser recipes={allRecipes} />
@@ -106,38 +111,35 @@
 
 <!-- Family Memories -->
 <section
-	class="bg-surface-100-900 relative z-10"
+	class="relative z-10 bg-surface-100-900"
 	style="padding-top: var(--space-section-lg); padding-bottom: var(--space-section-lg)"
 >
-	<div class="max-w-4xl px-6 mx-auto text-center">
-		<h2
-			class="text-3xl md:text-4xl mb-8 text-primary-700-300 font-title"
-		>
+	<div class="mx-auto max-w-4xl px-6 text-center">
+		<h2 class="font-title mb-8 text-3xl text-primary-700-300 md:text-4xl">
 			{content.landing.familyMemories.title}
 		</h2>
-		<p class="leading-relaxed mb-8 text-primary-600-400">
-			{#if content.landing.familyMemories.body}{@const SouvenirsBody = content.landing.familyMemories.body}<SouvenirsBody />{/if}
+		<p class="mb-8 leading-relaxed text-primary-600-400">
+			{#if content.landing.familyMemories.body}{@const SouvenirsBody =
+					content.landing.familyMemories.body}<SouvenirsBody />{/if}
 		</p>
-		<div class="gap-8 mt-12 flex justify-center">
+		<div class="mt-12 flex justify-center gap-8">
 			<div class="text-center">
-				<p class="text-5xl font-handwriting" style="color: var(--color-gold)">
+				<p class="font-handwriting text-5xl" style="color: var(--color-gold)">
 					{allRecipes.length}
 				</p>
-				<p class="text-primary-600-400 font-title">
+				<p class="font-title text-primary-600-400">
 					{content.landing.familyMemories.stats.recipes}
 				</p>
 			</div>
 			<div class="text-center">
-				<p class="text-5xl font-handwriting" style="color: var(--color-gold)">
-					&infin;
+				<p class="font-handwriting text-5xl" style="color: var(--color-gold)">&infin;</p>
+				<p class="font-title text-primary-600-400">
+					{content.landing.familyMemories.stats.memories}
 				</p>
-				<p class="text-primary-600-400 font-title">{content.landing.familyMemories.stats.memories}</p>
 			</div>
 			<div class="text-center">
-				<p class="text-5xl font-handwriting" style="color: var(--color-gold)">
-					&hearts;
-				</p>
-				<p class="text-primary-600-400 font-title">
+				<p class="font-handwriting text-5xl" style="color: var(--color-gold)">&hearts;</p>
+				<p class="font-title text-primary-600-400">
 					{content.landing.familyMemories.stats.hearts}
 				</p>
 			</div>

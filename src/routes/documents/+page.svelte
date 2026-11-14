@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { resolve } from '$app/paths';
 	import { Card, Badge } from '$lib/components';
 	import type { Recipe } from '$data/recettes';
 
@@ -14,35 +14,36 @@
 		content="Les carnets et documents manuscrits de Moumy, conservés avec soin."
 	/>
 	<meta property="og:title" content="Documents — Les recettes de Moumy" />
-	<meta property="og:description" content="Les carnets et documents manuscrits de Moumy, conservés avec soin." />
+	<meta
+		property="og:description"
+		content="Les carnets et documents manuscrits de Moumy, conservés avec soin."
+	/>
 </svelte:head>
 
 <div class="pattern-overlay"></div>
 
 <main
-	class="max-w-6xl px-6 pt-8 relative z-10 mx-auto"
+	class="relative z-10 mx-auto max-w-6xl px-6 pt-8"
 	style="padding-bottom: var(--space-section-lg)"
 >
-	<h1 class="text-3xl md:text-4xl mb-4 text-primary-700-300 text-center">
-		Documents
-	</h1>
-	<p class="text-primary-600-400 text-center mb-12 max-w-2xl mx-auto leading-relaxed">
+	<h1 class="mb-4 text-center text-3xl text-primary-700-300 md:text-4xl">Documents</h1>
+	<p class="mx-auto mb-12 max-w-2xl text-center leading-relaxed text-primary-600-400">
 		Les pages de garde et couvertures des carnets de Moumy — des morceaux d'histoire familiale.
 	</p>
 
 	{#if documents.length === 0}
-		<p class="text-primary-400-600 text-center">Aucun document pour l'instant.</p>
+		<p class="text-center text-primary-400-600">Aucun document pour l'instant.</p>
 	{:else}
-		<div class="md:grid-cols-2 lg:grid-cols-3 gap-6 grid grid-cols-1">
-			{#each documents as doc, i}
+		<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+			{#each documents as doc, i (doc.slug)}
 				<article class="document-card fade-in" style="animation-delay: {(i * 0.05).toFixed(2)}s">
-					<a href="/recettes/{doc.slug}" class="block no-underline">
+					<a href={resolve('/recettes/[slug]', { slug: doc.slug })} class="block no-underline">
 						<Card variant="elevated" noPadding>
 							<div class="p-6">
 								<Badge variant="gold" class="mb-3">Document</Badge>
 
 								<h2
-									class="text-xl font-semibold leading-tight mb-2 text-primary-900-100 capitalize font-handwriting"
+									class="font-handwriting mb-2 text-xl leading-tight font-semibold text-primary-900-100 capitalize"
 								>
 									{doc.title.replace(/^Document:\s*/i, '')}
 								</h2>
@@ -91,5 +92,4 @@
 	.document-card:hover :global(.card)::before {
 		opacity: 1;
 	}
-
 </style>

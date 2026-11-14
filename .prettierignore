@@ -7,3 +7,7 @@ bun.lockb
 
 # Miscellaneous
 /static/
+AGENTS.md
+ObsTemplate/
+src/data/content/**/*.md
+src/data/recettes/**/*.md

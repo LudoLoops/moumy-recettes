@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
 	import { cn } from './utils/cn';
 
 	type ButtonVariant =
@@ -19,7 +20,7 @@
 		size?: ButtonSize;
 		class?: string;
 		style?: string;
-		children: any;
+		children: Snippet;
 		onclick?: (event: MouseEvent) => void;
 		onmouseenter?: () => void;
 		onmouseleave?: () => void;
@@ -55,8 +56,7 @@
 		primary: 'preset-filled-primary-500',
 		secondary: 'preset-filled-secondary-500',
 		outline: 'preset-outlined-primary-500',
-		ghost:
-			'hover:bg-surface-200-800 text-surface-700-300 hover:text-surface-900-50',
+		ghost: 'hover:bg-surface-200-800 text-surface-700-300 hover:text-surface-900-50',
 		danger: 'preset-filled-error-500',
 		success: 'preset-filled-success-500',
 		glass:
@@ -94,7 +94,7 @@
 >
 	{#if loading}
 		<span class="flex items-center justify-center gap-2">
-			<span class="w-4 h-4 border-2 border-current/30 border-t-current rounded-full animate-spin"
+			<span class="h-4 w-4 animate-spin rounded-full border-2 border-current/30 border-t-current"
 			></span>
 			{@render children()}
 		</span>

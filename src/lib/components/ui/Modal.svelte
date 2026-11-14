@@ -7,12 +7,11 @@
 		title: string;
 		onClose: () => void;
 		size?: 'sm' | 'md' | 'lg' | 'xl';
-		header?: Snippet;
 		children: Snippet;
 		footer?: Snippet;
 	}
 
-	let { open, title, onClose, size = 'md', header, children, footer }: Props = $props();
+	let { open, title, onClose, size = 'md', children, footer }: Props = $props();
 
 	const sizeStyles: Record<string, string> = {
 		sm: 'max-width: var(--max-w-modal-sm)',
@@ -31,8 +30,8 @@
 	<Portal>
 		<Dialog.Backdrop class="bg-black/50" />
 		<Dialog.Positioner>
-			<Dialog.Content class="card shadow-xl overflow-hidden" style={sizeStyles[size]}>
-				<div class="modal-header border-surface-300-700 flex items-center justify-between border-b">
+			<Dialog.Content class="overflow-hidden card shadow-xl" style={sizeStyles[size]}>
+				<div class="modal-header flex items-center justify-between border-b border-surface-300-700">
 					<Dialog.Title class="modal-title">{title}</Dialog.Title>
 					<Dialog.CloseTrigger class="btn-icon hover:bg-surface-200-800" aria-label="Close">
 						✕
@@ -44,7 +43,7 @@
 				</div>
 
 				{#if footer}
-					<div class="modal-header border-surface-300-700 border-t">
+					<div class="modal-header border-t border-surface-300-700">
 						{@render footer()}
 					</div>
 				{/if}

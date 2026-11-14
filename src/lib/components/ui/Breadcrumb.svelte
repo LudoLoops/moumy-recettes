@@ -22,6 +22,7 @@
 			{#each items as item, i (i)}
 				<li class="breadcrumb-item">
 					{#if i < lastIndex && item.href}
+						<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- The caller provides a fully resolved local breadcrumb URL. -->
 						<a href={item.href} class="breadcrumb-link">
 							{item.label}
 						</a>

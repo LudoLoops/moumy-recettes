@@ -220,28 +220,22 @@
 
 	/* Soft Card: content cards, feature blocks */
 	--shadow-card:
-		rgba(139, 111, 92, 0.04) 0px 4px 18px,
-		rgba(139, 111, 92, 0.027) 0px 2px 7.85px,
-		rgba(139, 111, 92, 0.02) 0px 0.8px 2.93px,
-		rgba(139, 111, 92, 0.01) 0px 0.18px 1.04px;
+		rgba(139, 111, 92, 0.04) 0px 4px 18px, rgba(139, 111, 92, 0.027) 0px 2px 7.85px,
+		rgba(139, 111, 92, 0.02) 0px 0.8px 2.93px, rgba(139, 111, 92, 0.01) 0px 0.18px 1.04px;
 
 	/* Deep Card: modals, featured panels, hero elements */
 	--shadow-deep:
-		rgba(139, 111, 92, 0.01) 0px 1px 3px,
-		rgba(139, 111, 92, 0.02) 0px 3px 7px,
-		rgba(139, 111, 92, 0.02) 0px 7px 15px,
-		rgba(139, 111, 92, 0.04) 0px 14px 28px,
+		rgba(139, 111, 92, 0.01) 0px 1px 3px, rgba(139, 111, 92, 0.02) 0px 3px 7px,
+		rgba(139, 111, 92, 0.02) 0px 7px 15px, rgba(139, 111, 92, 0.04) 0px 14px 28px,
 		rgba(139, 111, 92, 0.05) 0px 23px 52px;
 
 	/* Hover: subtle shadow lift on interactive cards */
 	--shadow-hover:
-		rgba(139, 111, 92, 0.06) 0px 8px 24px,
-		rgba(139, 111, 92, 0.04) 0px 4px 12px,
+		rgba(139, 111, 92, 0.06) 0px 8px 24px, rgba(139, 111, 92, 0.04) 0px 4px 12px,
 		rgba(139, 111, 92, 0.02) 0px 1.5px 4px;
 
 	/* Focus ring: keyboard focus on interactive elements */
-	--shadow-focus:
-		rgba(201, 169, 98, 0.25) 0px 0px 0px 3px;
+	--shadow-focus: rgba(201, 169, 98, 0.25) 0px 0px 0px 3px;
 
 	/* =========================================================================
 	   SECTION SPACING — Notion-inspired generous whitespace

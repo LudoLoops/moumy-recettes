@@ -80,8 +80,7 @@
 		Users,
 		Utensils,
 		Wine,
-		X,
-		XCircle
+		X
 	} from 'lucide-svelte';
 
 	interface Props {

@@ -4,6 +4,7 @@
 	import { getRecipeBody } from '$data/recettes';
 	import { getRecipeSteps } from '$data/recettes';
 	import ManuscriptImage from '$lib/components/ManuscriptImage.svelte';
+	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';
 	import content from '$lib/data/content';
 	import { SITE_URL } from '$lib/config';
@@ -15,7 +16,9 @@
 
 	// Build absolute manuscript image URL for OG
 	const manuscriptImageUrl = $derived.by(() => {
-		const imageModules = import.meta.glob<{ default: string }>('$data/img/*.{jpg,jpeg,png,webp}', { eager: true });
+		const imageModules = import.meta.glob<{ default: string }>('$data/img/*.{jpg,jpeg,png,webp}', {
+			eager: true
+		});
 		const baseSlug = recipe.slug.split('_')[0];
 		const candidates = baseSlug !== recipe.slug ? [recipe.slug, baseSlug] : [recipe.slug];
 		for (const slug of candidates) {
@@ -38,21 +41,22 @@
 
 	// Build JSON-LD Recipe schema
 	const jsonLd = $derived({
-		"@context": "https://schema.org",
-		"@type": "Recipe",
-		"name": recipe.title,
-		"description": recipe.excerpt || `Recette de ${recipe.title}`,
-		"image": manuscriptImageUrl,
-		"recipeIngredient": recipe.ingredients,
-		"recipeInstructions": getRecipeSteps(recipe.slug).map((text) => ({
-			"@type": "HowToStep",
-			"text": text
+		'@context': 'https://schema.org',
+		'@type': 'Recipe',
+		name: recipe.title,
+		description: recipe.excerpt || `Recette de ${recipe.title}`,
+		image: manuscriptImageUrl,
+		recipeIngredient: recipe.ingredients,
+		recipeInstructions: getRecipeSteps(recipe.slug).map((text) => ({
+			'@type': 'HowToStep',
+			text: text
 		})),
-		"prepTime": toIsoDuration(recipe.prepTime),
-		"cookTime": toIsoDuration(recipe.cookTime),
-		"recipeYield": recipe.servings,
-		"recipeCategory": recipe.categoryDisplay
+		prepTime: toIsoDuration(recipe.prepTime),
+		cookTime: toIsoDuration(recipe.cookTime),
+		recipeYield: recipe.servings,
+		recipeCategory: recipe.categoryDisplay
 	});
+	const jsonLdPayload = $derived(JSON.stringify(jsonLd).replace(/</g, '\\u003c'));
 
 	// Second ingredients list: title + items (both optional)
 	const hasIngredients2 = $derived(
@@ -91,7 +95,8 @@
 				if (refUrl.origin === window.location.origin && refUrl.pathname === '/') {
 					// Came from landing page → go to /recettes with any filters
 					const params = refUrl.searchParams.toString();
-					goto('/recettes' + (params ? '?' + params : ''));
+					// eslint-disable-next-line svelte/no-navigation-without-resolve -- URL is built from a resolved route plus current filters.
+					goto(resolve('/recettes') + (params ? '?' + params : ''));
 					return;
 				}
 			}
@@ -106,18 +111,16 @@
 {#snippet title()}
 	<Badge variant="gold">{recipe.categoryDisplay}</Badge>
 
-	<h1 class="text-4xl md:text-[2.75rem] leading-tight mt-4 mb-2 capitalize">
+	<h1 class="mt-4 mb-2 text-4xl leading-tight capitalize md:text-[2.75rem]">
 		{recipe.title}
 	</h1>
 
-	<p
-		class="text-lg leading-relaxed mb-6 text-surface-700-300 italic font-handwriting"
-	>
+	<p class="font-handwriting mb-6 text-lg leading-relaxed text-surface-700-300 italic">
 		{recipe.excerpt}
 	</p>
 
 	{#if recipe.legende}
-		<p class="mb-6 text-xl leading-relaxed text-primary-500-400 italic">
+		<p class="text-primary-500-400 mb-6 text-xl leading-relaxed italic">
 			{recipe.legende}
 		</p>
 	{/if}
@@ -132,22 +135,23 @@
 	<meta property="og:type" content="article" />
 	<meta property="og:image" content={manuscriptImageUrl} />
 	<meta name="twitter:image" content={manuscriptImageUrl} />
-	{@html `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`}
+	<!-- eslint-disable-next-line svelte/no-at-html-tags, @typescript-eslint/no-unused-expressions -- JSON is serialized and '<' escaped before insertion. -->
+	{@html '<script type="application/ld+json">' + jsonLdPayload + '</script>'}
 </svelte:head>
 
 <div
-	class="inset-0 pointer-events-none fixed z-0"
+	class="pointer-events-none fixed inset-0 z-0"
 	style="background-image: url(&quot;data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238B6F5C' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E&quot;)"
 ></div>
 
 <div
-	class="max-w-6xl px-4 md:px-6 pt-4 relative z-10 mx-auto"
+	class="relative z-10 mx-auto max-w-6xl px-4 pt-4 md:px-6"
 	style="padding-bottom: var(--space-section-lg)"
 >
 	<!-- Back link -->
 	<Button variant="ghost" size="sm" onclick={handleBack} class="no-print">
-		<span class="gap-1 flex items-center">
-			<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+		<span class="flex items-center gap-1">
+			<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
 			</svg>
 			{content.recipeDetail.back}
@@ -155,7 +159,7 @@
 	</Button>
 
 	<!-- Two-column grid -->
-	<div class="md:grid-cols-[1fr_2fr] gap-8 md:gap-12 mt-6 md:mt-8 grid grid-cols-1">
+	<div class="mt-6 grid grid-cols-1 gap-8 md:mt-8 md:grid-cols-[1fr_2fr] md:gap-12">
 		<div class="md:hidden">
 			{@render title()}
 		</div>
@@ -166,16 +170,16 @@
 
 		<!-- Right: Recipe content -->
 		<div>
-			<div class="md:block hidden">
+			<div class="hidden md:block">
 				{@render title()}
 			</div>
 			<!-- Meta info grid -->
-			<div class="sm:grid-cols-4 gap-4 mb-8 grid grid-cols-2">
+			<div class="mb-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
 				<div
-					class="gap-2.5 p-3 hover:border-gold sm:p-2 bg-surface-100-900 border-surface-200-800 flex items-start rounded-[10px] border transition-all duration-300 hover:-translate-y-px"
+					class="hover:border-gold flex items-start gap-2.5 rounded-[10px] border border-surface-200-800 bg-surface-100-900 p-3 transition-all duration-300 hover:-translate-y-px sm:p-2"
 				>
 					<svg
-						class="w-5 h-5 mt-0.5 shrink-0"
+						class="mt-0.5 h-5 w-5 shrink-0"
 						fill="none"
 						stroke="currentColor"
 						viewBox="0 0 24 24"
@@ -189,18 +193,18 @@
 						/>
 					</svg>
 					<div>
-						<span class="tracking-wide mb-0.5 text-surface-500 block text-[0.7rem] uppercase"
+						<span class="mb-0.5 block text-[0.7rem] tracking-wide text-surface-500 uppercase"
 							>{content.recipeDetail.meta.prepTime}</span
 						>
-						<span class="text-sm font-semibold block">{recipe.prepTime}</span>
+						<span class="block text-sm font-semibold">{recipe.prepTime}</span>
 					</div>
 				</div>
 
 				<div
-					class="gap-2.5 p-3 hover:border-gold sm:p-2 bg-surface-100-900 border-surface-200-800 flex items-start rounded-[10px] border transition-all duration-300 hover:-translate-y-px"
+					class="hover:border-gold flex items-start gap-2.5 rounded-[10px] border border-surface-200-800 bg-surface-100-900 p-3 transition-all duration-300 hover:-translate-y-px sm:p-2"
 				>
 					<svg
-						class="w-5 h-5 mt-0.5 shrink-0"
+						class="mt-0.5 h-5 w-5 shrink-0"
 						fill="none"
 						stroke="currentColor"
 						viewBox="0 0 24 24"
@@ -220,18 +224,18 @@
 						/>
 					</svg>
 					<div>
-						<span class="tracking-wide mb-0.5 text-surface-500 block text-[0.7rem] uppercase"
+						<span class="mb-0.5 block text-[0.7rem] tracking-wide text-surface-500 uppercase"
 							>{content.recipeDetail.meta.cookTime}</span
 						>
-						<span class="text-sm font-semibold block">{recipe.cookTime}</span>
+						<span class="block text-sm font-semibold">{recipe.cookTime}</span>
 					</div>
 				</div>
 
 				<div
-					class="gap-2.5 p-3 hover:border-gold sm:p-2 bg-surface-100-900 border-surface-200-800 flex items-start rounded-[10px] border transition-all duration-300 hover:-translate-y-px"
+					class="hover:border-gold flex items-start gap-2.5 rounded-[10px] border border-surface-200-800 bg-surface-100-900 p-3 transition-all duration-300 hover:-translate-y-px sm:p-2"
 				>
 					<svg
-						class="w-5 h-5 mt-0.5 shrink-0"
+						class="mt-0.5 h-5 w-5 shrink-0"
 						fill="none"
 						stroke="currentColor"
 						viewBox="0 0 24 24"
@@ -245,18 +249,18 @@
 						/>
 					</svg>
 					<div>
-						<span class="tracking-wide mb-0.5 text-surface-500 block text-[0.7rem] uppercase"
+						<span class="mb-0.5 block text-[0.7rem] tracking-wide text-surface-500 uppercase"
 							>{content.recipeDetail.meta.servings}</span
 						>
-						<span class="text-sm font-semibold block">{recipe.servings}</span>
+						<span class="block text-sm font-semibold">{recipe.servings}</span>
 					</div>
 				</div>
 
 				<div
-					class="gap-2.5 p-3 hover:border-gold sm:p-2 bg-surface-100-900 border-surface-200-800 flex items-start rounded-[10px] border transition-all duration-300 hover:-translate-y-px"
+					class="hover:border-gold flex items-start gap-2.5 rounded-[10px] border border-surface-200-800 bg-surface-100-900 p-3 transition-all duration-300 hover:-translate-y-px sm:p-2"
 				>
 					<svg
-						class="w-5 h-5 mt-0.5 shrink-0"
+						class="mt-0.5 h-5 w-5 shrink-0"
 						fill="none"
 						stroke="currentColor"
 						viewBox="0 0 24 24"
@@ -270,10 +274,10 @@
 						/>
 					</svg>
 					<div>
-						<span class="tracking-wide mb-0.5 text-surface-500 block text-[0.7rem] uppercase"
+						<span class="mb-0.5 block text-[0.7rem] tracking-wide text-surface-500 uppercase"
 							>{content.recipeDetail.meta.difficulty}</span
 						>
-						<span class="text-sm font-semibold block">{recipe.difficulty}</span>
+						<span class="block text-sm font-semibold">{recipe.difficulty}</span>
 					</div>
 				</div>
 			</div>
@@ -282,12 +286,12 @@
 			<div class="my-8" style="break-inside: avoid">
 				{#if hasIngredients2}
 					<!-- Two-column layout: ingredients side by side on desktop -->
-					<div class="md:grid-cols-2 gap-6 grid grid-cols-1">
+					<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
 						<!-- Main ingredients list -->
-						<section class="pl-5 border-l-3" style="border-color: var(--color-gold)">
-							<h2 class="gap-2 text-xl font-semibold mb-4 text-primary-700-300 flex items-center">
+						<section class="border-l-3 pl-5" style="border-color: var(--color-gold)">
+							<h2 class="mb-4 flex items-center gap-2 text-xl font-semibold text-primary-700-300">
 								<svg
-									class="w-5 h-5"
+									class="h-5 w-5"
 									fill="none"
 									stroke="currentColor"
 									viewBox="0 0 24 24"
@@ -304,9 +308,9 @@
 							</h2>
 							{#each recipe.ingredients as ingredient (ingredient)}
 								<div
-									class="py-2 border-surface-200-800 leading-normal hover:pl-2 flex items-start border-b transition-all duration-300 last:border-b-0"
+									class="flex items-start border-b border-surface-200-800 py-2 leading-normal transition-all duration-300 last:border-b-0 hover:pl-2"
 								>
-									<span class="mr-3 font-bold text-xl shrink-0" style="color: var(--color-gold)"
+									<span class="mr-3 shrink-0 text-xl font-bold" style="color: var(--color-gold)"
 										>•</span
 									>
 									{ingredient}
@@ -315,10 +319,10 @@
 						</section>
 
 						<!-- Second ingredients list (title + items) -->
-						<section class="pl-5 border-l-3" style="border-color: var(--color-gold)">
-							<h2 class="gap-2 text-xl font-semibold mb-4 text-primary-700-300 flex items-center">
+						<section class="border-l-3 pl-5" style="border-color: var(--color-gold)">
+							<h2 class="mb-4 flex items-center gap-2 text-xl font-semibold text-primary-700-300">
 								<svg
-									class="w-5 h-5"
+									class="h-5 w-5"
 									fill="none"
 									stroke="currentColor"
 									viewBox="0 0 24 24"
@@ -335,9 +339,9 @@
 							</h2>
 							{#each ingredients2List as ingredient (ingredient)}
 								<div
-									class="py-2 border-surface-200-800 leading-normal hover:pl-2 flex items-start border-b transition-all duration-300 last:border-b-0"
+									class="flex items-start border-b border-surface-200-800 py-2 leading-normal transition-all duration-300 last:border-b-0 hover:pl-2"
 								>
-									<span class="mr-3 font-bold text-xl shrink-0" style="color: var(--color-gold)"
+									<span class="mr-3 shrink-0 text-xl font-bold" style="color: var(--color-gold)"
 										>•</span
 									>
 									{ingredient}
@@ -347,10 +351,10 @@
 					</div>
 				{:else}
 					<!-- Single ingredients list (no ingredients2) -->
-					<section class="pl-5 border-l-3" style="border-color: var(--color-gold)">
-						<h2 class="gap-2 text-xl font-semibold mb-4 text-primary-700-300 flex items-center">
+					<section class="border-l-3 pl-5" style="border-color: var(--color-gold)">
+						<h2 class="mb-4 flex items-center gap-2 text-xl font-semibold text-primary-700-300">
 							<svg
-								class="w-5 h-5"
+								class="h-5 w-5"
 								fill="none"
 								stroke="currentColor"
 								viewBox="0 0 24 24"
@@ -367,9 +371,9 @@
 						</h2>
 						{#each recipe.ingredients as ingredient (ingredient)}
 							<div
-								class="py-2 border-surface-200-800 leading-normal hover:pl-2 flex items-start border-b transition-all duration-300 last:border-b-0"
+								class="flex items-start border-b border-surface-200-800 py-2 leading-normal transition-all duration-300 last:border-b-0 hover:pl-2"
 							>
-								<span class="mr-3 font-bold text-xl shrink-0" style="color: var(--color-gold)"
+								<span class="mr-3 shrink-0 text-xl font-bold" style="color: var(--color-gold)"
 									>•</span
 								>
 								{ingredient}
@@ -381,12 +385,12 @@
 
 			<!-- Preparation steps (body from mdsvex) -->
 			<section
-				class="pl-5 my-8 border-l-3"
+				class="my-8 border-l-3 pl-5"
 				style="border-color: var(--color-gold); break-inside: avoid"
 			>
-				<h2 class="gap-2 text-xl font-semibold mb-4 text-primary-700-300 flex items-center">
+				<h2 class="mb-4 flex items-center gap-2 text-xl font-semibold text-primary-700-300">
 					<svg
-						class="w-5 h-5"
+						class="h-5 w-5"
 						fill="none"
 						stroke="currentColor"
 						viewBox="0 0 24 24"
@@ -401,7 +405,7 @@
 					</svg>
 					{content.recipeDetail.sections.preparation}
 				</h2>
-				<div class="recipe-body leading-loose font-body">
+				<div class="recipe-body font-body leading-loose">
 					{#if bodyComponent}
 						{@const Body = bodyComponent}
 						<Body />
@@ -412,19 +416,19 @@
 			<!-- Moumy's notes -->
 			{#if recipe.notes}
 				<div
-					class="mt-8 p-6 rounded-xl leading-relaxed text-2xl sm:text-xl text-primary-700-300 bg-surface-100-900 relative font-handwriting"
+					class="font-handwriting relative mt-8 rounded-xl bg-surface-100-900 p-6 text-2xl leading-relaxed text-primary-700-300 sm:text-xl"
 					style="border: 2px dashed var(--color-gold)"
 				>
 					<span
-						class="top-2 left-3 text-5xl absolute leading-none opacity-30 font-title"
+						class="font-title absolute top-2 left-3 text-5xl leading-none opacity-30"
 						style="color: var(--color-gold)"
 						aria-hidden="true"
 					>
-						{'\u201C'}
+						“
 					</span>
-					<div class="gap-2 mb-3 text-base font-semibold text-primary-700-300 flex items-center">
+					<div class="mb-3 flex items-center gap-2 text-base font-semibold text-primary-700-300">
 						<svg
-							class="w-5 h-5"
+							class="h-5 w-5"
 							fill="currentColor"
 							viewBox="0 0 24 24"
 							style="color: var(--color-gold)"
@@ -437,20 +441,20 @@
 					</div>
 					<p class="pl-4">{recipe.notes}</p>
 					<span
-						class="bottom-2 right-3 text-5xl absolute leading-none opacity-30 font-title"
+						class="font-title absolute right-3 bottom-2 text-5xl leading-none opacity-30"
 						style="color: var(--color-gold)"
 						aria-hidden="true"
 					>
-						{'\u201D'}
+						”
 					</span>
 				</div>
 			{/if}
 
 			<!-- Action buttons -->
-			<div class="gap-4 mt-10 no-print flex flex-wrap justify-center">
+			<div class="no-print mt-10 flex flex-wrap justify-center gap-4">
 				<Button variant="primary" onclick={handlePrint}>
-					<span class="gap-2 flex items-center">
-						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<span class="flex items-center gap-2">
+						<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path
 								stroke-linecap="round"
 								stroke-linejoin="round"
@@ -462,8 +466,8 @@
 					</span>
 				</Button>
 				<Button variant="outline" onclick={handleShare}>
-					<span class="gap-2 flex items-center">
-						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<span class="flex items-center gap-2">
+						<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path
 								stroke-linecap="round"
 								stroke-linejoin="round"
@@ -525,5 +529,4 @@
 			color: #000;
 		}
 	}
-
 </style>

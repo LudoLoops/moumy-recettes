@@ -26,7 +26,7 @@
 <div class="radio-group {className}">
 	<SegmentedControl
 		{value}
-		name={name}
+		{name}
 		onValueChange={(details) => {
 			if (details.value !== null) value = details.value;
 		}}

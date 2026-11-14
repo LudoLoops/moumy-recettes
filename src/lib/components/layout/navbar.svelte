@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { AppBar } from '@skeletonlabs/skeleton-svelte';
+	import { resolve } from '$app/paths';
 	import { themeStore } from '$lib/utils/theme.svelte';
 	import ThemeToggle from '$lib/components/ui/ThemeToggle.svelte';
 	import { onMount, onDestroy } from 'svelte';
@@ -18,8 +19,8 @@
 	<AppBar.Toolbar class="grid-cols-[1fr_auto_1fr]">
 		<AppBar.Lead>
 			<a
-				href="/"
-				class="text-primary-700-300 hover:text-primary-900-100 transition-colors font-handwriting"
+				href={resolve('/')}
+				class="font-handwriting text-primary-700-300 transition-colors hover:text-primary-900-100"
 				style="font-size: var(--text-logo); font-weight: var(--weight-title)"
 			>
 				{content.nav.brand}
@@ -27,22 +28,22 @@
 		</AppBar.Lead>
 
 		<AppBar.Headline>
-			<nav class="gap-4 md:gap-6 flex items-center">
+			<nav class="flex items-center gap-4 md:gap-6">
 				<a
-					href="/recettes"
-					class="text-primary-700-300 hover:text-primary-900-100 text-sm transition-colors font-body"
+					href={resolve('/recettes')}
+					class="font-body text-sm text-primary-700-300 transition-colors hover:text-primary-900-100"
 				>
 					{content.nav.recipes}
 				</a>
 				<a
-					href="/ingredients"
-					class="text-primary-700-300 hover:text-primary-900-100 text-sm transition-colors font-body"
+					href={resolve('/ingredients')}
+					class="font-body text-sm text-primary-700-300 transition-colors hover:text-primary-900-100"
 				>
 					{content.nav.ingredients}
 				</a>
 				<a
-					href="/documents"
-					class="text-primary-700-300 hover:text-primary-900-100 text-sm transition-colors font-body"
+					href={resolve('/documents')}
+					class="font-body text-sm text-primary-700-300 transition-colors hover:text-primary-900-100"
 				>
 					{content.nav.documents}
 				</a>

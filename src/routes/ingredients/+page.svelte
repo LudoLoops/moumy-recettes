@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { SvelteMap } from 'svelte/reactivity';
 	import type { PageData } from './$types';
 	import LetterNav from './_components/LetterNav.svelte';
 	import LetterSection from './_components/LetterSection.svelte';
@@ -8,7 +9,7 @@
 	let expandedIngredient = $state<string | null>(null);
 
 	let grouped = $derived.by(() => {
-		const groups = new Map<string, typeof data.ingredients>();
+		const groups = new SvelteMap<string, typeof data.ingredients>();
 		for (const ing of data.ingredients) {
 			const letter = ing.name[0]?.toUpperCase() || '?';
 			if (!groups.has(letter)) groups.set(letter, []);
@@ -31,20 +32,23 @@
 		content="Parcourez toutes les recettes de Moumy par ingrédient. Retrouvez vos plats préférés grâce à notre index culinaire."
 	/>
 	<meta property="og:title" content="Index des ingrédients — Les recettes de Moumy" />
-	<meta property="og:description" content="Parcourez toutes les recettes de Moumy par ingrédient. Retrouvez vos plats préférés grâce à notre index culinaire." />
+	<meta
+		property="og:description"
+		content="Parcourez toutes les recettes de Moumy par ingrédient. Retrouvez vos plats préférés grâce à notre index culinaire."
+	/>
 </svelte:head>
 
 <div class="pattern-overlay"></div>
 
 <main
-	class="max-w-6xl px-6 pt-8 relative z-10 mx-auto"
+	class="relative z-10 mx-auto max-w-6xl px-6 pt-8"
 	style="padding-bottom: var(--space-section-lg)"
 >
-	<h1 class="text-3xl md:text-4xl mb-8 text-primary-700-300 text-center">Index des ingrédients</h1>
+	<h1 class="mb-8 text-center text-3xl text-primary-700-300 md:text-4xl">Index des ingrédients</h1>
 
 	<LetterNav {letters} />
 
-	{#each letters as letter, i}
+	{#each letters as letter, i (letter)}
 		<LetterSection
 			{letter}
 			ingredients={grouped.get(letter)!}
@@ -61,4 +65,3 @@
 		</div>
 	{/if}
 </main>
-

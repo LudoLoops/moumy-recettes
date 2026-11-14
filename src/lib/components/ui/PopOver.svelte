@@ -20,7 +20,7 @@
 	<Portal>
 		<Popover.Positioner>
 			<Popover.Content
-				class="popover-content card shadow-lg border-surface-300-700 border {className}"
+				class="popover-content card border border-surface-300-700 shadow-lg {className}"
 			>
 				{@render content()}
 			</Popover.Content>

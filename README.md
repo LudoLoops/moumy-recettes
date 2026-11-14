@@ -29,6 +29,12 @@ Every recipe page shows her original manuscript scan alongside the typed version
 
 The deployed site has no server-side runtime, database, or auth: Cloudflare Pages serves static HTML built from Markdown and manuscript images. The optional Atlas authoring preview builds that same static output on demand and serves only the published files from a loopback-only lightweight server; it does not change the public deployment.
 
+## Reproducible toolchain
+
+The project pins Bun to `1.4.2` in `.bun-version` and `packageManager`, and Node.js to `22.23.5` in `.node-version` and `engines`. CI uses these same versions, installs only from `bun.lock`, and runs checks, tests, lint, and the static build. Configure the Cloudflare Pages build environment with `BUN_VERSION=1.4.2` and `NODE_VERSION=22.23.5`; the Cloudflare project settings are external to this repository and must be kept in sync with these pins.
+
+Dependency review and compatibility notes are recorded in [`docs/dependency-audit.md`](docs/dependency-audit.md).
+
 ## Adding recipes
 
 1. Create a `.md` file in `src/data/recettes/` (see `ObsTemplate/recette.md` for the frontmatter schema)
