@@ -1,29 +1,17 @@
 #!/usr/bin/env bun
-import { createHash, randomUUID } from 'node:crypto';
+import { createHash } from 'node:crypto';
 import { spawn } from 'node:child_process';
-import {
-	mkdir,
-	open,
-	readdir,
-	realpath,
-	readFile,
-	rename,
-	rm,
-	stat,
-	symlink,
-	writeFile
-} from 'node:fs/promises';
+import { mkdir, open, readdir, readFile } from 'node:fs/promises';
 import { readFileSync } from 'node:fs';
 import { homedir } from 'node:os';
-import { extname, isAbsolute, join, relative, resolve, sep } from 'node:path';
+import { isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const REPO_ROOT = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const PREVIEW_ROOT = resolve(
 	process.env.MOUMY_PREVIEW_DIR ?? join(homedir(), '.local', 'share', 'moumy-preview')
 );
-const CURRENT_LINK = join(PREVIEW_ROOT, 'current');
-const MANIFEST_NAME = '.moumy-preview-manifest.json';
+export const MANIFEST_NAME = '.moumy-preview-manifest.json';
 const SOURCE_DIRS = ['src', 'static', 'scripts'];
 const SOURCE_FILES = [
 	'package.json',
@@ -33,26 +21,6 @@ const SOURCE_FILES = [
 	'tsconfig.json',
 	'.node-version'
 ];
-const MIME_TYPES: Record<string, string> = {
-	'.avif': 'image/avif',
-	'.css': 'text/css; charset=utf-8',
-	'.gif': 'image/gif',
-	'.html': 'text/html; charset=utf-8',
-	'.ico': 'image/x-icon',
-	'.jpeg': 'image/jpeg',
-	'.jpg': 'image/jpeg',
-	'.js': 'text/javascript; charset=utf-8',
-	'.json': 'application/json; charset=utf-8',
-	'.map': 'application/json; charset=utf-8',
-	'.png': 'image/png',
-	'.svg': 'image/svg+xml',
-	'.txt': 'text/plain; charset=utf-8',
-	'.webp': 'image/webp',
-	'.woff': 'font/woff',
-	'.woff2': 'font/woff2',
-	'.xml': 'application/xml; charset=utf-8'
-};
-
 interface PreviewManifest {
 	version: 1;
 	fingerprint: string;
@@ -131,7 +99,7 @@ export async function fingerprintSources(root = REPO_ROOT): Promise<PreviewManif
 }
 
 export async function getPreviewStatus(root = REPO_ROOT, previewRoot = PREVIEW_ROOT) {
-	const current = join(previewRoot, 'current');
+	const current = join(previewRoot, 'releases', 'current');
 	let manifest: PreviewManifest;
 	try {
 		manifest = JSON.parse(await readFile(join(current, MANIFEST_NAME), 'utf8')) as PreviewManifest;
@@ -152,51 +120,6 @@ export async function getPreviewStatus(root = REPO_ROOT, previewRoot = PREVIEW_R
 		sourceFiles: latest.sourceFiles,
 		previewUrl: process.env.PREVIEW_URL ?? null
 	};
-}
-
-async function acquireBuildLock(previewRoot: string): Promise<() => Promise<void>> {
-	const lockPath = join(previewRoot, 'build.lock');
-	for (let attempt = 0; attempt < 2; attempt++) {
-		try {
-			const lock = await open(lockPath, 'wx', 0o600);
-			await lock.writeFile(
-				JSON.stringify({
-					pid: process.pid,
-					startedAt: new Date().toISOString()
-				})
-			);
-			await lock.close();
-			return async () => rm(lockPath, { force: true });
-		} catch (error) {
-			if ((error as NodeJS.ErrnoException).code !== 'EEXIST') throw error;
-			let lockInfo: { pid?: number };
-			try {
-				lockInfo = JSON.parse(await readFile(lockPath, 'utf8')) as {
-					pid?: number;
-				};
-			} catch (error) {
-				throw new Error(`Preview build lock exists and is unreadable: ${lockPath}`, {
-					cause: error
-				});
-			}
-			if (!Number.isInteger(lockInfo.pid) || (lockInfo.pid ?? 0) <= 0) {
-				throw new Error(`Preview build lock has no valid PID: ${lockPath}`, {
-					cause: error
-				});
-			}
-			try {
-				process.kill(lockInfo.pid, 0);
-			} catch (probeError) {
-				if ((probeError as NodeJS.ErrnoException).code !== 'ESRCH') throw probeError;
-				await rm(lockPath, { force: true });
-				continue;
-			}
-			throw new Error(`A preview build is already running (pid ${lockInfo.pid}).`, {
-				cause: error
-			});
-		}
-	}
-	throw new Error('Could not acquire preview build lock.');
 }
 
 function availableMemoryMiB(): number | undefined {
@@ -246,162 +169,43 @@ export async function buildPreview(
 	}
 
 	await mkdir(resolvedPreview, { recursive: true, mode: 0o750 });
-	const releaseId = `${Date.now()}-${randomUUID()}`;
-	const staging = join(resolvedPreview, `.staging-${releaseId}`);
-	const buildOutput = join(staging, 'site');
-	const release = join(resolvedPreview, 'releases', releaseId);
-	let releasePublished = false;
-	const releaseLock = await acquireBuildLock(resolvedPreview);
-
+	const lockPath = join(resolvedPreview, 'build.lock');
+	const lockFile = await open(lockPath, 'a', 0o600);
 	try {
-		const inputs = await fingerprintSources(resolvedRoot);
-		console.log(
-			`PREVIEW_STATE ${JSON.stringify({ status: 'building', totalInputs: inputs.sourceFiles })}`
-		);
-		await mkdir(staging, { recursive: true, mode: 0o750 });
-
-		const build = spawn(process.execPath, ['run', 'build'], {
-			cwd: resolvedRoot,
-			stdio: 'inherit',
-			env: { ...process.env, MOUMY_PREVIEW_BUILD_DIR: buildOutput }
-		});
-		const exitCode = await new Promise<number>((resolveExit, reject) => {
-			build.once('error', reject);
-			build.once('exit', (code, signal) => {
-				if (signal) reject(new Error(`Build stopped by signal ${signal}.`));
-				else resolveExit(code ?? 1);
-			});
-		});
-		if (exitCode !== 0) throw new Error(`Static preview build failed with exit code ${exitCode}.`);
-		for (const requiredFile of ['index.html', 'sitemap.xml']) {
-			const info = await stat(join(buildOutput, requiredFile)).catch(() => undefined);
-			if (!info?.isFile() || info.size === 0) {
-				throw new Error(`Static build output is incomplete: missing or empty ${requiredFile}.`);
-			}
-		}
-
-		const builtSources = await fingerprintSources(resolvedRoot);
-		if (builtSources.fingerprint !== inputs.fingerprint) {
-			throw new Error(
-				'Source files changed while building; preview was not published. Run Preview again.'
-			);
-		}
-
-		const manifest: PreviewManifest = {
-			...builtSources,
-			generatedAt: new Date().toISOString()
-		};
-		await writeFile(join(buildOutput, MANIFEST_NAME), JSON.stringify(manifest, null, 2), {
-			mode: 0o640
-		});
-		await mkdir(join(resolvedPreview, 'releases'), {
-			recursive: true,
-			mode: 0o750
-		});
-		await rename(buildOutput, release);
-		const nextLink = join(resolvedPreview, `.current-${releaseId}`);
-		await symlink(relative(resolvedPreview, release), nextLink, 'dir');
-		await rename(nextLink, join(resolvedPreview, 'current'));
-		releasePublished = true;
-
-		const complete = {
-			status: 'built' as const,
-			builtAt: manifest.generatedAt,
-			previewUrl: process.env.PREVIEW_URL ?? null,
-			sourceFiles: manifest.sourceFiles
-		};
-		result(complete);
-		return complete;
+		await lockFile.chmod(0o600);
 	} finally {
-		await releaseLock();
-		await rm(staging, { recursive: true, force: true });
-		if (!releasePublished) await rm(release, { recursive: true, force: true });
+		await lockFile.close();
 	}
-}
-
-export async function staticResponse(request: Request, rootPath: string): Promise<Response> {
-	if (request.method !== 'GET' && request.method !== 'HEAD') {
-		return new Response('Method not allowed', {
-			status: 405,
-			headers: { Allow: 'GET, HEAD' }
+	const workerPath = fileURLToPath(new URL('./preview-worker.ts', import.meta.url));
+	const flock = spawn(
+		process.env.MOUMY_PREVIEW_FLOCK ?? 'flock',
+		[
+			'--exclusive',
+			'--nonblock',
+			'--no-fork',
+			'--conflict-exit-code',
+			'75',
+			lockPath,
+			process.execPath,
+			workerPath,
+			resolvedRoot,
+			resolvedPreview
+		],
+		{ cwd: resolvedRoot, stdio: 'inherit' }
+	);
+	const exitCode = await new Promise<number>((resolveExit, reject) => {
+		flock.once('error', reject);
+		flock.once('exit', (code, signal) => {
+			if (signal) reject(new Error(`Preview build stopped by signal ${signal}.`));
+			else resolveExit(code ?? 1);
 		});
-	}
-
-	let root: string;
-	try {
-		root = await realpath(rootPath);
-	} catch {
-		return new Response('Preview has not been built yet.', { status: 503 });
-	}
-
-	let pathname: string;
-	try {
-		pathname = new URL(request.url).pathname;
-	} catch {
-		return new Response('Bad request', { status: 400 });
-	}
-	const decoded = (() => {
-		try {
-			return decodeURIComponent(pathname);
-		} catch {
-			return null;
-		}
-	})();
-	if (decoded === null || decoded.includes('\0') || decoded.includes('\\')) {
-		return new Response('Bad request', { status: 400 });
-	}
-
-	const cleanPath = resolve('/', decoded).replace(/^\/+/, '');
-	if (cleanPath.split('/').some((segment) => segment.startsWith('.'))) {
-		return new Response('Not found', { status: 404 });
-	}
-	const paths =
-		cleanPath === ''
-			? [join(root, 'index.html')]
-			: decoded.endsWith('/')
-				? [join(root, `${cleanPath}.html`), join(root, cleanPath, 'index.html')]
-				: [
-						join(root, `${cleanPath}.html`),
-						join(root, cleanPath, 'index.html'),
-						join(root, cleanPath)
-					];
-
-	for (const path of paths) {
-		if (!isWithin(root, path)) continue;
-		try {
-			const realPath = await realpath(path);
-			if (!isWithin(root, realPath) || !(await stat(realPath)).isFile()) continue;
-			const file = Bun.file(realPath);
-			const headers = new Headers({
-				'Cache-Control': 'no-store',
-				'Content-Length': String(file.size),
-				'Content-Type': MIME_TYPES[extname(realPath).toLowerCase()] ?? 'application/octet-stream',
-				'X-Content-Type-Options': 'nosniff'
-			});
-			return new Response(request.method === 'HEAD' ? null : file, { headers });
-		} catch (error) {
-			if (!['ENOENT', 'ENOTDIR'].includes((error as NodeJS.ErrnoException).code ?? '')) throw error;
-		}
-	}
-
-	return new Response('Not found', { status: 404 });
-}
-
-export function startPreviewServer(
-	root = CURRENT_LINK,
-	hostname = process.env.MOUMY_PREVIEW_HOST ?? '127.0.0.1',
-	port = Number(process.env.MOUMY_PREVIEW_PORT ?? '4175')
-) {
-	if (hostname !== '127.0.0.1' && hostname !== '::1') {
-		throw new Error(
-			'Preview server must bind to loopback; expose it only through Tailscale Serve.'
-		);
-	}
-	return Bun.serve({
-		hostname,
-		port,
-		fetch: (request) => staticResponse(request, root)
 	});
+	if (exitCode === 75) throw new Error('A preview build is already running.');
+	if (exitCode !== 0) throw new Error(`Static preview build failed with exit code ${exitCode}.`);
+	return {
+		status: 'built',
+		previewUrl: process.env.PREVIEW_URL ?? null
+	};
 }
 
 async function main(): Promise<void> {
@@ -426,12 +230,7 @@ async function main(): Promise<void> {
 		}
 		return;
 	}
-	if (command === 'serve') {
-		const server = startPreviewServer();
-		console.log(`Preview server listening on http://${server.hostname}:${server.port}`);
-		return;
-	}
-	console.error('Usage: bun run scripts/preview.ts <status|build|serve>');
+	console.error('Usage: bun run scripts/preview.ts <status|build>');
 	process.exitCode = 2;
 }
 
