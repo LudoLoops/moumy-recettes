@@ -1,0 +1,28 @@
+[Unit]
+Description=Private static preview for Les recettes de Moumy
+After=network.target
+
+[Service]
+Type=simple
+User=moumy-preview
+Group=moumy-preview-artifacts
+Environment=MOUMY_PREVIEW_HOST=127.0.0.1
+Environment=MOUMY_PREVIEW_PORT=4175
+Environment=MOUMY_PREVIEW_SERVE_ROOT=/var/lib/moumy-preview/releases/current
+ExecStart=/usr/local/libexec/moumy-preview-server
+Restart=on-failure
+RestartSec=2
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=tmpfs
+BindReadOnlyPaths=/var/lib/moumy-preview/releases
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+LockPersonality=yes
+RestrictSUIDSGID=yes
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+
+[Install]
+WantedBy=multi-user.target

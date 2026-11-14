@@ -18,22 +18,35 @@ Every recipe page shows her original manuscript scan alongside the typed version
 
 ## Tech
 
-| Layer        | Stack                              |
-| ------------ | ---------------------------------- |
-| Framework    | SvelteKit 2 + Svelte 5 (runes)    |
-| UI           | Skeleton UI v4 + Tailwind v4      |
-| Content      | mdsvex (Markdown → Svelte)        |
-| Fonts        | Crimson Pro, Playfair, Great Vibes |
-| Build        | Static (`adapter-static`)         |
-| Deploy       | Cloudflare Pages                   |
+| Layer     | Stack                              |
+| --------- | ---------------------------------- |
+| Framework | SvelteKit 2 + Svelte 5             |
+| UI        | Skeleton UI v4 + Tailwind v4       |
+| Content   | mdsvex (Markdown → Svelte)         |
+| Fonts     | Crimson Pro, Playfair, Great Vibes |
+| Build     | Static (`adapter-static`)          |
+| Deploy    | Cloudflare Pages                   |
 
-No server, no database, no auth. Just Markdown files and manuscript images compiled into static HTML.
+The deployed site has no server-side runtime, database, or auth: Cloudflare Pages serves static HTML built from Markdown and manuscript images. The optional Atlas authoring preview builds that same static output on demand and serves only the published files from a loopback-only lightweight server; it does not change the public deployment.
 
 ## Adding recipes
 
 1. Create a `.md` file in `src/data/recettes/` (see `ObsTemplate/recette.md` for the frontmatter schema)
 2. Drop the manuscript scan in `src/data/img/`
 3. Build — that's it
+
+## Atlas authoring preview
+
+The preview helper is intended for the shared local checkout on Atlas; it does not pull, reset, or publish Git changes.
+
+```sh
+bun run preview:status # Check whether the published preview matches local sources
+bun run preview:build  # Build on demand, preserve the prior output on failure
+bun run preview:serve  # Serve the current output on loopback (127.0.0.1:4175)
+bun run test:preview   # Run preview pipeline and static-server tests
+```
+
+See [`docs/atlas-preview.md`](docs/atlas-preview.md) for the manifest, atomic publication, systemd/Tailscale setup, resource guard, permissions, and release-retention policy. The service/Tailscale configuration is not installed or exposed automatically. The separate editor button integration is tracked in [lelabdev/moumy-editor#35](https://github.com/lelabdev/moumy-editor/issues/35).
 
 ## License
 
