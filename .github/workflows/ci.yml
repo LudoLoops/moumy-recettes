@@ -46,3 +46,6 @@ jobs:
 
       - name: Static production build
         run: bun run build
+
+      - name: Verify generated social metadata and image assets
+        run: bun run test:og

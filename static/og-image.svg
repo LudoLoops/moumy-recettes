@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">Les recettes de Moumy</title>
+  <desc id="description">A gold calligraphic M on a warm dark background, with the title Les recettes de Moumy.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#241a13" />
+      <stop offset="0.52" stop-color="#1a1410" />
+      <stop offset="1" stop-color="#120e0b" />
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop offset="0" stop-color="#c9a962" stop-opacity="0.12" />
+      <stop offset="1" stop-color="#c9a962" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#background)" />
+  <ellipse cx="600" cy="284" rx="410" ry="300" fill="url(#glow)" />
+  <rect x="34" y="34" width="1132" height="562" rx="12" fill="none" stroke="#c9a962" stroke-opacity="0.72" stroke-width="2" />
+  <rect x="49" y="49" width="1102" height="532" rx="8" fill="none" stroke="#c9a962" stroke-opacity="0.24" />
+
+  <g fill="#c9a962" stroke="#c9a962" stroke-width="1.5" opacity="0.82">
+    <path d="M600 82l8 8-8 8-8-8z" />
+    <path d="M600 532l8 8-8 8-8-8z" />
+    <path d="M76 82h48M1076 82h48M76 548h48M1076 548h48" fill="none" />
+  </g>
+
+  <text x="600" y="332" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="270" font-style="italic" fill="#c9a962">M</text>
+  <path d="M410 385h150m80 0h150" fill="none" stroke="#c9a962" stroke-opacity="0.68" stroke-width="1.5" />
+  <path d="M600 378l7 7-7 7-7-7z" fill="#c9a962" />
+  <text x="600" y="461" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="48" letter-spacing="2.5" fill="#f5ead5">Les recettes de Moumy</text>
+</svg>

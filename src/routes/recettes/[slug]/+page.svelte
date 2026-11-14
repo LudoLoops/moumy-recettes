@@ -7,7 +7,7 @@
 	import { resolve } from '$app/paths';
 	import { goto } from '$app/navigation';
 	import content from '$lib/data/content';
-	import { SITE_URL } from '$lib/config';
+	import { OG_IMAGE_URL, SITE_URL } from '$lib/config';
 
 	let { data }: { data: PageData } = $props();
 	const recipe = $derived(data.recipe);
@@ -29,7 +29,7 @@
 				}
 			}
 		}
-		return `${SITE_URL}/favicon.png`;
+		return OG_IMAGE_URL;
 	});
 
 	// Parse prep/cook time to ISO 8601 duration
