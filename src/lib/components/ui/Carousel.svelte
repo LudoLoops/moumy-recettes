@@ -43,18 +43,18 @@
 	<Carousel {slideCount} {slidesPerPage} {spacing} {loop}>
 		{#if showControls}
 			<Carousel.Control class="carousel-controls" style="gap: var(--gap-sm)">
-				<Carousel.PrevTrigger class="btn preset-tonal-surface-500" aria-label="Previous slide">
+				<Carousel.PrevTrigger class="preset-tonal-surface-500 btn" aria-label="Previous slide">
 					<span>&larr;</span>
 					<span>Back</span>
 				</Carousel.PrevTrigger>
 
 				{#if autoplay}
-					<Carousel.AutoplayTrigger class="btn preset-tonal-surface-500">
+					<Carousel.AutoplayTrigger class="preset-tonal-surface-500 btn">
 						Autoplay
 					</Carousel.AutoplayTrigger>
 				{/if}
 
-				<Carousel.NextTrigger class="btn preset-tonal-surface-500" aria-label="Next slide">
+				<Carousel.NextTrigger class="preset-tonal-surface-500 btn" aria-label="Next slide">
 					<span>Next</span>
 					<span>&rarr;</span>
 				</Carousel.NextTrigger>
@@ -69,7 +69,7 @@
 			<Carousel.IndicatorGroup class="carousel-dots" style="gap: var(--gap-sm)">
 				<Carousel.Context>
 					{#snippet children(carousel)}
-						{#each carousel().pageSnapPoints as _, index (index)}
+						{#each carousel().pageSnapPoints as pageSnapPoint, index (pageSnapPoint)}
 							<Carousel.Indicator {index} class="carousel-dot" />
 						{/each}
 					{/snippet}
@@ -102,7 +102,9 @@
 		height: 8px;
 		border-radius: 50%;
 		background-color: var(--color-surface-400-600);
-		transition: background-color 0.2s ease, transform 0.2s ease;
+		transition:
+			background-color 0.2s ease,
+			transform 0.2s ease;
 	}
 
 	.carousel-dot:global([data-active='true']) {

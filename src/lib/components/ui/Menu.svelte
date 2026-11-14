@@ -22,13 +22,9 @@
 		items: MenuItem[];
 		/** Called when an item is selected */
 		onSelect: (key: string) => void;
-		/** Alignment */
-		align?: 'start' | 'end';
-		/** Additional classes for the trigger wrapper */
-		class?: string;
 	}
 
-	let { trigger, items, onSelect, align = 'start', class: className = '' }: Props = $props();
+	let { trigger, items, onSelect }: Props = $props();
 </script>
 
 <SkeletonMenu>
@@ -38,20 +34,24 @@
 
 	<Portal>
 		<SkeletonMenu.Positioner>
-			<SkeletonMenu.Content class="card shadow-lg border border-surface-300-700 z-50" style="padding: var(--menu-panel-p); min-width: var(--menu-min-w)">
+			<SkeletonMenu.Content
+				class="z-50 card border border-surface-300-700 shadow-lg"
+				style="padding: var(--menu-panel-p); min-width: var(--menu-min-w)"
+			>
 				{#each items as item (item.key)}
 					<button
 						type="button"
-						class="w-full flex items-center transition-colors
+						class="flex w-full items-center transition-colors
 							{item.disabled
-							? 'opacity-50 cursor-not-allowed'
+							? 'cursor-not-allowed opacity-50'
 							: item.danger
 								? 'text-error-500 hover:bg-error-500/10'
-								: 'hover:bg-surface-200-800'
-						}"
+								: 'hover:bg-surface-200-800'}"
 						style="gap: var(--gap-sm); padding: var(--menu-item-py) var(--menu-item-px); font-size: var(--text-body); border-radius: var(--radius-menu-item)"
 						disabled={item.disabled}
-						onclick={() => { if (!item.disabled) onSelect(item.key); }}
+						onclick={() => {
+							if (!item.disabled) onSelect(item.key);
+						}}
 					>
 						{#if item.icon}
 							<span class="shrink-0">{@render item.icon()}</span>

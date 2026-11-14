@@ -38,12 +38,21 @@
 </script>
 
 {#if tabs.length > 0}
-	<SkeletonTabs {value} onValueChange={(e: { value: string }) => { value = e.value; onValueChange?.(e.value); }}>
-		<div class="{variantClasses[variant]} {className}" style="{variantStyles[variant]}">
+	<SkeletonTabs
+		{value}
+		onValueChange={(e: { value: string }) => {
+			value = e.value;
+			onValueChange?.(e.value);
+		}}
+	>
+		<div class="{variantClasses[variant]} {className}" style={variantStyles[variant]}>
 			<SkeletonTabs.List class="flex" style="gap: var(--gap-xs)">
 				{#each tabs as tab (tab.value)}
 					<SkeletonTabs.Trigger value={tab.value} disabled={tab.disabled}>
-						<div class="flex items-center" style="gap: var(--gap-sm); padding: var(--tab-trigger-py) var(--tab-trigger-px); font-size: var(--text-body); font-weight: var(--weight-subtitle)">
+						<div
+							class="flex items-center"
+							style="gap: var(--gap-sm); padding: var(--tab-trigger-py) var(--tab-trigger-px); font-size: var(--text-body); font-weight: var(--weight-subtitle)"
+						>
 							{#if tab.icon}{@render tab.icon()}{/if}
 							{tab.label}
 						</div>

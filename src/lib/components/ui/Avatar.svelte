@@ -1,6 +1,4 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte';
-
 	interface Props {
 		/** URL to the image */
 		src?: string | null;
@@ -25,23 +23,23 @@
 
 	const initials = $derived(
 		fallback ||
-		(alt
-			? alt
-					.split(' ')
-					.map((w) => w[0])
-					.join('')
-					.toUpperCase()
-					.slice(0, 2)
-			: '?')
+			(alt
+				? alt
+						.split(' ')
+						.map((w) => w[0])
+						.join('')
+						.toUpperCase()
+						.slice(0, 2)
+				: '?')
 	);
 </script>
 
 <div
-	class="relative inline-flex items-center justify-center rounded-full bg-primary-500/10 text-primary-500 overflow-hidden {className}"
+	class="relative inline-flex items-center justify-center overflow-hidden rounded-full bg-primary-500/10 text-primary-500 {className}"
 	style="{sizeStyles[size]}; font-weight: var(--weight-title)"
 >
 	{#if src}
-		<img {src} {alt} class="absolute inset-0 w-full h-full object-cover" />
+		<img {src} {alt} class="absolute inset-0 h-full w-full object-cover" />
 	{:else}
 		{initials}
 	{/if}

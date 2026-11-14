@@ -1,3 +1,5 @@
+import type { Component } from 'svelte';
+
 // ============================================================================
 // Recipe Data Layer — mdsvex loader
 //
@@ -38,7 +40,7 @@ const recipeFiles = import.meta.glob<{ metadata: RecipeMeta }>('./recettes/**/*.
 });
 
 // Separate glob for body components (default exports from mdsvex)
-const recipeBodies = import.meta.glob<{ default: any }>('./recettes/**/*.md', {
+const recipeBodies = import.meta.glob<{ default: Component }>('./recettes/**/*.md', {
 	eager: true
 });
 
@@ -55,13 +57,15 @@ function capitalize(s: string | undefined): string {
 export function getAllRecipes(): Recipe[] {
 	return Object.entries(recipeFiles)
 		.map(([path, module]) => {
-		const meta = module?.metadata;
-		if (!meta) return null; // skip files without valid frontmatter
-		const raw = meta.category?.trim();
+			const meta = module?.metadata;
+			if (!meta) return null; // skip files without valid frontmatter
+			const raw = meta.category?.trim();
 			if (!raw) return null; // skip recipes without a category
 			const normalized = singularize(raw.toLowerCase());
 			return {
 				...meta,
+				excerpt: meta.excerpt ?? '',
+				ingredients: Array.isArray(meta.ingredients) ? meta.ingredients : [],
 				category: normalized,
 				slug: path.match(/\/([^/]+)\.md$/)?.[1] || '',
 				categoryDisplay: capitalize(normalized)
@@ -81,7 +85,7 @@ export function getRecipeBySlug(slug: string): Recipe | undefined {
 /**
  * Get the mdsvex body component for a recipe by slug.
  */
-export function getRecipeBody(slug: string): any {
+export function getRecipeBody(slug: string): Component | null {
 	for (const [path, mod] of Object.entries(recipeBodies)) {
 		if (path.endsWith(`/${slug}.md`)) {
 			return mod.default;
@@ -210,20 +214,17 @@ const INGREDIENT_SEPARATORS = /,|\s+et\s+/i;
 
 // Build regexes once from the lists
 const abbrevUnitsRe = new RegExp(
-	`^(?:(?:${ARTICLES.join('|')})\\s+)?(\\d+[\\d\\s,.]*)\\s*(?:${ABBREV_UNITS.map((u) => (u.length === 1 ? u + '\\b' : u)).join('|')})?\\s*(?:${CONNECTORS.map((c) => c.replace("'", "\\'")).join('|')})?\\s*`,
+	`^(?:(?:${ARTICLES.join('|')})\\s+)?(\\d+[\\d\\s,.]*)\\s*(?:${ABBREV_UNITS.map((u) => (u.length === 1 ? u + '\\b' : u)).join('|')})?\\s*(?:${CONNECTORS.join('|')})?\\s*`,
 	'i'
 );
 
 const wordUnitsAlt = WORD_UNITS.map((u) => u.replace(/\s+/g, '\\s+')).join('|');
 const wordUnitsWithNumRe = new RegExp(
-	`^\\d+\\s*(?:${wordUnitsAlt})\\s*(?:${CONNECTORS.map((c) => c.replace("'", "\\'")).join('|')})?\\s*`,
+	`^\\d+\\s*(?:${wordUnitsAlt})\\s*(?:${CONNECTORS.join('|')})?\\s*`,
 	'i'
 );
 
-const wordUnitsBareRe = new RegExp(
-	`^(?:${wordUnitsAlt})\\s*(?:${CONNECTORS.map((c) => c.replace("'", "\\'")).join('|')})\\s*`,
-	'i'
-);
+const wordUnitsBareRe = new RegExp(`^(?:${wordUnitsAlt})\\s*(?:${CONNECTORS.join('|')})\\s*`, 'i');
 
 const articlesRe = new RegExp(`^(${ARTICLES.join('|')})\\s+`, 'i');
 const sizeAdjRe = new RegExp(`^(${SIZE_ADJECTIVES.join('|')})\\s+`, 'i');
@@ -294,7 +295,7 @@ const COMPOUND_TERMS: [string, RegExp][] = [
 	['lait entier', /\blait\s+entier/i],
 	['lait demi-écrémé', /\blait\s+demi\s*[-]?écrém/i],
 	// Divers
-	['marmelade d\'abricots', /\bmarmelade\s+d\s*[\'']?abricot/i],
+	["marmelade d'abricots", /\bmarmelade\s+d\s*['’]?abricot/i],
 	['gelée de groseille', /\bgelée\s+de\s+groseille/i],
 	['sauce tomate', /\bsauce\s+tomate/i],
 	['pomme de terre', /\bpomme\s+de\s+terre/i],
@@ -304,7 +305,7 @@ const COMPOUND_TERMS: [string, RegExp][] = [
 	['sucre en poudre', /\bsucre\s+en\s+poudre/i],
 	// Jus
 	['jus de citron', /\bjus\b.*\bcitron/i],
-	['jus d\'orange', /\bjus\b.*\borange/i]
+	["jus d'orange", /\bjus\b.*\borange/i]
 ];
 
 /** Compound patterns where first word alone is NOT the ingredient */

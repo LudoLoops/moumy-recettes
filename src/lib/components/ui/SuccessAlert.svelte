@@ -10,7 +10,11 @@
 	let { title = 'Success', message, class: className = '' }: Props = $props();
 </script>
 
-<div class="preset-tonal-success-500 flex items-start {className}" style="padding: var(--alert-p); border-radius: var(--radius-alert); gap: var(--gap-md)" role="status">
+<div
+	class="preset-tonal-success-500 flex items-start {className}"
+	style="padding: var(--alert-p); border-radius: var(--radius-alert); gap: var(--gap-md)"
+	role="status"
+>
 	<Icon name="checkCircle" size={20} class="shrink-0" style="margin-top: var(--space-nano)" />
 	<div>
 		<p style="font-weight: var(--weight-subtitle)">{title}</p>

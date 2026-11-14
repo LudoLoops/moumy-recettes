@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { Badge } from '$lib/components';
 
 	interface Recipe {
@@ -18,21 +19,21 @@
 </script>
 
 <div
-	class="ingredient-card bg-surface-50-950 border-surface-200-800 rounded-xl overflow-hidden border transition-all duration-300"
+	class="ingredient-card overflow-hidden rounded-xl border border-surface-200-800 bg-surface-50-950 transition-all duration-300"
 	class:expanded
 >
 	<button
-		class="ingredient-trigger hover:bg-surface-100-900 p-4 md:px-5 transition-background gap-3 flex w-full cursor-pointer items-center justify-between border-none bg-transparent text-left duration-200"
+		class="ingredient-trigger transition-background flex w-full cursor-pointer items-center justify-between gap-3 border-none bg-transparent p-4 text-left duration-200 hover:bg-surface-100-900 md:px-5"
 		{onclick}
 		aria-expanded={expanded}
 	>
-		<span class="font-medium text-primary-900-100 text-[1.0625rem] capitalize">{name}</span>
+		<span class="text-[1.0625rem] font-medium text-primary-900-100 capitalize">{name}</span>
 		<span
-			class="gap-1.5 text-primary-400-600 inline-flex shrink-0 items-center text-[0.8125rem] whitespace-nowrap"
+			class="inline-flex shrink-0 items-center gap-1.5 text-[0.8125rem] whitespace-nowrap text-primary-400-600"
 		>
 			{recipes.length} recette{recipes.length > 1 ? 's' : ''}
 			<svg
-				class="w-4 h-4 shrink-0 transition-transform duration-300"
+				class="h-4 w-4 shrink-0 transition-transform duration-300"
 				class:rotate-180={expanded}
 				fill="none"
 				stroke="currentColor"
@@ -45,12 +46,12 @@
 
 	{#if expanded}
 		<div class="ingredient-recipes">
-			{#each recipes as recipe}
+			{#each recipes as recipe (recipe.slug)}
 				<a
-					href="/recettes/{recipe.slug}"
-					class="recipe-link hover:bg-surface-100-900 gap-3 py-3 px-5 flex items-center justify-between no-underline transition-all duration-200"
+					href={resolve('/recettes/[slug]', { slug: recipe.slug })}
+					class="recipe-link flex items-center justify-between gap-3 px-5 py-3 no-underline transition-all duration-200 hover:bg-surface-100-900"
 				>
-					<span class="font-medium text-primary-900-100 leading-snug text-[0.9375rem]"
+					<span class="text-[0.9375rem] leading-snug font-medium text-primary-900-100"
 						>{recipe.title}</span
 					>
 					<Badge variant="gold">{recipe.categoryDisplay}</Badge>

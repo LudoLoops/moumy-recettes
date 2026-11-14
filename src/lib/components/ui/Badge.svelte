@@ -1,19 +1,14 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
 	import { cn } from './utils/cn';
 
 	type BadgeVariant =
-		| 'primary'
-		| 'secondary'
-		| 'success'
-		| 'warning'
-		| 'error'
-		| 'surface'
-		| 'gold';
+		'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'surface' | 'gold';
 
 	interface Props {
 		variant?: BadgeVariant;
 		class?: string;
-		children: any;
+		children: Snippet;
 	}
 
 	let { variant = 'surface', class: className = '', children }: Props = $props();

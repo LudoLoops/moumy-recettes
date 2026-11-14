@@ -11,13 +11,7 @@
 		class?: string;
 	}
 
-	let {
-		variant = 'text',
-		width,
-		height,
-		lines = 3,
-		class: className = ''
-	}: Props = $props();
+	let { variant = 'text', width, height, lines = 3, class: className = '' }: Props = $props();
 
 	const defaultHeights: Record<Variant, string> = {
 		text: '1rem',
@@ -31,16 +25,16 @@
 
 {#if variant === 'text'}
 	<div class={cn('flex flex-col', className)} style="gap: var(--gap-sm)">
-		{#each Array(lines) as _, i}
+		{#each Array.from({ length: lines }, (_, i) => i) as index (index)}
 			<div
-				class="animate-pulse bg-surface-200-800 rounded"
-				style="width: {i === lines - 1 ? '75%' : resolvedWidth}; height: var(--text-body)"
+				class="animate-pulse rounded bg-surface-200-800"
+				style="width: {index === lines - 1 ? '75%' : resolvedWidth}; height: var(--text-body)"
 			></div>
 		{/each}
 	</div>
 {:else if variant === 'circular'}
 	<div
-		class={cn('animate-pulse bg-surface-200-800 rounded-full shrink-0', className)}
+		class={cn('shrink-0 animate-pulse rounded-full bg-surface-200-800', className)}
 		style="width: {resolvedWidth}; height: {resolvedHeight}"
 	></div>
 {:else}

@@ -8,12 +8,7 @@
 		class?: string;
 	}
 
-	let {
-		count,
-		max = 99,
-		size = 'sm',
-		class: className = ''
-	}: Props = $props();
+	let { count, max = 99, size = 'sm', class: className = '' }: Props = $props();
 
 	const displayText = $derived(count > max ? `${max}+` : `${count}`);
 
@@ -25,7 +20,7 @@
 
 <span
 	class={cn(
-		'absolute -top-1 -right-1 bg-error-500 text-surface-50 rounded-full flex items-center justify-center font-semibold leading-none select-none',
+		'absolute -top-1 -right-1 flex items-center justify-center rounded-full bg-error-500 leading-none font-semibold text-surface-50 select-none',
 		sizeClasses[size],
 		className
 	)}

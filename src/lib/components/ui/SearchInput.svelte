@@ -53,7 +53,10 @@
 </script>
 
 <div class={wrapperClass} style="border-radius: var(--radius-input-custom)">
-	<span class="absolute left-0 flex items-center justify-center pointer-events-none text-surface-400-600" style="padding-left: var(--input-custom-px)">
+	<span
+		class="pointer-events-none absolute left-0 flex items-center justify-center text-surface-400-600"
+		style="padding-left: var(--input-custom-px)"
+	>
 		<Icon name="search" size={16} />
 	</span>
 
@@ -67,7 +70,10 @@
 	/>
 
 	{#if loading}
-		<span class="absolute right-0 flex items-center justify-center text-surface-400-600" style="padding-right: var(--input-custom-px)">
+		<span
+			class="absolute right-0 flex items-center justify-center text-surface-400-600"
+			style="padding-right: var(--input-custom-px)"
+		>
 			<Icon name="loader2" size={16} class="animate-spin" />
 		</span>
 	{/if}

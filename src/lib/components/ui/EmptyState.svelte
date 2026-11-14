@@ -11,20 +11,11 @@
 		action?: Snippet;
 	}
 
-	let {
-		icon = 'inbox',
-		title,
-		description,
-		class: className = '',
-		action
-	}: Props = $props();
+	let { icon = 'inbox', title, description, class: className = '', action }: Props = $props();
 </script>
 
 <div
-	class={cn(
-		'flex flex-col items-center justify-center text-center',
-		className
-	)}
+	class={cn('flex flex-col items-center justify-center text-center', className)}
 	style="gap: var(--gap-lg); padding: var(--gap-xl)"
 >
 	<Icon name={icon} size={48} class="text-surface-400-600" />

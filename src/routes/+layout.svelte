@@ -30,11 +30,11 @@
 </script>
 
 <svelte:head>
-<link rel="canonical" href={canonicalUrl} />
+	<link rel="canonical" href={canonicalUrl} />
 	<meta property="og:site_name" content="Les recettes de Moumy" />
 	<meta property="og:url" content="{SITE_URL}{$page.url.pathname}" />
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:site" content="{SITE_URL}" />
+	<meta name="twitter:site" content={SITE_URL} />
 </svelte:head>
 
 <div class="flex min-h-screen flex-col">
@@ -60,11 +60,19 @@
 	}
 
 	@keyframes fade-out {
-		from { opacity: 1; }
-		to { opacity: 0; }
+		from {
+			opacity: 1;
+		}
+		to {
+			opacity: 0;
+		}
 	}
 	@keyframes fade-in {
-		from { opacity: 0; }
-		to { opacity: 1; }
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
 	}
 </style>

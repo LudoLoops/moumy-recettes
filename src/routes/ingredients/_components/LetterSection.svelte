@@ -28,15 +28,15 @@
 	class="letter-section fade-in"
 	style="animation-delay: {index * 0.05}s"
 >
-	<div class="gap-4 mb-6 pb-3 flex items-center border-b-2 border-[rgba(201,169,98,0.2)]">
+	<div class="mb-6 flex items-center gap-4 border-b-2 border-[rgba(201,169,98,0.2)] pb-3">
 		<span class="letter-badge">{letter}</span>
-		<span class="text-sm text-primary-400-600 ml-auto">
+		<span class="ml-auto text-sm text-primary-400-600">
 			{ingredients.length} ingrédient{ingredients.length > 1 ? 's' : ''}
 		</span>
 	</div>
 
-	<div class="gap-3 grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))]">
-		{#each ingredients as ingredient}
+	<div class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-3">
+		{#each ingredients as ingredient (ingredient.name)}
 			<IngredientCard
 				name={ingredient.name}
 				recipes={ingredient.recipes}

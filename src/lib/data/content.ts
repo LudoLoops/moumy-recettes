@@ -9,6 +9,7 @@
  * UI labels come from src/data/content/ui.json.
  */
 
+import type { Component } from 'svelte';
 import ui from '../../data/content/ui.json';
 
 // ---------------------------------------------------------------------------
@@ -27,7 +28,7 @@ interface ContentMeta {
 	stats?: Record<string, string>;
 }
 
-const contentModules = import.meta.glob<{ metadata: ContentMeta; default: any }>(
+const contentModules = import.meta.glob<{ metadata: ContentMeta; default: Component }>(
 	'../../data/content/*.md',
 	{ eager: true }
 );
@@ -44,7 +45,7 @@ function contentKey(path: string): string {
 // Build content object from mdsvex modules
 // ---------------------------------------------------------------------------
 
-const parsed: Record<string, { metadata: ContentMeta; body: any }> = {};
+const parsed: Record<string, { metadata: ContentMeta; body: Component | null }> = {};
 for (const [path, mod] of Object.entries(contentModules)) {
 	parsed[contentKey(path)] = {
 		metadata: mod?.metadata ?? {},
@@ -62,7 +63,7 @@ const footer = parsed['footer'] ?? { metadata: {}, body: null };
 // ---------------------------------------------------------------------------
 
 /** Get the mdsvex body component for a content file by key (e.g. "hero", "quote") */
-export function getContentBody(key: string): any {
+export function getContentBody(key: string): Component | null {
 	return parsed[key]?.body ?? null;
 }
 

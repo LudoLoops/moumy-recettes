@@ -14,17 +14,19 @@
 		content="Découvrez toutes les recettes de Moumy, transmises avec amour de génération en génération."
 	/>
 	<meta property="og:title" content="Nos recettes — Les recettes de Moumy" />
-	<meta property="og:description" content="Découvrez toutes les recettes de Moumy, transmises avec amour de génération en génération." />
+	<meta
+		property="og:description"
+		content="Découvrez toutes les recettes de Moumy, transmises avec amour de génération en génération."
+	/>
 </svelte:head>
 
 <div class="pattern-overlay"></div>
 
 <main
-	class="max-w-6xl px-6 pt-8 relative z-10 mx-auto"
+	class="relative z-10 mx-auto max-w-6xl px-6 pt-8"
 	style="padding-bottom: var(--space-section-lg)"
 >
-	<h1 class="text-3xl md:text-4xl mb-8 text-primary-700-300 text-center">Nos recettes</h1>
+	<h1 class="mb-8 text-center text-3xl text-primary-700-300 md:text-4xl">Nos recettes</h1>
 
 	<RecipeBrowser recipes={allRecipes} />
 </main>
-
