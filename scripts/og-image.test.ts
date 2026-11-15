@@ -35,10 +35,46 @@ test('static pages have usable social images and large-image Twitter cards', asy
 	const htmlFiles = await findHtmlFiles(buildDirectory);
 	expect(htmlFiles.length).toBeGreaterThan(0);
 
+	const sitemap = await readFile(join(buildDirectory, 'sitemap.xml'), 'utf8');
+	const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]!);
+	expect(sitemapUrls.length).toBeGreaterThan(0);
+	for (const sitemapUrl of sitemapUrls) expect(new URL(sitemapUrl).origin).toBe(SITE_URL);
+	const robots = await readFile(join(buildDirectory, 'robots.txt'), 'utf8');
+	expect(robots).toContain(`Sitemap: ${SITE_URL}/sitemap.xml`);
+	expect(robots).not.toContain('lesrecettesdemoumy.fr');
+
 	for (const htmlFile of htmlFiles) {
 		const html = await readFile(htmlFile, 'utf8');
+		const canonical = html.match(/<link\b[^>]*\brel="canonical"[^>]*\bhref="([^"]+)"[^>]*>/)?.[1];
+		const ogUrls = getMetaContents(html, 'property', 'og:url');
+		expect(canonical, `${htmlFile} has a canonical URL`).toBeTruthy();
+		expect(new URL(canonical!).origin).toBe(SITE_URL);
+		expect(ogUrls, `${htmlFile} has exactly one Open Graph URL`).toHaveLength(1);
+		expect(new URL(ogUrls[0]!).origin).toBe(SITE_URL);
+
 		const ogImages = getMetaContents(html, 'property', 'og:image');
 		const twitterImages = getMetaContents(html, 'name', 'twitter:image');
+		const jsonLdScripts = [
+			...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)
+		];
+		for (const [, payload] of jsonLdScripts) {
+			const structuredData = JSON.parse(payload!) as { image?: string | string[] };
+			if (structuredData.image) {
+				for (const image of Array.isArray(structuredData.image)
+					? structuredData.image
+					: [structuredData.image]) {
+					const url = new URL(image);
+					expect(url.origin).toBe(SITE_URL);
+					const imagePath = join(
+						buildDirectory,
+						decodeURIComponent(url.pathname).replace(/^\/+/, '')
+					);
+					expect(await Bun.file(imagePath).exists(), `${htmlFile} references ${url.pathname}`).toBe(
+						true
+					);
+				}
+			}
+		}
 
 		expect(ogImages, `${htmlFile} has exactly one Open Graph image`).toHaveLength(1);
 		expect(twitterImages, `${htmlFile} has exactly one Twitter image`).toHaveLength(1);

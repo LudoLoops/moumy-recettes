@@ -8,8 +8,7 @@
 
 import { readdirSync, writeFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
-
-const SITE_URL = 'https://lesrecettesdemoumy.fr';
+import { SITE_URL } from '../src/lib/config';
 
 // Static routes that always exist
 const STATIC_ROUTES = ['/', '/recettes', '/ingredients', '/documents', '/legal', '/privacy'];
@@ -71,3 +70,11 @@ const sitemap = buildSitemap(slugs);
 const outPath = join(BUILD_DIR, 'sitemap.xml');
 writeFileSync(outPath, sitemap, 'utf-8');
 console.log(`[sitemap] Written to ${outPath}`);
+
+const robotsPath = join(BUILD_DIR, 'robots.txt');
+writeFileSync(
+	robotsPath,
+	`# allow crawling everything by default\nUser-agent: *\nDisallow:\n\nSitemap: ${SITE_URL}/sitemap.xml\n`,
+	'utf-8'
+);
+console.log(`[sitemap] Robots written to ${robotsPath}`);

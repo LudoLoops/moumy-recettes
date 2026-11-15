@@ -11,11 +11,11 @@ import {
 	writeFile
 } from 'node:fs/promises';
 import { join, relative, resolve, sep } from 'node:path';
+import { SITE_URL } from '../src/lib/config';
 import { fingerprintSources, getPreviewStatus } from './preview';
 
 export const PREVIEW_MANIFEST_NAME = '.moumy-preview-manifest.json';
 const STATIC_ROUTES = ['/', '/recettes', '/ingredients', '/documents', '/legal', '/privacy'];
-const SITE_URL = 'https://lesrecettesdemoumy.fr';
 
 function isWithin(parent: string, child: string): boolean {
 	const path = relative(parent, child);
@@ -105,6 +105,13 @@ async function collectHtmlFiles(directory: string): Promise<string[]> {
 
 export async function validateBuildOutput(root: string, output: string): Promise<void> {
 	await assertFile(join(output, 'index.html'), 'missing or empty index.html.');
+	const robotsPath = join(output, 'robots.txt');
+	await assertFile(robotsPath, 'missing or empty robots.txt.');
+	const robots = await readFile(robotsPath, 'utf8');
+	const sitemapReference = robots.match(/^Sitemap:\s*(\S+)\s*$/m)?.[1];
+	if (!sitemapReference || sitemapReference !== `${SITE_URL}/sitemap.xml`)
+		throw new Error('robots.txt must reference the canonical sitemap URL.');
+
 	const sitemapPath = join(output, 'sitemap.xml');
 	await assertFile(sitemapPath, 'missing or empty sitemap.xml.');
 	const sitemap = await readFile(sitemapPath, 'utf8');
@@ -132,6 +139,28 @@ export async function validateBuildOutput(root: string, output: string): Promise
 	}
 	for (const route of expectedRecipeRoutes) {
 		await assertFile(expectedRouteFile(output, route), `missing recipe page for route ${route}.`);
+	}
+	const htmlFiles = await collectHtmlFiles(output);
+	for (const htmlFile of htmlFiles) {
+		const html = await readFile(htmlFile, 'utf8');
+		const relativeHtml = relative(output, htmlFile).split(sep).join('/');
+		const canonical = html.match(/<link\b[^>]*\brel=["']canonical["'][^>]*>/i)?.[0];
+		const canonicalHref = canonical?.match(/\bhref=["']([^"']+)["']/i)?.[1];
+		if (!canonicalHref || new URL(canonicalHref).origin !== SITE_URL)
+			throw new Error(`Unexpected or missing canonical URL in ${relativeHtml}.`);
+
+		for (const [attribute, key] of [
+			['property', 'og:url'],
+			['property', 'og:image'],
+			['name', 'twitter:image']
+		] as const) {
+			const values = [...html.matchAll(/<meta\b[^>]*>/gi)]
+				.map((match) => match[0])
+				.filter((tag) => tag.includes(`${attribute}="${key}"`))
+				.map((tag) => tag.match(/\bcontent=["']([^"']+)["']/i)?.[1] ?? '');
+			if (values.length !== 1 || new URL(values[0]!).origin !== SITE_URL)
+				throw new Error(`Unexpected or missing ${key} URL in ${relativeHtml}.`);
+		}
 	}
 	await validateReferencedAssets(output);
 }

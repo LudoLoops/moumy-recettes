@@ -14,6 +14,7 @@ import {
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { SITE_URL } from '../src/lib/config';
 import { buildAndPublish } from './preview-build';
 import { buildPreview, fingerprintSources, getPreviewStatus } from './preview';
 import { startPreviewServer, staticResponse } from './preview-server';
@@ -35,7 +36,7 @@ async function addRecipes(root: string, slugs: string[]): Promise<void> {
 
 function sitemap(slugs: string[]): string {
 	const routes = [...staticRoutes, ...slugs.map((slug) => `/recettes/${encodeURIComponent(slug)}`)];
-	return `<urlset>${routes.map((route) => `<url><loc>https://lesrecettesdemoumy.fr${route}</loc></url>`).join('')}</urlset>`;
+	return `<urlset>${routes.map((route) => `<url><loc>${SITE_URL}${route}</loc></url>`).join('')}</urlset>`;
 }
 
 async function writeValidOutput(
@@ -52,8 +53,12 @@ async function writeValidOutput(
 	await writeFile(join(output, 'assets', 'site.css'), 'body { color: black }');
 	if (!options.omitImage) await writeFile(join(output, 'images', 'scan.jpg'), 'image');
 	await writeFile(join(output, 'sitemap.xml'), sitemap(slugs));
+	await writeFile(
+		join(output, 'robots.txt'),
+		`User-agent: *\nDisallow:\nSitemap: ${SITE_URL}/sitemap.xml`
+	);
 
-	const html = '<link rel="stylesheet" href="/assets/site.css"><img src="/images/scan.jpg">';
+	const html = `<link rel="canonical" href="${SITE_URL}/"><meta property="og:url" content="${SITE_URL}/"><meta property="og:image" content="${SITE_URL}/images/scan.jpg"><meta name="twitter:image" content="${SITE_URL}/images/scan.jpg"><link rel="stylesheet" href="/assets/site.css"><img src="/images/scan.jpg">`;
 	for (const route of staticRoutes) {
 		if (route === options.omitPage) continue;
 		const path =
@@ -148,6 +153,7 @@ describe('preview publication validation', () => {
 		const onlyIndex = async (output: string) => {
 			await writeFile(join(output, 'index.html'), '<h1>partial</h1>');
 			await writeFile(join(output, 'sitemap.xml'), sitemap(['cake']));
+			await writeFile(join(output, 'robots.txt'), `Sitemap: ${SITE_URL}/sitemap.xml`);
 		};
 		await expect(buildAndPublish(root, previewRoot, onlyIndex)).rejects.toThrow(
 			'missing page for route /recettes'
@@ -224,7 +230,10 @@ describe('kernel-managed build lock', () => {
 	test('ignores stale lock files, serializes concurrent builds, and releases after the holder is killed', async () => {
 		const root = await temporaryDirectory();
 		await addRecipes(root, ['cake']);
-		await writeFile(join(root, 'index.html'), '<h1>Fixture</h1>');
+		await writeFile(
+			join(root, 'index.html'),
+			`<html><link rel="canonical" href="${SITE_URL}/"><meta property="og:url" content="${SITE_URL}/"><meta property="og:image" content="${SITE_URL}/images/scan.jpg"><meta name="twitter:image" content="${SITE_URL}/images/scan.jpg"><link rel="stylesheet" href="/assets/site.css"><img src="/images/scan.jpg"></html>`
+		);
 		const marker = join(root, 'build-starts');
 		await writeFile(
 			join(root, 'vite.config.ts'),
@@ -244,9 +253,10 @@ export default {
       await mkdir(out + '/images', { recursive: true });
       await writeFile(out + '/assets/site.css', 'body {}');
       await writeFile(out + '/images/scan.jpg', 'image');
-      for (const route of ['recettes', 'ingredients', 'documents', 'legal', 'privacy']) await writeFile(out + '/' + route + '.html', '<html></html>');
+      const html = '<html><link rel="canonical" href="https://moumy.ovh/"><meta property="og:url" content="https://moumy.ovh/"><meta property="og:image" content="https://moumy.ovh/images/scan.jpg"><meta name="twitter:image" content="https://moumy.ovh/images/scan.jpg"><link rel="stylesheet" href="/assets/site.css"><img src="/images/scan.jpg"></html>';
+      for (const route of ['recettes', 'ingredients', 'documents', 'legal', 'privacy']) await writeFile(out + '/' + route + '.html', html);
       const slugs = (await readdir('src/data/recettes')).filter((name) => name.endsWith('.md')).map((name) => name.slice(0, -3));
-      for (const slug of slugs) await writeFile(out + '/recettes/' + slug + '.html', '<html><link rel="stylesheet" href="/assets/site.css"><img src="/images/scan.jpg"></html>');
+      for (const slug of slugs) await writeFile(out + '/recettes/' + slug + '.html', html);
     }
   }]
 };`
